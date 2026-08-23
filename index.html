@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aman Makeover — Beauty, Defined.</title>
+<meta name="description" content="Aman Makeover — premium bridal makeup, hair, nails and beauty studio in Adarsh Nagar, New Delhi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#090909;--surface:#111;--surface2:#171717;--text:#f5f2ed;--muted:#a6a09a;--line:#272522;--accent:#d9a86c;--accent2:#f0c892}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:"DM Sans",sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}img{display:block}.container{width:min(1180px,90%);margin:auto}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(9,9,9,.72);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.07)}
+.nav{height:78px;display:flex;align-items:center;justify-content:space-between}.brand{font:800 21px Manrope,sans-serif;letter-spacing:-.7px}.brand i{font-style:normal;color:var(--accent)}
+.navlinks{display:flex;gap:30px;font-size:13px;color:#bdb7b1}.navlinks a{transition:.25s}.navlinks a:hover{color:#fff}
+.navcta{font-size:12px;font-weight:800;letter-spacing:.7px;text-transform:uppercase;border:1px solid #3a3835;padding:12px 17px;border-radius:100px}
+.hero{min-height:100vh;padding:150px 0 80px;display:grid;align-items:center;background:radial-gradient(circle at 75% 25%,rgba(217,168,108,.13),transparent 28%),linear-gradient(180deg,#0b0b0b,#090909)}
+.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:65px;align-items:center}.kicker{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);font-weight:800}
+h1,h2,h3{font-family:Manrope,sans-serif;letter-spacing:-2px}h1{font-size:clamp(56px,8vw,104px);line-height:.93;margin:22px 0 25px;font-weight:800;max-width:760px}h1 span{color:var(--accent)}.hero p{font-size:18px;line-height:1.7;color:var(--muted);max-width:610px}.buttons{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap}.btn{padding:14px 20px;border-radius:100px;background:var(--text);color:#0b0b0b;font-weight:800;font-size:13px;transition:.25s}.btn:hover{transform:translateY(-3px);box-shadow:0 15px 40px #000}.btn.ghost{background:transparent;color:var(--text);border:1px solid #383633}
+.hero-visual{position:relative}.hero-visual img{width:100%;height:640px;object-fit:cover;filter:saturate(.72) contrast(1.05);border-radius:4px}.hero-visual:after{content:"";position:absolute;inset:0;border:1px solid rgba(255,255,255,.12);pointer-events:none}
+.stamp{position:absolute;right:-20px;bottom:30px;background:var(--accent);color:#111;padding:20px 22px;font:800 14px Manrope;max-width:160px;line-height:1.25}
+section{padding:120px 0}.section-top{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:55px}.section-top h2{font-size:clamp(42px,6vw,70px);margin:12px 0 0;line-height:1}.section-top p{color:var(--muted);max-width:420px;line-height:1.7}
+.services{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}.service{padding:30px 22px 32px 0;border-bottom:1px solid var(--line);transition:.35s}.service:hover{background:#0e0e0e;padding-left:14px}.service .no{color:var(--accent);font:700 11px Manrope}.service h3{font-size:26px;letter-spacing:-1px;margin:55px 0 12px}.service p{font-size:14px;color:var(--muted);line-height:1.65;margin:0;padding-right:18px}
+.dark-band{background:#10100f}.story{display:grid;grid-template-columns:.9fr 1.1fr;gap:80px;align-items:center}.story img{width:100%;height:620px;object-fit:cover;filter:grayscale(.2) brightness(.75)}.story h2{font-size:clamp(45px,6vw,72px);line-height:.98;margin:18px 0 25px}.story .large{font:600 25px/1.4 Manrope;color:#e8e2db}.story p{color:var(--muted);line-height:1.75}.facts{display:grid;grid-template-columns:1fr 1fr;margin-top:35px;border-top:1px solid var(--line)}.fact{padding:18px 0;border-bottom:1px solid var(--line)}.fact strong{display:block;font:800 18px Manrope}.fact span{font-size:12px;color:var(--muted)}
+.gallery{display:grid;grid-template-columns:1.1fr .9fr .9fr;grid-template-rows:300px 300px;gap:10px}.gallery img{width:100%;height:100%;object-fit:cover;filter:grayscale(.25);transition:.5s}.gallery img:hover{filter:grayscale(0);transform:scale(1.015)}.gallery img:first-child{grid-row:1/3}.gallery img:last-child{grid-column:2/4}
+.reviews{display:grid;grid-template-columns:1fr 2fr;gap:70px}.reviews h2{font-size:65px;line-height:1;margin:15px 0}.review-list{border-top:1px solid var(--line)}.review{padding:28px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:90px 1fr;gap:20px}.stars{color:var(--accent);letter-spacing:2px}.review p{font:500 20px/1.45 Manrope;margin:0}.review small{color:var(--muted);display:block;margin-top:9px}
+.contact{background:var(--text);color:#111}.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px}.contact h2{font-size:clamp(48px,7vw,82px);line-height:.95;margin:15px 0 25px}.contact p{color:#5f5a55;line-height:1.7}.contact .details{margin-top:35px}.detail{padding:16px 0;border-bottom:1px solid #d8d2ca}.detail strong{display:block;font:800 13px Manrope;text-transform:uppercase;letter-spacing:1px}.detail span{font-size:15px}.map{min-height:450px;filter:grayscale(1) contrast(1.05)}.map iframe{width:100%;height:100%;min-height:450px;border:0}
+footer{padding:25px 0;color:#77736f;font-size:12px;border-top:1px solid #262422}.footer{display:flex;justify-content:space-between}
+.reveal{opacity:0;transform:translateY(45px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}.reveal.left{transform:translateX(-45px)}.reveal.right{transform:translateX(45px)}.reveal.visible{opacity:1;transform:none}.delay1{transition-delay:.08s}.delay2{transition-delay:.16s}.delay3{transition-delay:.24s}.delay4{transition-delay:.32s}
+@media(max-width:850px){.navlinks{display:none}.hero-grid,.story,.contact-grid,.reviews{grid-template-columns:1fr}.hero{padding-top:125px}.hero-visual img{height:480px}.services{grid-template-columns:1fr 1fr}.section-top{display:block}.gallery{grid-template-columns:1fr 1fr;grid-template-rows:250px 250px 250px}.gallery img:first-child{grid-row:auto}.gallery img:last-child{grid-column:auto}.story img{height:450px}.reviews{gap:40px}}
+@media(max-width:550px){section{padding:80px 0}.services{grid-template-columns:1fr}.hero h1{font-size:56px}.hero-visual img{height:390px}.stamp{right:10px}.gallery{display:grid;grid-template-columns:1fr;grid-template-rows:260px 260px 260px 260px}.gallery img{grid-column:auto!important;grid-row:auto!important}.footer{display:block}.footer span{display:block;margin:5px 0}}
+</style>
+</head>
+<body>
+<nav><div class="container nav"><a class="brand" href="#">AMAN <i>MAKEOVER</i></a><div class="navlinks"><a href="#services">Services</a><a href="#story">Studio</a><a href="#work">Work</a><a href="#reviews">Reviews</a><a href="#contact">Visit</a></div><a class="navcta" href="tel:+918826568518">Book now</a></div></nav>
+
+<main>
+<section class="hero"><div class="container hero-grid">
+<div class="reveal left"><div class="kicker">Adarsh Nagar · New Delhi</div><h1>Beauty.<br><span>Defined.</span></h1><p>A modern beauty studio for bridal makeup, hair, nails and the moments you want to remember. Refined looks. Personal attention. Zero compromise.</p><div class="buttons"><a class="btn" href="tel:+918826568518">Book an appointment →</a><a class="btn ghost" href="#work">Explore our work</a></div></div>
+<div class="hero-visual reveal right delay2"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1100&q=90" alt="Premium beauty styling"><div class="stamp">BRIDAL<br>BEAUTY<br>ARTISTRY</div></div>
+</div></section>
+
+<section id="services"><div class="container"><div class="section-top reveal"><div><div class="kicker">01 / Services</div><h2>Less ordinary.</h2></div><p>Thoughtfully curated beauty services for everyday polish, special occasions and your biggest days.</p></div>
+<div class="services">
+<article class="service reveal delay1"><span class="no">01</span><h3>Bridal Makeup</h3><p>Signature bridal looks with a polished, camera-ready finish tailored to you.</p></article>
+<article class="service reveal delay2"><span class="no">02</span><h3>Hair Styling</h3><p>Contemporary styling for weddings, parties and occasions that deserve more.</p></article>
+<article class="service reveal delay3"><span class="no">03</span><h3>Nail Art</h3><p>Manicures, nail art and extensions designed to complete the look.</p></article>
+<article class="service reveal delay4"><span class="no">04</span><h3>Beauty Care</h3><p>Beauty and grooming treatments for a confident, considered routine.</p></article>
+</div></div></section>
+
+<section class="dark-band" id="story"><div class="container story"><img class="reveal left" src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1000&q=90" alt="Beauty portrait"><div class="reveal right"><div class="kicker">02 / The Studio</div><h2>Where confidence meets craft.</h2><p class="large">A calm, professional beauty experience built around the details.</p><p>Customer feedback consistently highlights professionalism, bridal makeup, hair services and a welcoming experience. This concept translates that reputation into a clean, premium digital identity.</p><div class="facts"><div class="fact"><strong>4.9 ★</strong><span>Public rating</span></div><div class="fact"><strong>1,500+</strong><span>Public ratings</span></div><div class="fact"><strong>10:30 — 20:00</strong><span>Daily hours</span></div><div class="fact"><strong>Adarsh Nagar</strong><span>New Delhi</span></div></div></div></div></section>
+
+<section id="work"><div class="container"><div class="section-top reveal"><div><div class="kicker">03 / Selected Work</div><h2>Make an entrance.</h2></div><p>Editorial placeholder imagery. Replace with the salon's own approved portfolio before launch.</p></div><div class="gallery"><img class="reveal" src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=1000&q=90" alt="Hair styling"><img class="reveal delay1" src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=800&q=90" alt="Beauty products"><img class="reveal delay2" src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=800&q=90" alt="Nail art"><img class="reveal delay3" src="https://images.unsplash.com/photo-1487412912498-0447578fcca8?auto=format&fit=crop&w=1300&q=90" alt="Makeup portrait"></div></div></section>
+
+<section class="dark-band" id="reviews"><div class="container reviews"><div class="reveal left"><div class="kicker">04 / Reviews</div><h2>Good words.<br>Great energy.</h2><p style="color:var(--muted);line-height:1.7">A concise selection of themes from public customer feedback.</p></div><div class="review-list reveal right"><div class="review"><div class="stars">★★★★★</div><div><p>Professional bridal makeup, beautiful finishing and a memorable experience.</p><small>— Bridal client</small></div></div><div class="review"><div class="stars">★★★★★</div><div><p>Friendly professionals, relaxing ambience and excellent hair services.</p><small>— Customer review</small></div></div><div class="review"><div class="stars">★★★★★</div><div><p>A trusted salon for beauty, styling and special occasions.</p><small>— Long-time customer</small></div></div></div></div></section>
+
+<section class="contact" id="contact"><div class="container contact-grid"><div class="reveal left"><div class="kicker">05 / Visit</div><h2>Let's make it<br>beautiful.</h2><p>Call to discuss availability, bridal packages, services and pricing.</p><div class="details"><div class="detail"><strong>Address</strong><span>A-261, 1st Floor, SS Rana Road, near Sargam Electronics, Adarsh Nagar, New Delhi 110033</span></div><div class="detail"><strong>Phone</strong><span><a href="tel:+918826568518">+91 88265 68518</a></span></div><div class="detail"><strong>Hours</strong><span>Daily · 10:30 AM – 8:00 PM</span></div></div><div class="buttons"><a class="btn" href="tel:+918826568518">Call Aman Makeover →</a></div></div><div class="map reveal right"><iframe loading="lazy" src="https://www.google.com/maps?q=A-261,+SS+Rana+Road,+Adarsh+Nagar,+New+Delhi&output=embed" title="Aman Makeover location"></iframe></div></div></section>
+</main>
+<footer><div class="container footer"><span>© 2026 Aman Makeover — Website concept.</span><span>Verify business details and replace imagery before publishing.</span></div></footer>
+<script>
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("visible");else e.target.classList.remove("visible")}),{threshold:.12});
+document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
+</script>
+</body></html>
