@@ -1,547 +1,394 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="description" content="Aman Makeover concept website for beauty, makeup, hair, skin and nails in Jahangirpuri, Delhi." />
-  <meta property="og:title" content="Aman Makeover | Beauty, made personal." />
-  <meta property="og:description" content="A private concept for a polished Aman Makeover website." />
-  <meta property="og:url" content="https://example.com/" />
-  <meta property="og:image" content="https://example.com/assets/hero-poster.jpg" /> <!-- DEPLOY STEP -->
-  <title>Aman Makeover | Beauty, made personal.</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <style>
-    :root{
-      --canvas:#0b0910;
-      --panel:#15121b;
-      --panel-2:#1b1721;
-      --accent:#d8b46a;
-      --accent-hover:#f1d38c;
-      --accent-muted:#5d4a32;
-      --text-secondary:#b7adb6;
-      --text-primary:#f7f2f5;
-      --line:rgba(216,180,106,.18);
-      --soft:rgba(255,255,255,.05);
-      --ease:cubic-bezier(.22,.75,.18,1);
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth;overflow-x:clip;background:var(--canvas)}
-    body{margin:0;background:var(--canvas);color:var(--text-primary);font-family:"Manrope",system-ui,sans-serif;overflow-x:clip}
-    body.paused *,body.paused *::before,body.paused *::after{animation-play-state:paused!important}
-    a{color:inherit;text-decoration:none}
-    button{font:inherit}
-    img{max-width:100%;display:block}
-    .site-nav{position:fixed;inset:0 0 auto;z-index:40;display:flex;align-items:center;justify-content:space-between;padding:20px clamp(18px,4vw,54px);pointer-events:none}
-    .site-nav>*{pointer-events:auto}
-    .brand-lockup{display:flex;align-items:center;gap:12px}
-    .brand-mark{width:34px;height:34px;position:relative;display:grid;place-items:center}
-    .brand-mark::before{content:"";width:22px;height:22px;border:1px solid var(--accent);border-radius:50%;position:absolute}
-    .brand-mark::after{content:"";width:8px;height:8px;background:var(--accent);border-radius:50%}
-    .brand-name{font-family:"Cormorant Garamond",serif;font-size:22px;letter-spacing:.02em}
-    .nav-links{display:flex;gap:18px;font-size:13px;color:var(--text-secondary)}
-    .nav-links a{padding:10px 12px;border:1px solid transparent;border-radius:999px;transition:.35s var(--ease)}
-    .nav-links a:hover,.nav-links a:focus-visible{border-color:var(--line);color:var(--text-primary);background:rgba(21,18,27,.72)}
-    .hero{height:440vh;position:relative}
-    .hero-sticky{position:sticky;top:0;height:100vh;overflow:hidden;background:var(--canvas)}
-    .stage{position:absolute;inset:0}
-    .poster,.video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transition:opacity 1.1s var(--ease)}
-    .poster{background:center/cover no-repeat url('assets/hero-poster.jpg');filter:saturate(.85) contrast(1.05)}
-    .video{opacity:0}
-    .stage.video-ready .video{opacity:.95}
-    .stage.video-ready .poster{opacity:.25}
-    .stage::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,9,16,.93) 0%,rgba(11,9,16,.76) 24%,rgba(11,9,16,.18) 64%,rgba(11,9,16,.36) 100%);z-index:1}
-    .stage::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 77% 45%,rgba(216,180,106,.12),transparent 28%),linear-gradient(180deg,rgba(11,9,16,.22),transparent 34%,rgba(11,9,16,.46));z-index:1;pointer-events:none}
-    .hero-copy{position:absolute;inset:0;z-index:3;display:grid;align-items:center;padding:0 clamp(22px,7vw,110px)}
-    .copy-wrap{max-width:690px;margin-top:3vh}
-    .eyebrow,.meta{font-family:"IBM Plex Mono",monospace;text-transform:uppercase;letter-spacing:.16em;font-size:11px;color:var(--accent)}
-    .hero h1{font-family:"Cormorant Garamond",serif;font-size:clamp(64px,9vw,132px);line-height:.85;font-weight:500;margin:18px 0 20px;letter-spacing:-.03em;max-width:760px}
-    .hero-sub{font-size:clamp(16px,1.8vw,21px);line-height:1.55;color:#ded5dd;max-width:570px;margin:0}
-    .hero-cta-row{display:flex;align-items:center;gap:14px;margin-top:34px;flex-wrap:wrap}
-    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 20px;border-radius:999px;border:1px solid rgba(216,180,106,.32);transition:.35s var(--ease);font-weight:700;font-size:14px}
-    .btn-primary{background:var(--accent);color:#17110a;border-color:var(--accent)}
-    .btn-primary:hover,.btn-primary:focus-visible{background:var(--accent-hover);transform:translateY(-2px)}
-    .btn-ghost{background:rgba(15,12,18,.38);backdrop-filter:blur(10px);color:var(--text-primary)}
-    .btn-ghost:hover,.btn-ghost:focus-visible{border-color:var(--accent-muted);background:rgba(21,18,27,.72)}
-    .scroll-cue{position:absolute;left:clamp(22px,7vw,110px);bottom:32px;z-index:3;display:flex;align-items:center;gap:12px;color:var(--text-secondary);font-size:12px}
-    .scroll-line{width:54px;height:1px;background:linear-gradient(90deg,var(--accent),transparent);animation:breathe 2.4s ease-in-out infinite}
-    @keyframes breathe{0%,100%{opacity:.45;transform:scaleX(.75);transform-origin:left}50%{opacity:1;transform:scaleX(1)}}
-    .loading-ring{position:absolute;right:clamp(22px,6vw,80px);bottom:30px;z-index:4;width:42px;height:42px;display:grid;place-items:center;color:var(--accent);transition:opacity .4s}
-    .loading-ring svg{width:100%;height:100%;transform:rotate(-90deg)}
-    .loading-ring circle{stroke-dasharray:126;stroke-dashoffset:var(--ld,126);transition:stroke-dashoffset .15s linear}
-    .stage.video-ready .loading-ring,.stage.video-failed .loading-ring{opacity:0;pointer-events:none}
-    .bands{position:absolute;inset:0;z-index:2;pointer-events:none;contain:layout paint}
-    .story-slot{position:absolute;left:clamp(22px,7vw,110px);top:50%;max-width:610px;opacity:0;transform:translate3d(0,18px,0);transition:opacity .32s ease,transform .5s var(--ease);will-change:opacity,transform;contain:layout paint}
-    .story-slot.visible{opacity:1;transform:translate3d(0,0,0)}
-    .story-slot.fading{opacity:0;transform:translate3d(0,10px,0)}
-    .story-slot.scrim::before{content:"";position:absolute;inset:-44px -52px;background:radial-gradient(ellipse at center,rgba(9,7,13,.55),transparent 72%);z-index:-1}
-    .story-slot .band-kicker{font-family:"IBM Plex Mono",monospace;color:var(--accent);font-size:11px;letter-spacing:.15em;text-transform:uppercase;margin-bottom:12px}
-    .story-slot h2{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(52px,7vw,102px);line-height:.9;margin:0;letter-spacing:-.03em;text-shadow:0 4px 24px rgba(0,0,0,.55)}
-    .static-note{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:3;font-size:11px;color:rgba(247,242,245,.6);white-space:nowrap}
-    .loading-state{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;color:rgba(247,242,245,.55);font-size:12px;opacity:.75;pointer-events:none}
-    .hero .mobile-static{display:none}
-
-    main{position:relative;z-index:5;background:var(--canvas)}
-    section{padding:clamp(84px,11vw,150px) clamp(20px,7vw,110px);position:relative}
-    .section-inner{max-width:1180px;margin:0 auto}
-    .section-head{display:flex;justify-content:space-between;gap:30px;align-items:flex-end;margin-bottom:48px}
-    .section-title{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(48px,7vw,86px);line-height:.9;letter-spacing:-.025em;margin:0}
-    .section-intro{max-width:430px;color:var(--text-secondary);line-height:1.75;margin:0}
-    .proof-strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-    .proof{padding:12px 18px;border-left:1px solid var(--line)}
-    .proof:first-child{border-left:0}
-    .proof strong{display:block;font-family:"Cormorant Garamond",serif;font-size:42px;font-weight:500;line-height:1;color:var(--text-primary)}
-    .proof span{display:block;margin-top:8px;color:var(--text-secondary);font-size:12px;line-height:1.45}
-
-    .services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-    .service-card{border:1px solid var(--line);background:linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.015));padding:28px;min-height:185px;border-radius:22px;position:relative;overflow:hidden;transition:.55s var(--ease)}
-    .service-card:hover,.service-card.open{transform:translateY(-4px);border-color:rgba(216,180,106,.44);background:linear-gradient(145deg,rgba(216,180,106,.08),rgba(255,255,255,.02))}
-    .service-card::after{content:"";position:absolute;width:150px;height:150px;border-radius:50%;right:-55px;bottom:-55px;background:radial-gradient(circle,rgba(216,180,106,.2),transparent 66%);opacity:.7}
-    .service-no{font-family:"IBM Plex Mono",monospace;color:var(--accent);font-size:12px}
-    .service-title{font-family:"Cormorant Garamond",serif;font-size:48px;line-height:.9;margin:24px 0 12px;font-weight:500}
-    .service-copy{color:var(--text-secondary);line-height:1.65;max-width:420px;margin:0}
-    .service-detail{max-height:0;overflow:hidden;transition:max-height .6s var(--ease),margin-top .6s var(--ease)}
-    .service-card.open .service-detail{max-height:160px;margin-top:16px}
-    .service-detail p{margin:0;color:#d8ced8;line-height:1.6;font-size:14px}
-
-    .story{display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:center}
-    .story-card{border:1px solid var(--line);padding:34px;border-radius:24px;background:var(--panel);position:relative;overflow:hidden}
-    .story-card::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 15% 10%,rgba(216,180,106,.12),transparent 30%);pointer-events:none}
-    .quote{font-family:"Cormorant Garamond",serif;font-size:clamp(30px,4vw,46px);line-height:1.03;margin:0 0 22px}
-    .body-copy{color:var(--text-secondary);line-height:1.8;margin:0 0 18px}
-    .small-note{font-size:11px;color:#8f8490}
-    .award-orbit{min-height:420px;display:grid;place-items:center;position:relative}
-    .orbit{width:min(360px,82vw);aspect-ratio:1;border:1px solid rgba(216,180,106,.32);border-radius:50%;position:relative;animation:slowspin 24s linear infinite;will-change:transform}
-    .orbit::before,.orbit::after{content:"";position:absolute;inset:18%;border:1px solid rgba(216,180,106,.18);border-radius:50%}
-    .orbit::after{inset:36%;background:radial-gradient(circle,rgba(216,180,106,.18),transparent 70%);border:0}
-    .orbit-label{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:40px;font-family:"Cormorant Garamond",serif;font-size:42px;line-height:.95}
-    .orbit-badge{position:absolute;top:8%;right:4%;font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--accent);background:var(--canvas);padding:8px 10px;border:1px solid var(--line);border-radius:999px}
-    @keyframes slowspin{to{transform:rotate(360deg)}}
-
-    .gallery{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
-    .gallery-card{min-height:480px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(145deg,#1b1420,#0e0c12);position:relative;overflow:hidden}
-    .gallery-card.small{min-height:230px}
-    .gallery-stack{display:grid;gap:18px}
-    .gallery-art{position:absolute;inset:0;background:radial-gradient(circle at 30% 30%,rgba(216,180,106,.18),transparent 24%),radial-gradient(circle at 76% 60%,rgba(143,84,146,.22),transparent 26%),linear-gradient(135deg,#18121d,#0a080d)}
-    .gallery-art::before{content:"";position:absolute;inset:14%;border:1px solid rgba(216,180,106,.23);border-radius:44% 44% 18% 18%;transform:rotate(-4deg)}
-    .gallery-art::after{content:"";position:absolute;inset:34% 28%;background:radial-gradient(circle at 52% 48%,rgba(246,228,205,.42),rgba(216,180,106,.06) 44%,transparent 72%);border-radius:50%;filter:blur(12px)}
-    .gallery-overlay{position:absolute;left:22px;right:22px;bottom:22px;display:flex;justify-content:space-between;gap:12px;align-items:flex-end}
-    .gallery-title{font-family:"Cormorant Garamond",serif;font-size:34px;line-height:.95;margin:0}
-    .gallery-tag{font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--accent);text-transform:uppercase;letter-spacing:.12em}
-    .gallery-note{position:absolute;right:22px;top:22px;color:rgba(247,242,245,.55);font-size:11px}
-
-    .review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .review-card{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:28px;min-height:240px;display:flex;flex-direction:column;justify-content:space-between}
-    .stars{font-size:13px;letter-spacing:.18em;color:var(--accent)}
-    .review-text{font-family:"Cormorant Garamond",serif;font-size:30px;line-height:1.08;margin:20px 0}
-    .review-source{color:#8f8490;font-size:11px}
-
-    .booking{padding-bottom:140px}
-    .booking-box{border:1px solid rgba(216,180,106,.34);background:radial-gradient(circle at 80% 20%,rgba(216,180,106,.12),transparent 28%),var(--panel);border-radius:28px;padding:clamp(34px,7vw,84px);display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:end}
-    .booking-title{font-family:"Cormorant Garamond",serif;font-size:clamp(56px,7vw,92px);line-height:.86;margin:0 0 20px;font-weight:500}
-    .booking-copy{color:var(--text-secondary);max-width:540px;line-height:1.8;margin:0}
-    .booking-actions{display:flex;justify-content:flex-end;align-items:center;gap:12px;flex-wrap:wrap}
-
-    footer{padding:28px clamp(20px,7vw,110px) 42px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;color:#7f7380;font-size:11px}
-    footer strong{color:#b8adba;font-weight:600}
-
-    .reveal{opacity:0;transform:translateY(36px);transition:opacity .85s var(--ease),transform .85s var(--ease)}
-    .reveal.in{opacity:1;transform:none}
-    .fine-rule{height:1px;background:linear-gradient(90deg,var(--line),transparent);margin:20px 0 0}
-
-    @media (max-width:900px){
-      .nav-links{display:none}
-      .hero{height:380vh}
-      .stage::before{background:linear-gradient(180deg,rgba(11,9,16,.58) 0%,rgba(11,9,16,.25) 45%,rgba(11,9,16,.7) 100%)}
-      .hero-copy{align-items:end;padding:0 22px 106px}
-      .copy-wrap{max-width:100%}
-      .hero h1{font-size:clamp(60px,16vw,92px)}
-      .hero-sub{font-size:16px;max-width:480px}
-      .band{left:22px;right:22px;top:55%;max-width:none}
-      .story-slot h2{font-size:clamp(48px,13vw,82px)}
-      .proof-strip{grid-template-columns:repeat(2,1fr)}
-      .proof:nth-child(3){border-left:0}
-      .story,.booking-box,.gallery{grid-template-columns:1fr}
-      .review-grid{grid-template-columns:1fr}
-      .gallery-card{min-height:360px}
-    }
-    @media (max-width:560px){
-      .hero{height:340vh}
-      .brand-name{font-size:20px}
-      .hero h1{font-size:64px}
-      .hero-cta-row{gap:8px}
-      .btn{min-height:44px;padding:0 16px}
-      .static-note{display:none}
-      .proof-strip{grid-template-columns:1fr 1fr;gap:0}
-      .proof{padding:14px 12px}
-      .proof strong{font-size:34px}
-      .services-grid{grid-template-columns:1fr}
-      .service-card{min-height:160px}
-      .service-title{font-size:42px}
-      .award-orbit{min-height:300px}
-      .booking-actions{justify-content:flex-start}
-    }
-    @media (max-width:700px){
-      .stage::after{background:linear-gradient(180deg,rgba(11,9,16,.12),transparent 38%,rgba(11,9,16,.42));}
-      .btn-ghost{backdrop-filter:none;background:rgba(15,12,18,.72)}
-      .scroll-line{animation:none}
-      .orbit{animation:none;will-change:auto}
-      .story-slot{left:22px;right:22px;top:55%;max-width:none;transition:opacity .28s ease,transform .36s ease}
-      .story-slot h2{font-size:clamp(46px,13vw,76px)}
-    }
-
-    @media (prefers-reduced-motion:reduce){
-      html{scroll-behavior:auto}
-      *,*::before,*::after{animation:none!important;transition:none!important}
-      .reveal{opacity:1;transform:none}
-      .orbit{animation:none}
-      .hero{height:auto;min-height:100svh}
-      .hero-sticky{position:relative;height:100svh}
-      .bands{display:none}
-      .hero .mobile-static{display:block}
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aman Makeover | Bridal Makeup Studio in Adarsh Nagar, New Delhi</title>
+<meta name="description" content="Aman Makeover is Adarsh Nagar's 4.9-star rated bridal makeup studio in New Delhi — bridal & engagement makeup, hair styling, skin care, nail art and laser hair removal.">
+<meta property="og:title" content="Aman Makeover | Bridal Makeup Studio, Adarsh Nagar">
+<meta property="og:description" content="Rated 4.9★ across 1,500+ reviews. Bridal & engagement makeup, hair, skin, nails and laser — all under one roof.">
+<meta property="og:type" content="business.business">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%234A0E2E'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='34' fill='%23C9A253' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <nav class="site-nav" aria-label="Primary navigation">
-    <a class="brand-lockup" href="#top" aria-label="Aman Makeover home">
-      <span class="brand-mark" aria-hidden="true"></span>
-      <span class="brand-name">Aman Makeover</span>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ICON SPRITE -->
+<svg style="display:none" aria-hidden="true">
+  <symbol id="icon-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 6.7 7.2.6-5.5 4.7 1.7 7.1-6.3-3.9-6.3 3.9 1.7-7.1-5.5-4.7 7.2-.6z"/></symbol>
+  <symbol id="icon-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.2-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.7a2 2 0 0 1 2 2z"/></symbol>
+  <symbol id="icon-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></symbol>
+  <symbol id="icon-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></symbol>
+  <symbol id="icon-sparkle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6.5 6.5l2 2M15.5 15.5l2 2M17.5 6.5l-2 2M8.5 15.5l-2 2"/></symbol>
+  <symbol id="icon-scissors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><path d="M8.5 7.5L20 18M20 6L8.5 16.5"/></symbol>
+  <symbol id="icon-droplet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5s6.5 7.2 6.5 12a6.5 6.5 0 0 1-13 0c0-4.8 6.5-12 6.5-12z"/></symbol>
+  <symbol id="icon-hand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V5.5a1.5 1.5 0 0 1 3 0V12M11 12V4a1.5 1.5 0 1 1 3 0v8M14 12.2V5.5a1.5 1.5 0 0 1 3 0V13M17 8.5a1.5 1.5 0 0 1 3 0V15c0 4-2.5 7-6.5 7h-1C9 22 7 20 6 18l-2.7-5a1.5 1.5 0 0 1 2.6-1.5L8 14"/></symbol>
+  <symbol id="icon-laser" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></symbol>
+  <symbol id="icon-flower" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2.1"/><path d="M12 9.8c-1.5-2-1.2-4.6.5-6 1.7 1.4 2 4 .5 6M12 14.2c1.5 2 1.2 4.6-.5 6-1.7-1.4-2-4-.5-6M9.8 12c-2-1.5-4.6-1.2-6 .5 1.4 1.7 4 2 6 .5M14.2 12c2 1.5 4.6 1.2 6-.5-1.4-1.7-4-2-6-.5"/></symbol>
+  <symbol id="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></symbol>
+  <symbol id="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></symbol>
+  <symbol id="icon-arrow-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
+</svg>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announcement-bar">
+  <p><svg width="13" height="13"><use href="#icon-star"/></svg> Rated 4.9 by 1,500+ clients — Adarsh Nagar's bridal makeup studio &nbsp;·&nbsp; <a href="tel:+918826568518">+91 88265 68518</a></p>
+</div>
+
+<!-- HEADER -->
+<header class="site-header" id="site-header">
+  <div class="nav-container">
+    <a href="#home" class="logo">
+      <span class="logo-word">Aman</span><span class="logo-word logo-word--accent">Makeover</span>
     </a>
-    <div class="nav-links">
+
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#journey">The Journey</a>
       <a href="#services">Services</a>
-      <a href="#story">About</a>
-      <a href="#reviews">Reviews</a>
-      <a href="#booking">Book</a>
+      <a href="#about">About</a>
+      <a href="#testimonials">Reviews</a>
+      <a href="#contact">Visit Us</a>
+    </nav>
+
+    <div class="nav-cta">
+      <a href="tel:+918826568518" class="nav-phone"><svg width="16" height="16"><use href="#icon-phone"/></svg> +91 88265 68518</a>
+      <a href="https://wa.me/918826568518" class="btn btn-primary btn-small">Book Now</a>
     </div>
+
+    <button class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <svg width="24" height="24"><use href="#icon-menu"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <button class="menu-close" id="menu-close" aria-label="Close menu">
+    <svg width="26" height="26"><use href="#icon-close"/></svg>
+  </button>
+  <nav aria-label="Mobile">
+    <a href="#journey">The Journey</a>
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#testimonials">Reviews</a>
+    <a href="#contact">Visit Us</a>
   </nav>
+  <a href="https://wa.me/918826568518" class="btn btn-primary">Book on WhatsApp</a>
+  <a href="tel:+918826568518" class="mobile-phone"><svg width="18" height="18"><use href="#icon-phone"/></svg> +91 88265 68518</a>
+</div>
 
-  <div id="top" class="hero" aria-label="Aman Makeover hero">
-    <div class="hero-sticky">
-      <div class="stage" id="stage">
-        <div class="poster" aria-hidden="true"></div>
-        <video id="heroVideo" class="video" preload="none" muted playsinline aria-hidden="true" tabindex="-1"></video>
-        <div class="loading-state" id="loadingState">Preparing the studio mood</div>
-        <div class="loading-ring" id="loadingRing" aria-label="Loading visual">
-          <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="2.5" style="stroke-dashoffset:var(--ld,126)"/></svg>
-        </div>
+<main id="main">
 
-        <div class="bands" id="bands" aria-hidden="true">
-          <div class="story-slot scrim visible" id="storySlot">
-            <div class="band-kicker" id="storyKicker">01 / Aman Makeover</div>
-            <h2 id="storyTitle">Beauty, made personal.</h2>
-          </div>
-        </div>
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-ornament hero-ornament--tl" aria-hidden="true">
+      <svg viewBox="0 0 200 200" width="200" height="200" fill="none" stroke="currentColor" stroke-width="0.75">
+        <circle cx="0" cy="0" r="60"/><circle cx="0" cy="0" r="90"/><circle cx="0" cy="0" r="120"/>
+        <path d="M0 0 L60 0 M0 0 L0 60 M0 0 L42 42"/>
+      </svg>
+    </div>
+    <div class="hero-ornament hero-ornament--br" aria-hidden="true">
+      <svg viewBox="0 0 200 200" width="200" height="200" fill="none" stroke="currentColor" stroke-width="0.75">
+        <circle cx="200" cy="200" r="60"/><circle cx="200" cy="200" r="90"/><circle cx="200" cy="200" r="120"/>
+        <path d="M200 200 L140 200 M200 200 L200 140 M200 200 L158 158"/>
+      </svg>
+    </div>
 
-        <div class="hero-copy">
-          <div class="copy-wrap">
-            <div class="eyebrow">Beauty / Hair / Makeup / Skin / Nails</div>
-            <h1>Beauty, made personal.</h1>
-            <p class="hero-sub">Makeup, hair, skin and nails in one polished studio experience.</p>
-            <div class="hero-cta-row">
-              <a class="btn btn-primary" href="#booking">Book on WhatsApp</a>
-              <a class="btn btn-ghost" href="#services">Explore services</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="scroll-cue"><span class="scroll-line"></span><span>Scroll to move through the story</span></div>
-        <div class="static-note">Private concept for presentation. Not the official Aman Makeover site.</div>
+    <div class="hero-content reveal">
+      <p class="eyebrow">Adarsh Nagar Market · New Delhi</p>
+      <h1>Still You.<br>Just <em>Luminous.</em></h1>
+      <p class="hero-sub">Aman Makeover has been Adarsh&nbsp;Nagar's trusted name for bridal makeup, hair, skin and laser care — the kind of natural, unmistakably-you glow that made 1,500+ clients leave a five-star review.</p>
+      <div class="hero-ctas">
+        <a href="https://wa.me/918826568518" class="btn btn-primary">Book Your Date</a>
+        <a href="tel:+918826568518" class="btn btn-ghost"><svg width="16" height="16"><use href="#icon-phone"/></svg> Call the Studio</a>
       </div>
+      <div class="trust-row">
+        <span class="stars" aria-hidden="true">
+          <svg width="16" height="16"><use href="#icon-star"/></svg><svg width="16" height="16"><use href="#icon-star"/></svg><svg width="16" height="16"><use href="#icon-star"/></svg><svg width="16" height="16"><use href="#icon-star"/></svg><svg width="16" height="16"><use href="#icon-star"/></svg>
+        </span>
+        <span><strong>4.9</strong> on Google &nbsp;·&nbsp; <strong>1,569</strong> reviews &nbsp;·&nbsp; Open all 7 days</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE JOURNEY -->
+  <section class="journey-section" id="journey">
+    <div class="section-header reveal">
+      <p class="eyebrow">The Wedding Timeline</p>
+      <h2>Every Function Has Its Own Glow</h2>
+      <p class="section-intro">A wedding isn't one day, it's a week of them. Aman plans each look around what the occasion actually asks for — so the same bride can look softly radiant at her engagement and dance-floor-ready by the sangeet.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-track" aria-hidden="true"></div>
+
+      <div class="timeline-node reveal">
+        <div class="node-dot"><svg width="20" height="20"><use href="#icon-sparkle"/></svg></div>
+        <div class="node-card">
+          <h3>Engagement</h3>
+          <p>Soft, luminous, camera-ready — the look that says yes, on repeat, in every photo.</p>
+        </div>
+      </div>
+
+      <div class="timeline-node reveal">
+        <div class="node-dot"><svg width="20" height="20"><use href="#icon-flower"/></svg></div>
+        <div class="node-card">
+          <h3>Haldi &amp; Mehndi</h3>
+          <p>Sun-kissed and effortless — styled to move, laugh and sit for hours of mehndi.</p>
+        </div>
+      </div>
+
+      <div class="timeline-node reveal">
+        <div class="node-dot"><svg width="20" height="20"><use href="#icon-sparkle"/></svg></div>
+        <div class="node-card">
+          <h3>Sangeet</h3>
+          <p>Bold eyes, statement lips — built to hold up under lights and a full night of dancing.</p>
+        </div>
+      </div>
+
+      <div class="timeline-node reveal">
+        <div class="node-dot"><svg width="20" height="20"><use href="#icon-flower"/></svg></div>
+        <div class="node-card">
+          <h3>Wedding Day</h3>
+          <p>Timeless and radiant, finished to last from the mandap through the last family photo.</p>
+        </div>
+      </div>
+
+      <div class="timeline-node reveal">
+        <div class="node-dot"><svg width="20" height="20"><use href="#icon-sparkle"/></svg></div>
+        <div class="node-card">
+          <h3>Reception</h3>
+          <p>Glamorous and refined — the final look, saved for the last frame of the album.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAND -->
+  <section class="stats-band reveal">
+    <div class="stat">
+      <span class="stat-number">4.9<svg width="22" height="22"><use href="#icon-star"/></svg></span>
+      <span class="stat-label">Google Rating</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">1,569</span>
+      <span class="stat-label">Five-Star Reviews</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">7</span>
+      <span class="stat-label">Days Open a Week</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">5</span>
+      <span class="stat-label">Specialities, One Studio</span>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about-section" id="about">
+    <div class="about-visual reveal" aria-hidden="true">
+      <div class="monogram-frame">
+        <svg viewBox="0 0 200 200" width="100%" height="100%">
+          <circle cx="100" cy="100" r="94" fill="none" stroke="currentColor" stroke-width="1"/>
+          <circle cx="100" cy="100" r="82" fill="none" stroke="currentColor" stroke-width="0.5"/>
+          <text x="100" y="128" text-anchor="middle" class="monogram-letter">A</text>
+        </svg>
+      </div>
+    </div>
+    <div class="about-content reveal">
+      <p class="eyebrow">Meet the Studio</p>
+      <h2>Aman Makeover</h2>
+      <p>Behind every look here is one simple rule: listen first, glam second. Clients come back — for an engagement, a wedding, or an ordinary Tuesday haircut — because the studio treats every face as its own brief, never a template off a chart.</p>
+      <p>Five specialities live under one roof in the heart of Adarsh&nbsp;Nagar Market: bridal &amp; party makeup, hair styling, skin therapy, nail art and laser hair removal — each handled with the unhurried attention that's earned a 4.9-star reputation across more than 1,500 reviews.</p>
+      <div class="tag-row">
+        <span>Makeup</span><span>Hair</span><span>Skin</span><span>Nails</span><span>Laser</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services-section" id="services">
+    <div class="section-header reveal">
+      <p class="eyebrow">Beyond the Wedding</p>
+      <h2>One Studio, Every Occasion</h2>
+      <p class="section-intro">Not every visit is for a wedding. This is the full-service side of the studio — the part clients come back to all year round.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon"><svg width="26" height="26"><use href="#icon-scissors"/></svg></div>
+        <h3>Hair Styling &amp; Cuts</h3>
+        <p>From precision cuts to elaborate updos, styled for the way you actually live, not just how you'll photograph.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon"><svg width="26" height="26"><use href="#icon-droplet"/></svg></div>
+        <h3>Skin Care &amp; Facials</h3>
+        <p>Facials and prep treatments that let makeup melt into skin instead of sitting on top of it.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon"><svg width="26" height="26"><use href="#icon-hand"/></svg></div>
+        <h3>Nail Art &amp; Care</h3>
+        <p>Manicures and nail art finished with the same detail as the rest of your look.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon"><svg width="26" height="26"><use href="#icon-laser"/></svg></div>
+        <h3>Laser Hair Removal</h3>
+        <p>Safe, consistent sessions for lasting smoothness — no guesswork, no rushed appointments.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon"><svg width="26" height="26"><use href="#icon-sparkle"/></svg></div>
+        <h3>Party &amp; Festive Makeup</h3>
+        <p>Diwali, a friend's sangeet, a big birthday — glam that photographs as good as it feels.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon"><svg width="26" height="26"><use href="#icon-flower"/></svg></div>
+        <h3>Pre-Bridal Skin Therapy</h3>
+        <p>A guided skin plan in the weeks before the wedding, so makeup day starts from a clean canvas.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIGNATURE LOOKS -->
+  <section class="looks-section" id="looks">
+    <div class="section-header reveal">
+      <p class="eyebrow">In Their Own Words</p>
+      <h2>Signature Looks</h2>
+      <p class="section-intro">Three ways clients describe leaving the chair — pulled straight from what they've said about their own appointments.</p>
+    </div>
+    <div class="looks-grid">
+      <div class="look-card look-card--rani reveal">
+        <h3>The Minimal Bride</h3>
+        <p>Skin-first, barely-there base. Natural, dewy, and unmistakably you — clients call it "not overdone."</p>
+      </div>
+      <div class="look-card look-card--gold reveal">
+        <h3>The Graceful Glam</h3>
+        <p>Soft, elegant, flawless finishing built to hold for twelve-plus hours without a single touch-up.</p>
+      </div>
+      <div class="look-card look-card--wine reveal">
+        <h3>The Festive Glow</h3>
+        <p>Richer colour, more definition — made for sangeet lighting and a full night on the dance floor.</p>
+      </div>
+    </div>
+    <p class="looks-note reveal">— a note for the studio: swap this section for real client photos whenever you're ready, and it'll shine even brighter.</p>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials-section" id="testimonials">
+    <div class="section-header reveal">
+      <p class="eyebrow">Word of Mouth</p>
+      <h2>1,569 Reviews, One Pattern</h2>
+    </div>
+    <div class="testimonials-grid">
+      <figure class="testimonial-card reveal">
+        <div class="stars" aria-hidden="true"><svg width="14" height="14"><use href="#icon-star"/></svg><svg width="14" height="14"><use href="#icon-star"/></svg><svg width="14" height="14"><use href="#icon-star"/></svg><svg width="14" height="14"><use href="#icon-star"/></svg><svg width="14" height="14"><use href="#icon-star"/></svg></div>
+        <blockquote>My bridal look was graceful and glowing — soft, minimal and completely natural. The pre-bridal skin sessions leading up to it made all the difference.</blockquote>
+        <figcaption>Bridal Client · Google Review</figcaption>
+      </figure>
+      <figure class="testimonial-card reveal">
+        <div class="stars" aria-hidden="true"><svg width="14" height="14"><use href="#icon-star"/></svg><svg width="14" height="14"><use href="#icon-star"/></svg><svg width="14" height="14"><use href="#icon-star"/></svg><svg width="14" height="14"><use href="#icon-star"/></svg><svg width="14" height="14"><use href="#icon-star"/></svg></div>
+        <blockquote>I walked in unsure what haircut would even suit me. The stylist listened, guided me confidently, and the result was better than I imagined.</blockquote>
+        <figcaption>Haircut Client · Google Review</figcaption>
+      </figure>
+      <figure class="testimonial-card reveal">
+        <div class="stars" aria-hidden="true"><svg width="14" height="14"><use href="#icon-star"/></svg><svg width="14" height="14"><use href="#icon-star"/></svg><svg width="14" height="14"><use href="#icon-star"/></svg><svg width="14" height="14"><use href="#icon-star"/></svg><svg width="14" height="14"><use href="#icon-star"/></svg></div>
+        <blockquote>From my engagement to my wedding day, Aman listened to every little detail. My whole family walked away just as thrilled as I was.</blockquote>
+        <figcaption>Engagement &amp; Wedding Client · Google Review</figcaption>
+      </figure>
+      <figure class="testimonial-card reveal">
+        <div class="stars" aria-hidden="true"><svg width="14" height="14"><use href="#icon-star"/></svg><svg width="14" height="14"><use href="#icon-star"/></svg><svg width="14" height="14"><use href="#icon-star"/></svg><svg width="14" height="14"><use href="#icon-star"/></svg><svg width="14" height="14"><use href="#icon-star"/></svg></div>
+        <blockquote>My mother's haircut turned out exactly how she pictured it. Warm, attentive staff from the moment we walked in.</blockquote>
+        <figcaption>Family Visit · Google Review</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- LOCATION / CONTACT -->
+  <section class="contact-section" id="contact">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <p class="eyebrow">Visit the Studio</p>
+        <h2>Come Say Hello</h2>
+        <div class="info-row">
+          <svg width="20" height="20"><use href="#icon-pin"/></svg>
+          <p>A-261, 1st Floor, SS Rana Rd,<br>near Sargam Electronics, A Block Market,<br>Adarsh Nagar, New Delhi, 110033</p>
+        </div>
+        <div class="info-row">
+          <svg width="20" height="20"><use href="#icon-clock"/></svg>
+          <p>Open all 7 days · 10:30 AM – 8:00 PM</p>
+        </div>
+        <div class="info-row">
+          <svg width="20" height="20"><use href="#icon-phone"/></svg>
+          <p><a href="tel:+918826568518">+91 88265 68518</a></p>
+        </div>
+        <div class="contact-ctas">
+          <a href="https://wa.me/918826568518" class="btn btn-primary"><svg width="16" height="16"><use href="#icon-chat"/></svg> Chat on WhatsApp</a>
+          <a href="tel:+918826568518" class="btn btn-ghost">Call to Book</a>
+        </div>
+      </div>
+      <div class="contact-map reveal">
+        <iframe
+          src="https://www.google.com/maps?q=28.7175805,77.1745972&z=16&output=embed"
+          width="100%" height="100%" style="border:0" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Aman Makeover location map">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta reveal">
+    <h2>Your Day Deserves This Glow</h2>
+    <p>Dates fill quickly in wedding season. Reach out today and let's talk about your look.</p>
+    <div class="cta-buttons">
+      <a href="https://wa.me/918826568518" class="btn btn-primary">Book Your Date</a>
+      <a href="tel:+918826568518" class="btn btn-outline-light">+91 88265 68518</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#home" class="logo">
+        <span class="logo-word">Aman</span><span class="logo-word logo-word--accent">Makeover</span>
+      </a>
+      <p>Bridal Makeup · Hair · Skin · Nails · Laser<br>Adarsh Nagar, New Delhi</p>
+    </div>
+    <div class="footer-links">
+      <h4>Explore</h4>
+      <a href="#journey">The Journey</a>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#testimonials">Reviews</a>
+      <a href="#contact">Visit Us</a>
+    </div>
+    <div class="footer-contact">
+      <h4>Visit</h4>
+      <p>A-261, 1st Floor, SS Rana Rd,<br>Adarsh Nagar, New Delhi, 110033</p>
+      <p><a href="tel:+918826568518">+91 88265 68518</a></p>
+      <p>Open all 7 days · 10:30 AM–8:00 PM</p>
     </div>
   </div>
+  <div class="footer-bottom">
+    <p>&copy; <span id="year"></span> Aman Makeover. All rights reserved.</p>
+  </div>
+</footer>
 
-  <main>
-    <section class="reveal" id="proof">
-      <div class="section-inner">
-        <div class="section-head">
-          <div>
-            <div class="meta">The proof</div>
-            <h2 class="section-title">A local name with real trust.</h2>
-          </div>
-          <p class="section-intro">The website concept starts with what people already know: strong reviews, a large social following and a beauty business built around repeat customers.</p>
-        </div>
-        <div class="proof-strip">
-          <div class="proof"><strong>4.9★</strong><span>Google rating shown on the business profile.</span></div>
-          <div class="proof"><strong>500+</strong><span>Google reviews visible on the profile.</span></div>
-          <div class="proof"><strong>11K+</strong><span>Instagram followers already following the brand.</span></div>
-          <div class="proof"><strong>2019</strong><span>North Delhi award recognition shown in the brand's Instagram content.</span></div>
-        </div>
-      </div>
-    </section>
+<a href="https://wa.me/918826568518" class="whatsapp-float" aria-label="Chat on WhatsApp">
+  <svg width="26" height="26"><use href="#icon-chat"/></svg>
+</a>
+<button class="back-to-top" id="back-to-top" aria-label="Back to top">
+  <svg width="18" height="18"><use href="#icon-arrow-up"/></svg>
+</button>
 
-    <section id="services" class="reveal">
-      <div class="section-inner">
-        <div class="section-head">
-          <div><div class="meta">Services</div><h2 class="section-title">Choose your moment.</h2></div>
-          <p class="section-intro">Four simple entry points keep the experience clear. Tap one to see how the service story could be presented.</p>
-        </div>
-        <div class="services-grid">
-          <article class="service-card open" tabindex="0" role="button" aria-expanded="true">
-            <div class="service-no">01</div><h3 class="service-title">Makeup</h3><p class="service-copy">Bridal, party and occasion looks can sit in one clear place.</p>
-            <div class="service-detail"><p>Showcase finished looks, package details and a direct booking path.</p></div>
-          </article>
-          <article class="service-card" tabindex="0" role="button" aria-expanded="false">
-            <div class="service-no">02</div><h3 class="service-title">Hair</h3><p class="service-copy">Cuts, styling and salon work deserve a gallery-led presentation.</p>
-            <div class="service-detail"><p>Let visitors see the result first, then move straight to a booking conversation.</p></div>
-          </article>
-          <article class="service-card" tabindex="0" role="button" aria-expanded="false">
-            <div class="service-no">03</div><h3 class="service-title">Skin</h3><p class="service-copy">Treatment stories stay clean, calm and easy to scan.</p>
-            <div class="service-detail"><p>Use short service descriptions, clear expectations and a simple appointment CTA.</p></div>
-          </article>
-          <article class="service-card" tabindex="0" role="button" aria-expanded="false">
-            <div class="service-no">04</div><h3 class="service-title">Nails</h3><p class="service-copy">Small details can become a strong visual section in the site.</p>
-            <div class="service-detail"><p>Feature nail art, extensions and recent work without hiding the booking button.</p></div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="story" class="reveal">
-      <div class="section-inner story">
-        <div>
-          <div class="meta">The story</div>
-          <h2 class="section-title">A polished home for the work people already talk about.</h2>
-          <p class="body-copy">Aman Makeover already has a strong Google profile, an active Instagram audience and a large base of customer feedback. The website concept gives that proof one place to live, with services, selected work, reviews and a clear booking path.</p>
-          <p class="small-note">The live version should use approved Aman Makeover photos, exact service names and the business's preferred contact links.</p>
-        </div>
-        <div class="story-card">
-          <p class="quote">“Professional service. Great experience. A place people come back to.”</p>
-          <p class="body-copy">This sentence is a design direction, not an attributed testimonial. The final site should only use approved review text from the business.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="reveal" id="gallery">
-      <div class="section-inner">
-        <div class="section-head">
-          <div><div class="meta">Gallery</div><h2 class="section-title">Let the work do the talking.</h2></div>
-          <p class="section-intro">This private demo uses concept art. The client version should swap in approved business photography from Instagram or Google Photos.</p>
-        </div>
-        <div class="gallery">
-          <div class="gallery-card"><div class="gallery-art"></div><div class="gallery-note">Concept image</div><div class="gallery-overlay"><div><div class="gallery-tag">Bridal</div><h3 class="gallery-title">Soft light.<br>Strong finish.</h3></div><div class="gallery-tag">01</div></div></div>
-          <div class="gallery-stack">
-            <div class="gallery-card small"><div class="gallery-art" style="background:radial-gradient(circle at 65% 30%,rgba(216,180,106,.22),transparent 24%),linear-gradient(135deg,#121018,#241427)"></div><div class="gallery-overlay"><div><div class="gallery-tag">Hair</div><h3 class="gallery-title">Shape and shine.</h3></div><div class="gallery-tag">02</div></div></div>
-            <div class="gallery-card small"><div class="gallery-art" style="background:radial-gradient(circle at 35% 65%,rgba(200,114,140,.2),transparent 22%),linear-gradient(135deg,#16101a,#0b0a10)"></div><div class="gallery-overlay"><div><div class="gallery-tag">Nails</div><h3 class="gallery-title">Small details. Big finish.</h3></div><div class="gallery-tag">03</div></div></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="reviews" class="reveal">
-      <div class="section-inner">
-        <div class="section-head"><div><div class="meta">Reviews</div><h2 class="section-title">Good work gets remembered.</h2></div><p class="section-intro">Short review excerpts can give new visitors the confidence to book.</p></div>
-        <div class="review-grid">
-          <article class="review-card"><div><div class="stars">★★★★★</div><p class="review-text">“This is the best salon for makeup &amp; hair service in Jahangirpuri.”</p></div><div class="review-source">Public Google review, shown in the prospect research.</div></article>
-          <article class="review-card"><div><div class="stars">★★★★★</div><p class="review-text">“The haircut was great and the overall experience felt very satisfying.”</p></div><div class="review-source">Public Google review excerpt, shown in the prospect research.</div></article>
-          <article class="review-card"><div><div class="stars">★★★★★</div><p class="review-text">“The nail extension was very good. I liked it so much.”</p></div><div class="review-source">Public Google review excerpt, shown in the prospect research.</div></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="booking reveal" id="booking">
-      <div class="section-inner">
-        <div class="booking-box">
-          <div>
-            <div class="meta">Booking</div>
-            <h2 class="booking-title">Your next look starts here.</h2>
-            <p class="booking-copy">The final version should send visitors straight to the business's real WhatsApp or call link. This private demo keeps those links inactive until the owner approves the site.</p>
-          </div>
-          <div class="booking-actions">
-            <a class="btn btn-primary" href="javascript:void(0)" aria-disabled="true">WhatsApp booking</a>
-            <a class="btn btn-ghost" href="#top">Back to top</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div><strong>Aman Makeover</strong> concept website, built for presentation.</div>
-    <div>Private demo. Not the official business website.</div>
-  </footer>
-
-  <script>
-    (() => {
-      const stage = document.getElementById('stage');
-      const hero = document.querySelector('.hero');
-      const video = document.getElementById('heroVideo');
-      const ring = document.getElementById('loadingRing');
-      const loadingState = document.getElementById('loadingState');
-      const storySlot = document.getElementById('storySlot');
-      const storyKicker = document.getElementById('storyKicker');
-      const storyTitle = document.getElementById('storyTitle');
-      const story = [
-        {start:0, end:.18, kicker:'01 / Aman Makeover', title:'Beauty, made personal.'},
-        {start:.18, end:.36, kicker:'02 / The studio', title:'Makeup. Hair. Skin. Nails.'},
-        {start:.36, end:.56, kicker:'03 / Your next occasion', title:'A place for your next look.'},
-        {start:.56, end:.78, kicker:'04 / Jahangirpuri', title:'Loved in the neighborhood.'},
-        {start:.78, end:1, kicker:'05 / Book', title:'Your next look starts here.'}
-      ];
-      let storyIndex = 0;
-      let storySwapTimer = 0;
-      let storyVersion = 0;
-      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-      const phoneGate = window.matchMedia('(max-width: 700px)');
-      const dataSaver = navigator.connection && navigator.connection.saveData;
-      let blobURL = '';
-      let target = 0;
-      let eased = 0;
-      let lastSeek = -1;
-      let seekPending = false;
-      let raf = 0;
-
-      const shouldLoadVideo = () => !prefersReduced.matches && !phoneGate.matches && !dataSaver;
-
-      const stopVideoForStaticMode = () => {
-        if (blobURL) { URL.revokeObjectURL(blobURL); blobURL = ''; }
-        try { video.pause(); } catch (_) {}
-        video.removeAttribute('src');
-        video.load();
-      };
-      const progress = () => {
-        const max = hero.offsetHeight - window.innerHeight;
-        return max <= 0 ? 0 : Math.min(1, Math.max(0, window.scrollY / max));
-      };
-
-      const updateStory = (p) => {
-        let nextIndex = story.findIndex((item, i) => p >= item.start && (p < item.end || i === story.length - 1));
-        if (nextIndex < 0) nextIndex = story.length - 1;
-        const item = story[nextIndex];
-
-        if (nextIndex !== storyIndex) {
-          storyIndex = nextIndex;
-          const version = ++storyVersion;
-          storySlot.classList.remove('visible');
-          storySlot.classList.add('fading');
-          clearTimeout(storySwapTimer);
-          storySwapTimer = setTimeout(() => {
-            if (version !== storyVersion) return;
-            storyKicker.textContent = item.kicker;
-            storyTitle.textContent = item.title;
-            storySlot.classList.remove('fading');
-            requestAnimationFrame(() => storySlot.classList.add('visible'));
-          }, 320);
-          return;
-        }
-
-        const local = Math.max(0, Math.min(1, (p - item.start) / Math.max(.001, item.end - item.start)));
-        const edge = Math.min(.22, .18);
-        const fadeIn = Math.min(1, local / edge);
-        const fadeOut = Math.min(1, (1 - local) / edge);
-        const opacity = Math.max(0, Math.min(fadeIn, fadeOut));
-        storySlot.style.opacity = String(opacity);
-        storySlot.style.transform = `translate3d(0,${(1-opacity)*14}px,0)`;
-        if (opacity > .98) storySlot.classList.add('visible');
-      };
-
-      const queueSeek = (time) => {
-        if (!Number.isFinite(time) || !Number.isFinite(video.duration)) return;
-        const delta = Math.abs(time - video.currentTime);
-        if (delta < 0.018) return;
-        target = time;
-        if (seekPending) return;
-        seekPending = true;
-        const go = () => {
-          seekPending = false;
-          if (!video.seeking && Math.abs(target-video.currentTime)>.018) {
-            lastSeek = target;
-            try { video.currentTime = target; } catch (_) {}
-          }
-        };
-        if ('requestVideoFrameCallback' in video) video.requestVideoFrameCallback(go); else requestAnimationFrame(go);
-      };
-
-      let heroVisible = true;
-      const tick = (now) => {
-        if (!heroVisible) { raf = 0; return; }
-        const p = progress();
-        const heroCopy = document.querySelector('.hero-copy');
-        if (heroCopy) heroCopy.style.opacity = String(Math.max(0, 1 - p * 5));
-        const desired = p * (Number.isFinite(video.duration) ? video.duration : 0);
-        const dt = Math.min(.05, (now - (tick.last || now))/1000);
-        tick.last = now;
-        const blend = 1 - Math.exp(-dt*13);
-        eased += (desired-eased)*blend;
-        if (Number.isFinite(video.duration)) queueSeek(eased);
-        updateStory(p);
-        raf = requestAnimationFrame(tick);
-      };
-
-      const heroObserver = new IntersectionObserver(([entry]) => {
-        heroVisible = entry.isIntersecting;
-        if (heroVisible && !raf) raf = requestAnimationFrame(tick);
-      }, {threshold:0});
-      heroObserver.observe(hero);
-
-      const failVideo = () => {
-        stage.classList.add('video-failed');
-        loadingState.textContent = 'Static story mode';
-      };
-
-      const loadBlob = async () => {
-        try {
-          const res = await fetch('assets/hero-scrub.mp4', {cache:'force-cache'});
-          if (!res.ok) throw new Error(`video ${res.status}`);
-          const blob = await res.blob();
-          blobURL = URL.createObjectURL(blob);
-          video.src = blobURL;
-          video.load();
-          video.addEventListener('loadedmetadata', () => {
-            target = progress()*video.duration;
-            eased = target;
-            stage.classList.add('video-ready');
-            loadingState.textContent = 'Scroll through the story';
-            queueSeek(target);
-          }, {once:true});
-          video.addEventListener('error', failVideo, {once:true});
-        } catch (e) {
-          failVideo();
-        }
-      };
-
-      const armVideoState = () => {
-        if (!shouldLoadVideo()) {
-          stopVideoForStaticMode();
-          stage.classList.remove('video-ready');
-          stage.classList.add('video-failed');
-          loadingState.textContent = 'Static story mode';
-          return;
-        }
-        loadBlob();
-      };
-
-      const serviceCards = [...document.querySelectorAll('.service-card')];
-      serviceCards.forEach(card => {
-        const toggle = () => {
-          const open = card.classList.toggle('open');
-          card.setAttribute('aria-expanded', String(open));
-        };
-        card.addEventListener('click', toggle);
-        card.addEventListener('keydown', e => {
-          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
-        });
-      });
-
-      const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('in'); });
-      }, {threshold:.12});
-      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-      document.addEventListener('visibilitychange', () => {
-        document.body.classList.toggle('paused', document.hidden);
-      });
-      window.addEventListener('scroll', () => { target = progress(); }, {passive:true});
-      window.addEventListener('resize', () => { updateStory(progress()); }, {passive:true});
-      prefersReduced.addEventListener?.('change', armVideoState);
-      phoneGate.addEventListener?.('change', armVideoState);
-      window.addEventListener('beforeunload', () => { if(blobURL) URL.revokeObjectURL(blobURL); });
-
-      updateStory(0);
-      armVideoState();
-      raf = requestAnimationFrame(tick);
-    })();
-  </script>
+<script src="js/main.js"></script>
 </body>
 </html>
