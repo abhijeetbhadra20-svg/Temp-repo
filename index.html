@@ -1,81 +1,243 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#171512" />
-  <meta name="description" content="Hand-painted stones and handmade art by Delight by Deepa." />
-  <title>Delight by Deepa</title>
-  <link rel="icon" href="assets/logo.jpg" />
-  <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delight by Deepa — Handcrafted Stone Art</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #FDFBF7; color: #1C1917; }
+        .font-serif { font-family: 'Playfair Display', Georgia, serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
 </head>
-<body>
-  <div id="offlineBar" class="offline-bar" role="status" aria-live="polite">You're offline — the demo is still available from your device.</div>
-  <header class="site-header">
-    <a class="brand" href="#top" aria-label="Home">
-      <span class="brand-mark">D</span><span class="brand-text" data-brand>Delight by Deepa</span>
-    </a>
-    <nav class="desktop-nav" aria-label="Primary navigation">
-      <a href="#collection">Collection</a><a href="#story">The Artist</a><a href="#gallery">Gallery</a><a href="#contact">Contact</a>
-    </nav>
-    <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-controls="mobileNav" aria-expanded="false">☰</button>
-  </header>
+<body class="pb-24">
 
-  <aside id="mobileNav" class="mobile-nav" aria-hidden="true">
-    <div class="mobile-nav-top"><strong data-brand>Delight by Deepa</strong><button class="icon-btn" id="closeMenu" aria-label="Close menu">×</button></div>
-    <a href="#collection">Collection</a><a href="#story">The Artist</a><a href="#gallery">Gallery</a><a href="#contact">Contact</a>
-    <a class="button dark full" id="mobileInstagram" target="_blank" rel="noopener">Instagram ↗</a>
-  </aside>
-  <div id="scrim" class="scrim"></div>
+    <!-- Top Announcement Bar -->
+    <div class="bg-[#1C1917] text-[#E7DDCF] text-[10px] tracking-[0.2em] uppercase font-semibold py-2 text-center">
+        ✦ Handcrafted in Austin, Texas · Worldwide Shipping Available ✦
+    </div>
 
-  <main id="top">
-    <section class="hero section-pad">
-      <div class="hero-copy">
-        <p class="eyebrow">HAND-PAINTED · ONE OF A KIND</p>
-        <h1 data-hero-title>Little pieces of art, painted by hand.</h1>
-        <p class="hero-text" data-hero-text></p>
-        <div class="hero-actions"><a class="button dark" href="#collection">Explore the collection</a><a class="text-link" href="#story">Meet the artist <span>→</span></a></div>
-        <div class="hero-proof"><span>✦ Small-batch</span><span>✦ Handmade</span><span>✦ USA</span></div>
-      </div>
-      <div class="hero-art"><img id="heroImage" alt="Hand-painted artwork" loading="eager" /></div>
-    </section>
+    <!-- Editorial Header -->
+    <header class="sticky top-0 z-40 bg-[#FDFBF7]/95 backdrop-blur-md border-b border-[#EFE7DC] px-5 py-4 flex items-center justify-between">
+        <div>
+            <h1 id="brandTitle" class="font-serif text-xl font-bold tracking-tight text-[#1C1917]">Delight by Deepa</h1>
+            <p id="brandSubtitle" class="text-[10px] text-[#8C7A6B] tracking-wider uppercase font-semibold">Artisan Rock Art & Botanical Crafts</p>
+        </div>
+        <button onclick="toggleBag()" class="relative bg-[#1C1917] text-[#FDFBF7] p-2.5 rounded-full text-xs flex items-center gap-2 shadow-sm">
+            <i class="fa-solid fa-bag-shopping text-xs"></i>
+            <span id="bagCount" class="text-[10px] font-bold bg-[#C86D51] text-white px-1.5 py-0.2 rounded-full">0</span>
+        </button>
+    </header>
 
-    <section id="collection" class="section-pad">
-      <div class="section-head"><div><p class="eyebrow">THE COLLECTION</p><h2>Made to be kept.</h2></div><p class="section-note">Every piece has its own tiny personality — no factory finish, no two exactly alike.</p></div>
-      <div class="collection-grid" id="collectionGrid"></div>
-    </section>
+    <main class="max-w-md mx-auto px-4 mt-5 space-y-8">
 
-    <section id="shop" class="section-pad soft">
-      <div class="section-head"><div><p class="eyebrow">FEATURED WORK</p><h2>A few favorites.</h2></div><div class="filters" role="group" aria-label="Filter artwork"><button class="filter active" data-filter="all">All</button><button class="filter" data-filter="stones">Stones</button><button class="filter" data-filter="nature">Nature</button><button class="filter" data-filter="playful">Playful</button></div></div>
-      <div class="product-grid" id="productGrid"></div>
-    </section>
+        <!-- Hero Section: Studio Story -->
+        <section class="bg-[#F5EFE6] rounded-3xl p-6 border border-[#EBE1D3] space-y-3 relative overflow-hidden">
+            <span id="heroLocation" class="inline-block text-[10px] font-bold tracking-widest uppercase text-[#C86D51] bg-[#C86D51]/10 px-3 py-1 rounded-full">
+                Austin, TX Studio
+            </span>
+            <h2 id="heroHeadline" class="font-serif text-2xl font-normal leading-snug text-[#1C1917]">
+                Little pieces of nature, transformed by hand.
+            </h2>
+            <p id="heroBio" class="text-xs text-[#6B5E52] leading-relaxed">
+                Each stone is carefully hand-selected and painted with intricate detailed artwork to bring warmth to your home and garden.
+            </p>
+        </section>
 
-    <section id="story" class="story section-pad">
-      <div class="story-image"><img src="assets/floral-display.jpg" alt="Hand-painted floral stones displayed at home" loading="lazy" /></div>
-      <div class="story-copy"><p class="eyebrow">THE ARTIST</p><h2>Every stone starts with an idea.</h2><p>Delight by Deepa is a small creative studio built around curiosity — painting whatever feels fun, charming, colorful or unexpectedly beautiful.</p><p>The result is a growing collection of handmade pieces that feel personal, playful and a little imperfect in the best possible way.</p><a class="text-link" href="#contact">Say hello <span>→</span></a></div>
-    </section>
+        <!-- Category Filter Pills -->
+        <section id="categoryBar" class="flex gap-2 overflow-x-auto no-scrollbar py-1">
+            <!-- Dynamic Category Pills -->
+        </section>
 
-    <section id="gallery" class="section-pad gallery-section">
-      <div class="section-head"><div><p class="eyebrow">FROM THE STUDIO</p><h2>Seen in the wild.</h2></div><a class="text-link" id="galleryInstagram" target="_blank" rel="noopener">View Instagram <span>↗</span></a></div>
-      <div class="gallery-grid">
-        <img src="assets/ladybugs.jpg" alt="Ladybug painted stones" loading="lazy" />
-        <img src="assets/candy-stream.jpg" alt="Colorful character stones" loading="lazy" />
-        <img src="assets/penguins-snow.jpg" alt="Penguins painted on stones in snow" loading="lazy" />
-        <img src="assets/floral-stones.jpg" alt="Floral painted stones" loading="lazy" />
-      </div>
-    </section>
+        <!-- Magazine Showcase Cards -->
+        <section id="galleryGrid" class="space-y-6">
+            <!-- Dynamic Editorial Craft Cards -->
+        </section>
 
-    <section id="contact" class="contact section-pad">
-      <div><p class="eyebrow">LET'S MAKE SOMETHING</p><h2>Found a favorite?</h2><p>For availability, custom ideas or purchase details, send a message through Instagram.</p></div>
-      <a class="button light" id="contactInstagram" target="_blank" rel="noopener">Message on Instagram ↗</a>
-    </section>
-  </main>
+        <!-- Meet the Artist Block -->
+        <section class="bg-[#1C1917] text-[#FDFBF7] rounded-3xl p-6 space-y-3">
+            <span class="text-[10px] font-bold tracking-[0.2em] uppercase text-[#D4A373]">Behind The Craft</span>
+            <h3 class="font-serif text-xl font-normal">Every stone tells a story</h3>
+            <p class="text-xs text-[#C5B8AA] leading-relaxed">
+                "I started Delight by Deepa to blend my love for nature with hand-painted artistry. No two creations are ever identical."
+            </p>
+            <div class="pt-2 border-t border-white/10 flex items-center justify-between text-[11px] text-[#D4A373] font-semibold">
+                <span>📍 Austin, Texas</span>
+                <span>✨ 100% Original Handmade</span>
+            </div>
+        </section>
 
-  <footer class="footer section-pad"><div><strong data-brand>Delight by Deepa</strong><p data-tagline>Boundless creativity. No fixed style.</p></div><div class="footer-meta"><span data-location>Austin, Texas · USA</span><a id="footerInstagram" target="_blank" rel="noopener">@delight_by_deepa__</a></div></footer>
+    </main>
 
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <dialog id="productDialog" class="dialog"><button class="dialog-close" id="dialogClose" aria-label="Close">×</button><div id="dialogBody"></div></dialog>
-  <script src="app.js" defer></script>
+    <!-- Quick Preview Modal -->
+    <div id="previewModal" class="fixed inset-0 z-50 bg-black/60 hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
+        <div class="bg-[#FDFBF7] w-full max-w-md rounded-t-3xl sm:rounded-3xl max-h-[90vh] overflow-y-auto no-scrollbar p-5 space-y-4">
+            <div class="flex justify-between items-center border-b border-[#EFE7DC] pb-3">
+                <span id="modalCode" class="text-[10px] font-bold bg-[#1C1917] text-[#FDFBF7] px-2.5 py-1 rounded-full uppercase tracking-wider"></span>
+                <button onclick="closePreview()" class="w-8 h-8 rounded-full bg-[#F5EFE6] text-[#6B5E52] flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <div class="aspect-square bg-[#F5EFE6] rounded-2xl overflow-hidden border border-[#EBE1D3]">
+                <img id="modalImg" src="" class="w-full h-full object-cover">
+            </div>
+
+            <div class="space-y-1">
+                <span id="modalTag" class="text-[10px] font-bold uppercase tracking-widest text-[#C86D51]"></span>
+                <h3 id="modalTitle" class="font-serif text-lg font-bold text-[#1C1917]"></h3>
+                <div class="flex items-center gap-3">
+                    <span id="modalPrice" class="font-serif text-xl font-semibold text-[#1C1917]"></span>
+                    <span id="modalMrp" class="text-xs text-[#8C7A6B] line-through"></span>
+                </div>
+            </div>
+
+            <p id="modalDesc" class="text-xs text-[#6B5E52] leading-relaxed bg-[#F5EFE6] p-3 rounded-xl border border-[#EBE1D3]"></p>
+
+            <button onclick="addToBagFromModal()" class="w-full bg-[#1C1917] text-[#FDFBF7] font-semibold py-3.5 rounded-2xl text-xs shadow-md">
+                Add to Cart
+            </button>
+        </div>
+    </div>
+
+    <!-- Dynamic JavaScript Engine -->
+    <script>
+        const CLIENT_CONFIGS = {
+            "deepa": {
+                brandName: "Delight by Deepa",
+                subtitle: "Hand-Painted Rock Art & Custom Crafts",
+                location: "Austin, TX Studio",
+                currency: "$",
+                heroHeadline: "Little pieces of nature, transformed by hand.",
+                heroBio: "Each stone is carefully hand-selected and painted with detailed artwork to bring warmth to your home and garden.",
+                categories: ["all", "painted stones", "garden art", "novelties"],
+                products: [
+                    {
+                        id: "d1",
+                        title: "Cute Penguin Family Painted Rocks",
+                        code: "DBD-001",
+                        price: 22.00,
+                        mrp: 28.00,
+                        category: "painted stones",
+                        img: "images/penguin.jpg",
+                        desc: "Hand-painted smooth river stones sealed with weatherproof gloss finish. Perfect for garden decor or desk accents."
+                    },
+                    {
+                        id: "d2",
+                        title: "Detailed Butterfly Garden Stone",
+                        code: "DBD-002",
+                        price: 18.00,
+                        mrp: 22.00,
+                        category: "garden art",
+                        img: "images/butterfly.jpg",
+                        desc: "Vibrant butterfly motif painted with acrylics and UV protective sealant."
+                    },
+                    {
+                        id: "d3",
+                        title: "M&M Character Rock Art Set",
+                        code: "DBD-003",
+                        price: 25.00,
+                        mrp: 30.00,
+                        category: "novelties",
+                        img: "images/mnm.jpg",
+                        desc: "Playful character set of 4 painted rocks. Bring instant smiles to any corner of your space."
+                    },
+                    {
+                        id: "d4",
+                        title: "Hand-Painted Ladybug Trio",
+                        code: "DBD-004",
+                        price: 16.00,
+                        mrp: 20.00,
+                        category: "garden art",
+                        img: "images/ladybug.jpg",
+                        desc: "Classic ladybug trio crafted for flower pots, succulent gardens, or shelf displays."
+                    }
+                ]
+            }
+        };
+
+        let currentClient = CLIENT_CONFIGS['deepa'];
+        let activeProduct = null;
+        let cart = [];
+
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const clientId = urlParams.get('client') || 'deepa';
+            currentClient = CLIENT_CONFIGS[clientId] || CLIENT_CONFIGS['deepa'];
+
+            document.getElementById('brandTitle').innerText = currentClient.brandName;
+            document.getElementById('brandSubtitle').innerText = currentClient.subtitle;
+            document.getElementById('heroLocation').innerText = currentClient.location;
+            document.getElementById('heroHeadline').innerText = currentClient.heroHeadline;
+            document.getElementById('heroBio').innerText = currentClient.heroBio;
+
+            renderCategories();
+            renderGallery(currentClient.products);
+        };
+
+        function renderCategories() {
+            const container = document.getElementById('categoryBar');
+            container.innerHTML = currentClient.categories.map(cat => `
+                <button onclick="filterCat('${cat}')" class="px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap bg-[#F5EFE6] text-[#6B5E52] border border-[#EBE1D3] capitalize">
+                    ${cat}
+                </button>
+            `).join('');
+        }
+
+        function renderGallery(items) {
+            const grid = document.getElementById('galleryGrid');
+            grid.innerHTML = items.map(p => `
+                <article class="bg-white rounded-3xl overflow-hidden border border-[#EBE1D3] shadow-xs space-y-3 p-4">
+                    <div class="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#F5EFE6]" onclick="openPreview('${p.id}')">
+                        <img src="${p.img}" onerror="this.src='https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=500'" class="w-full h-full object-cover">
+                        <span class="absolute top-3 left-3 bg-[#1C1917]/85 text-[#FDFBF7] text-[9px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">${p.code}</span>
+                    </div>
+                    <div class="space-y-1">
+                        <span class="text-[9px] font-bold uppercase tracking-widest text-[#C86D51]">${p.category}</span>
+                        <h4 class="font-serif text-base font-bold text-[#1C1917]">${p.title}</h4>
+                    </div>
+                    <div class="pt-2 border-t border-[#F5EFE6] flex items-center justify-between">
+                        <div>
+                            <span class="font-serif text-base font-bold text-[#1C1917]">${currentClient.currency}${p.price}</span>
+                            <span class="text-xs text-[#8C7A6B] line-through ml-1">${currentClient.currency}${p.mrp}</span>
+                        </div>
+                        <button onclick="openPreview('${p.id}')" class="bg-[#F5EFE6] text-[#1C1917] font-semibold text-xs px-4 py-2 rounded-full border border-[#EBE1D3]">
+                            Inspect Piece
+                        </button>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        function filterCat(cat) {
+            if (cat === 'all') renderGallery(currentClient.products);
+            else renderGallery(currentClient.products.filter(x => x.category === cat));
+        }
+
+        function openPreview(id) {
+            activeProduct = currentClient.products.find(x => x.id === id);
+            if (!activeProduct) return;
+            document.getElementById('modalCode').innerText = activeProduct.code;
+            document.getElementById('modalTag').innerText = activeProduct.category;
+            document.getElementById('modalTitle').innerText = activeProduct.title;
+            document.getElementById('modalPrice').innerText = `${currentClient.currency}${activeProduct.price}`;
+            document.getElementById('modalMrp').innerText = `${currentClient.currency}${activeProduct.mrp}`;
+            document.getElementById('modalDesc').innerText = activeProduct.desc;
+            document.getElementById('modalImg').src = activeProduct.img;
+            document.getElementById('previewModal').classList.remove('hidden');
+        }
+
+        function closePreview() { document.getElementById('previewModal').classList.add('hidden'); }
+        function addToBagFromModal() {
+            if (!activeProduct) return;
+            cart.push(activeProduct);
+            document.getElementById('bagCount').innerText = cart.length;
+            closePreview();
+        }
+    </script>
 </body>
 </html>
