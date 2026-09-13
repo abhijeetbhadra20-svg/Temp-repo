@@ -1,0 +1,14 @@
+{
+  "id":"blank",
+  "brand":"Your Studio",
+  "handle":"@yourhandle",
+  "tagline":"Replace this with your client's story.",
+  "heroTitle":"A polished website for an independent brand.",
+  "heroText":"Swap in the client's images, story, products and contact details from one configuration file.",
+  "location":"United States",
+  "instagram":"https://instagram.com/",
+  "logo":"assets/logo.jpg",
+  "heroImage":"assets/floral-display.jpg",
+  "collections":[],
+  "products":[]
+}
