@@ -1,243 +1,1103 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi" class="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delight by Deepa — Handcrafted Stone Art</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #FDFBF7; color: #1C1917; }
-        .font-serif { font-family: 'Playfair Display', Georgia, serif; }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AquaMinimal — Fluid Experience</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* ==========================================================================
+       1. CORE SYSTEM & WATER MINIMALISM STYLES
+       ========================================================================== */
+    :root {
+      --bg-base: #07090e;
+      --bg-surface: rgba(255, 255, 255, 0.04);
+      --bg-surface-hover: rgba(255, 255, 255, 0.08);
+      --border-glass: rgba(255, 255, 255, 0.08);
+      --border-glass-bright: rgba(255, 255, 255, 0.2);
+      
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+
+      --accent-water: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.25);
+      --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+      
+      --radius-sm: 12px;
+      --radius-md: 20px;
+      --radius-lg: 32px;
+      --radius-full: 9999px;
+
+      --font-heading: 'Outfit', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+
+      --ease-fluid: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* Light Theme Overrides */
+    .light {
+      --bg-base: #f0f4f8;
+      --bg-surface: rgba(255, 255, 255, 0.6);
+      --bg-surface-hover: rgba(255, 255, 255, 0.85);
+      --border-glass: rgba(255, 255, 255, 0.5);
+      --border-glass-bright: rgba(56, 189, 248, 0.3);
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #94a3b8;
+      --accent-glow: rgba(56, 189, 248, 0.15);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow-x: hidden;
+      background-color: var(--bg-base);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      transition: background-color 0.8s var(--ease-fluid), color 0.8s var(--ease-fluid);
+    }
+
+    /* Custom Fluid Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius-full);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent-water);
+    }
+
+    /* ==========================================================================
+       2. CANVAS BACKGROUNDS (WATER RIPPLE & AMBIENT MESH)
+       ========================================================================== */
+    #water-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .ambient-mesh {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      overflow: hidden;
+      filter: blur(80px);
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      animation: float 20s infinite alternate var(--ease-fluid);
+    }
+    .blob-1 {
+      top: -10%;
+      left: -10%;
+      width: 50vw;
+      height: 50vw;
+      background: radial-gradient(circle, rgba(56,189,248,0.3) 0%, rgba(0,0,0,0) 70%);
+    }
+    .blob-2 {
+      bottom: -15%;
+      right: -10%;
+      width: 60vw;
+      height: 60vw;
+      background: radial-gradient(circle, rgba(129,140,248,0.25) 0%, rgba(0,0,0,0) 70%);
+      animation-delay: -7s;
+    }
+    .blob-3 {
+      top: 40%;
+      left: 35%;
+      width: 35vw;
+      height: 35vw;
+      background: radial-gradient(circle, rgba(192,132,252,0.2) 0%, rgba(0,0,0,0) 70%);
+      animation-delay: -12s;
+    }
+
+    @keyframes float {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(60px, 40px) scale(1.1); }
+      100% { transform: translate(-40px, 80px) scale(0.95); }
+    }
+
+    /* Custom Water Aura Cursor */
+    .fluid-cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 32px;
+      height: 32px;
+      margin-top: -16px;
+      margin-left: -16px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.4) 0%, rgba(56, 189, 248, 0) 70%);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(2px);
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.15s ease-out, opacity 0.3s ease;
+      opacity: 0;
+    }
+
+    /* ==========================================================================
+       3. NAVIGATION BAR
+       ========================================================================== */
+    .nav-wrapper {
+      position: fixed;
+      top: 24px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      z-index: 100;
+      padding: 0 24px;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      padding: 10px 24px;
+      background: var(--bg-surface);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-full);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      transition: all 0.5s var(--ease-fluid);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--text-primary);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--accent-gradient);
+      display: grid;
+      place-items: center;
+      color: #fff;
+      box-shadow: 0 0 16px var(--accent-glow);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .icon-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--text-secondary);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: all 0.3s var(--ease-fluid);
+      position: relative;
+    }
+
+    .icon-btn:hover {
+      background: var(--bg-surface-hover);
+      color: var(--text-primary);
+      border-color: var(--border-glass-bright);
+      transform: translateY(-2px);
+    }
+
+    .icon-btn.active {
+      color: var(--accent-water);
+      background: rgba(56, 189, 248, 0.1);
+    }
+
+    /* Sound indicator wave */
+    .sound-wave {
+      display: flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 14px;
+    }
+    .sound-wave span {
+      width: 2px;
+      height: 100%;
+      background-color: currentColor;
+      border-radius: 2px;
+      animation: wave 1.2s ease-in-out infinite alternate;
+    }
+    .sound-wave span:nth-child(2) { animation-delay: 0.2s; }
+    .sound-wave span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes wave {
+      0% { height: 4px; }
+      100% { height: 14px; }
+    }
+
+    /* ==========================================================================
+       4. HERO SECTION
+       ========================================================================== */
+    .hero {
+      position: relative;
+      z-index: 10;
+      min-height: 55vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 140px 24px 40px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: var(--radius-full);
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      color: var(--accent-water);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      backdrop-filter: blur(10px);
+      animation: fadeIn 1s var(--ease-fluid);
+    }
+
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+      background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.7) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      max-width: 800px;
+    }
+
+    .hero-desc {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--text-secondary);
+      max-width: 580px;
+      font-weight: 300;
+      margin-bottom: 36px;
+    }
+
+    /* Filter Tabs (Magnetic Pill Navigation) */
+    .tabs-container {
+      position: relative;
+      display: inline-flex;
+      padding: 6px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-full);
+      backdrop-filter: blur(20px);
+      gap: 4px;
+    }
+
+    .tab-btn {
+      position: relative;
+      z-index: 2;
+      padding: 10px 24px;
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: color 0.4s var(--ease-fluid);
+      border-radius: var(--radius-full);
+    }
+
+    .tab-btn.active {
+      color: var(--text-primary);
+    }
+
+    .tab-indicator {
+      position: absolute;
+      top: 6px;
+      bottom: 6px;
+      left: 6px;
+      width: 0;
+      background: var(--bg-surface-hover);
+      border: 1px solid var(--border-glass-bright);
+      border-radius: var(--radius-full);
+      z-index: 1;
+      transition: transform 0.4s var(--ease-spring), width 0.4s var(--ease-spring);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    /* ==========================================================================
+       5. GALLERY GRID & CARDS (3D TILT & SMOOTH REVEAL)
+       ========================================================================== */
+    .main-content {
+      position: relative;
+      z-index: 10;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 40px 24px 120px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 32px;
+    }
+
+    .card {
+      position: relative;
+      border-radius: var(--radius-md);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-glass);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.6s var(--ease-fluid), border-color 0.4s var(--ease-fluid), box-shadow 0.6s var(--ease-fluid);
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+
+    .card:hover {
+      border-color: var(--border-glass-bright);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3), 0 0 40px var(--accent-glow);
+    }
+
+    .card-media {
+      position: relative;
+      width: 100%;
+      height: 380px;
+      overflow: hidden;
+    }
+
+    .card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1s var(--ease-fluid), filter 0.8s var(--ease-fluid);
+      filter: saturate(1.05) brightness(0.95);
+    }
+
+    .card:hover .card-img {
+      transform: scale(1.08);
+      filter: saturate(1.2) brightness(1.05);
+    }
+
+    .card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(7, 9, 14, 0.85) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 24px;
+      opacity: 0.9;
+      transition: opacity 0.4s var(--ease-fluid);
+    }
+
+    .card-category {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-water);
+      margin-bottom: 6px;
+    }
+
+    .card-title {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.85rem;
+    }
+
+    .like-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s var(--ease-spring);
+    }
+
+    .like-btn:hover, .like-btn.liked {
+      background: #ef4444;
+      border-color: #ef4444;
+      color: #fff;
+      transform: scale(1.15);
+    }
+
+    /* ==========================================================================
+       6. LIGHTBOX / MODAL
+       ========================================================================== */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s var(--ease-fluid);
+    }
+
+    .lightbox.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .lightbox-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(7, 9, 14, 0.85);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+    }
+
+    .lightbox-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1100px;
+      width: 100%;
+      max-height: 85vh;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-glass-bright);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+      transform: scale(0.92) translateY(20px);
+      transition: transform 0.5s var(--ease-spring);
+    }
+
+    .lightbox.open .lightbox-content {
+      transform: scale(1) translateY(0);
+    }
+
+    .lightbox-image-container {
+      position: relative;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .lightbox-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .lightbox-info {
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: rgba(15, 23, 42, 0.4);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 10;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+
+    .lightbox-title {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .lightbox-desc {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+    }
+
+    .palette-container {
+      margin-top: auto;
+      margin-bottom: 30px;
+    }
+
+    .palette-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .palette-swatches {
+      display: flex;
+      gap: 10px;
+    }
+
+    .swatch {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      transition: transform 0.3s var(--ease-spring);
+    }
+    .swatch:hover {
+      transform: scale(1.2);
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 28px;
+      border-radius: var(--radius-full);
+      background: var(--accent-gradient);
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 10px 30px var(--accent-glow);
+      transition: all 0.3s var(--ease-fluid);
+      text-decoration: none;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 40px var(--accent-glow);
+    }
+
+    /* ==========================================================================
+       7. RESPONSIVE DESIGN
+       ========================================================================== */
+    @media (max-width: 900px) {
+      .lightbox-content {
+        grid-template-columns: 1fr;
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+      .lightbox-image-container {
+        height: 300px;
+      }
+      .lightbox-info {
+        padding: 24px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      .navbar {
+        padding: 8px 16px;
+        gap: 16px;
+      }
+      .tab-btn {
+        padding: 8px 16px;
+        font-size: 0.8rem;
+      }
+    }
+  </style>
 </head>
-<body class="pb-24">
+<body>
 
-    <!-- Top Announcement Bar -->
-    <div class="bg-[#1C1917] text-[#E7DDCF] text-[10px] tracking-[0.2em] uppercase font-semibold py-2 text-center">
-        ✦ Handcrafted in Austin, Texas · Worldwide Shipping Available ✦
-    </div>
+  <!-- Water Aura Cursor -->
+  <div class="fluid-cursor" id="cursor"></div>
 
-    <!-- Editorial Header -->
-    <header class="sticky top-0 z-40 bg-[#FDFBF7]/95 backdrop-blur-md border-b border-[#EFE7DC] px-5 py-4 flex items-center justify-between">
-        <div>
-            <h1 id="brandTitle" class="font-serif text-xl font-bold tracking-tight text-[#1C1917]">Delight by Deepa</h1>
-            <p id="brandSubtitle" class="text-[10px] text-[#8C7A6B] tracking-wider uppercase font-semibold">Artisan Rock Art & Botanical Crafts</p>
+  <!-- Ambient Liquid Canvas & Glowing Blobs -->
+  <canvas id="water-canvas"></canvas>
+  <div class="ambient-mesh">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <!-- Minimal Floating Navigation -->
+  <div class="nav-wrapper">
+    <nav class="navbar">
+      <a href="#" class="brand">
+        <div class="brand-icon">
+          <i data-lucide="droplet"></i>
         </div>
-        <button onclick="toggleBag()" class="relative bg-[#1C1917] text-[#FDFBF7] p-2.5 rounded-full text-xs flex items-center gap-2 shadow-sm">
-            <i class="fa-solid fa-bag-shopping text-xs"></i>
-            <span id="bagCount" class="text-[10px] font-bold bg-[#C86D51] text-white px-1.5 py-0.2 rounded-full">0</span>
+        <span>AQUA</span>
+      </a>
+
+      <div class="nav-actions">
+        <!-- Ambient Sound Generator Toggle -->
+        <button class="icon-btn" id="sound-toggle" title="Water Soundscape">
+          <i data-lucide="volume-x" id="sound-icon-off"></i>
+          <div class="sound-wave" id="sound-wave" style="display: none;">
+            <span></span><span></span><span></span>
+          </div>
         </button>
-    </header>
 
-    <main class="max-w-md mx-auto px-4 mt-5 space-y-8">
+        <!-- Theme Toggle -->
+        <button class="icon-btn" id="theme-toggle" title="Toggle Theme">
+          <i data-lucide="sun" class="sun-icon"></i>
+        </button>
+      </div>
+    </nav>
+  </div>
 
-        <!-- Hero Section: Studio Story -->
-        <section class="bg-[#F5EFE6] rounded-3xl p-6 border border-[#EBE1D3] space-y-3 relative overflow-hidden">
-            <span id="heroLocation" class="inline-block text-[10px] font-bold tracking-widest uppercase text-[#C86D51] bg-[#C86D51]/10 px-3 py-1 rounded-full">
-                Austin, TX Studio
-            </span>
-            <h2 id="heroHeadline" class="font-serif text-2xl font-normal leading-snug text-[#1C1917]">
-                Little pieces of nature, transformed by hand.
-            </h2>
-            <p id="heroBio" class="text-xs text-[#6B5E52] leading-relaxed">
-                Each stone is carefully hand-selected and painted with intricate detailed artwork to bring warmth to your home and garden.
-            </p>
-        </section>
-
-        <!-- Category Filter Pills -->
-        <section id="categoryBar" class="flex gap-2 overflow-x-auto no-scrollbar py-1">
-            <!-- Dynamic Category Pills -->
-        </section>
-
-        <!-- Magazine Showcase Cards -->
-        <section id="galleryGrid" class="space-y-6">
-            <!-- Dynamic Editorial Craft Cards -->
-        </section>
-
-        <!-- Meet the Artist Block -->
-        <section class="bg-[#1C1917] text-[#FDFBF7] rounded-3xl p-6 space-y-3">
-            <span class="text-[10px] font-bold tracking-[0.2em] uppercase text-[#D4A373]">Behind The Craft</span>
-            <h3 class="font-serif text-xl font-normal">Every stone tells a story</h3>
-            <p class="text-xs text-[#C5B8AA] leading-relaxed">
-                "I started Delight by Deepa to blend my love for nature with hand-painted artistry. No two creations are ever identical."
-            </p>
-            <div class="pt-2 border-t border-white/10 flex items-center justify-between text-[11px] text-[#D4A373] font-semibold">
-                <span>📍 Austin, Texas</span>
-                <span>✨ 100% Original Handmade</span>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Quick Preview Modal -->
-    <div id="previewModal" class="fixed inset-0 z-50 bg-black/60 hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
-        <div class="bg-[#FDFBF7] w-full max-w-md rounded-t-3xl sm:rounded-3xl max-h-[90vh] overflow-y-auto no-scrollbar p-5 space-y-4">
-            <div class="flex justify-between items-center border-b border-[#EFE7DC] pb-3">
-                <span id="modalCode" class="text-[10px] font-bold bg-[#1C1917] text-[#FDFBF7] px-2.5 py-1 rounded-full uppercase tracking-wider"></span>
-                <button onclick="closePreview()" class="w-8 h-8 rounded-full bg-[#F5EFE6] text-[#6B5E52] flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            
-            <div class="aspect-square bg-[#F5EFE6] rounded-2xl overflow-hidden border border-[#EBE1D3]">
-                <img id="modalImg" src="" class="w-full h-full object-cover">
-            </div>
-
-            <div class="space-y-1">
-                <span id="modalTag" class="text-[10px] font-bold uppercase tracking-widest text-[#C86D51]"></span>
-                <h3 id="modalTitle" class="font-serif text-lg font-bold text-[#1C1917]"></h3>
-                <div class="flex items-center gap-3">
-                    <span id="modalPrice" class="font-serif text-xl font-semibold text-[#1C1917]"></span>
-                    <span id="modalMrp" class="text-xs text-[#8C7A6B] line-through"></span>
-                </div>
-            </div>
-
-            <p id="modalDesc" class="text-xs text-[#6B5E52] leading-relaxed bg-[#F5EFE6] p-3 rounded-xl border border-[#EBE1D3]"></p>
-
-            <button onclick="addToBagFromModal()" class="w-full bg-[#1C1917] text-[#FDFBF7] font-semibold py-3.5 rounded-2xl text-xs shadow-md">
-                Add to Cart
-            </button>
-        </div>
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="badge">
+      <i data-lucide="sparkles"></i> Water Minimalist Experience
     </div>
+    <h1 class="hero-title">Serenity in Pure Motion</h1>
+    <p class="hero-desc">
+      A curated collection of minimalist visuals infused with fluid physics, water ripples, and ultra-smooth 60fps micro-interactions.
+    </p>
 
-    <!-- Dynamic JavaScript Engine -->
-    <script>
-        const CLIENT_CONFIGS = {
-            "deepa": {
-                brandName: "Delight by Deepa",
-                subtitle: "Hand-Painted Rock Art & Custom Crafts",
-                location: "Austin, TX Studio",
-                currency: "$",
-                heroHeadline: "Little pieces of nature, transformed by hand.",
-                heroBio: "Each stone is carefully hand-selected and painted with detailed artwork to bring warmth to your home and garden.",
-                categories: ["all", "painted stones", "garden art", "novelties"],
-                products: [
-                    {
-                        id: "d1",
-                        title: "Cute Penguin Family Painted Rocks",
-                        code: "DBD-001",
-                        price: 22.00,
-                        mrp: 28.00,
-                        category: "painted stones",
-                        img: "images/penguin.jpg",
-                        desc: "Hand-painted smooth river stones sealed with weatherproof gloss finish. Perfect for garden decor or desk accents."
-                    },
-                    {
-                        id: "d2",
-                        title: "Detailed Butterfly Garden Stone",
-                        code: "DBD-002",
-                        price: 18.00,
-                        mrp: 22.00,
-                        category: "garden art",
-                        img: "images/butterfly.jpg",
-                        desc: "Vibrant butterfly motif painted with acrylics and UV protective sealant."
-                    },
-                    {
-                        id: "d3",
-                        title: "M&M Character Rock Art Set",
-                        code: "DBD-003",
-                        price: 25.00,
-                        mrp: 30.00,
-                        category: "novelties",
-                        img: "images/mnm.jpg",
-                        desc: "Playful character set of 4 painted rocks. Bring instant smiles to any corner of your space."
-                    },
-                    {
-                        id: "d4",
-                        title: "Hand-Painted Ladybug Trio",
-                        code: "DBD-004",
-                        price: 16.00,
-                        mrp: 20.00,
-                        category: "garden art",
-                        img: "images/ladybug.jpg",
-                        desc: "Classic ladybug trio crafted for flower pots, succulent gardens, or shelf displays."
-                    }
-                ]
-            }
-        };
+    <!-- Interactive Magnetic Category Tabs -->
+    <div class="tabs-container" id="tabs-wrapper">
+      <div class="tab-indicator" id="tab-indicator"></div>
+      <button class="tab-btn active" data-filter="all">All Gallery</button>
+      <button class="tab-btn" data-filter="nature">Nature</button>
+      <button class="tab-btn" data-filter="flora">Botanical</button>
+      <button class="tab-btn" data-filter="macro">Macro Details</button>
+    </div>
+  </header>
 
-        let currentClient = CLIENT_CONFIGS['deepa'];
-        let activeProduct = null;
-        let cart = [];
+  <!-- Gallery Grid Section -->
+  <main class="main-content">
+    <div class="gallery-grid" id="gallery-grid">
+      <!-- Grid Items generated via JavaScript -->
+    </div>
+  </main>
 
-        window.onload = function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const clientId = urlParams.get('client') || 'deepa';
-            currentClient = CLIENT_CONFIGS[clientId] || CLIENT_CONFIGS['deepa'];
+  <!-- Lightbox Modal -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-backdrop" id="lightbox-backdrop"></div>
+    <div class="lightbox-content">
+      <button class="icon-btn lightbox-close" id="lightbox-close">
+        <i data-lucide="x"></i>
+      </button>
+      <div class="lightbox-image-container">
+        <img src="" alt="" class="lightbox-img" id="lightbox-img" />
+      </div>
+      <div class="lightbox-info">
+        <div>
+          <span class="card-category" id="lightbox-cat">NATURE</span>
+          <h2 class="lightbox-title" id="lightbox-title">Item Title</h2>
+          <p class="lightbox-desc" id="lightbox-desc">High resolution liquid minimalist portrait with smooth color transitions.</p>
+        </div>
 
-            document.getElementById('brandTitle').innerText = currentClient.brandName;
-            document.getElementById('brandSubtitle').innerText = currentClient.subtitle;
-            document.getElementById('heroLocation').innerText = currentClient.location;
-            document.getElementById('heroHeadline').innerText = currentClient.heroHeadline;
-            document.getElementById('heroBio').innerText = currentClient.heroBio;
+        <div class="palette-container">
+          <div class="palette-title">Extracted Palette</div>
+          <div class="palette-swatches" id="palette-swatches">
+            <div class="swatch" style="background: #38bdf8;"></div>
+            <div class="swatch" style="background: #818cf8;"></div>
+            <div class="swatch" style="background: #0f172a;"></div>
+            <div class="swatch" style="background: #94a3b8;"></div>
+          </div>
+        </div>
 
-            renderCategories();
-            renderGallery(currentClient.products);
-        };
+        <a href="#" class="btn-primary" id="download-btn" target="_blank" download>
+          <i data-lucide="download"></i> Download HD Wallpaper
+        </a>
+      </div>
+    </div>
+  </div>
 
-        function renderCategories() {
-            const container = document.getElementById('categoryBar');
-            container.innerHTML = currentClient.categories.map(cat => `
-                <button onclick="filterCat('${cat}')" class="px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap bg-[#F5EFE6] text-[#6B5E52] border border-[#EBE1D3] capitalize">
-                    ${cat}
+  <!-- ==========================================================================
+     JAVASCRIPT: WATER CANVAS, WEB AUDIO, 3D TILT, & INTERACTION ENGINE
+     ========================================================================== -->
+  <script>
+    /* --------------------------------------------------------------------------
+       1. DATA SOURCE (Integrates user images & high-res minimal fallbacks)
+       -------------------------------------------------------------------------- */
+    const galleryItems = [
+      {
+        id: 1,
+        title: "Emperor Penguins",
+        category: "nature",
+        img: "assets/penguins.jpg",
+        fallback: "https://images.unsplash.com/photo-1598439210625-5067c578f3f6?auto=format&fit=crop&w=1200&q=80",
+        desc: "Graceful Emperor penguins standing against serene arctic glacial gradients.",
+        colors: ["#38bdf8", "#0f172a", "#94a3b8", "#f8fafc"]
+      },
+      {
+        id: 2,
+        title: "Floral Display",
+        category: "flora",
+        img: "assets/floral-display.jpg",
+        fallback: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
+        desc: "Minimal botanical compositions catching soft morning sunlight dispersion.",
+        colors: ["#f472b6", "#fb7185", "#475569", "#f8fafc"]
+      },
+      {
+        id: 3,
+        title: "Zen River Stones",
+        category: "macro",
+        img: "assets/floral-stones.jpg",
+        fallback: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=1200&q=80",
+        desc: "Balanced river pebbles resting peacefully beneath crystal clear water ripples.",
+        colors: ["#38bdf8", "#64748b", "#334155", "#e2e8f0"]
+      },
+      {
+        id: 4,
+        title: "Candy Glass Pebbles",
+        category: "macro",
+        img: "assets/candy-stones.jpg",
+        fallback: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1200&q=80",
+        desc: "Translucent candy-colored stones refracting vivid ambient refraction spectrums.",
+        colors: ["#fbbf24", "#f43f5e", "#a855f7", "#38bdf8"]
+      },
+      {
+        id: 5,
+        title: "Ladybugs on Snow",
+        category: "nature",
+        img: "assets/ladybugs-snow.jpg",
+        fallback: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1200&q=80",
+        desc: "Striking red ladybugs creating vivid minimalist contrast over fresh frost.",
+        colors: ["#ef4444", "#f8fafc", "#64748b", "#0f172a"]
+      },
+      {
+        id: 6,
+        title: "Micro Insect Harmony",
+        category: "flora",
+        img: "assets/ladybugs.jpg",
+        fallback: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=80",
+        desc: "Detailed macro view highlighting delicate morning dew droplets on vibrant leaves.",
+        colors: ["#4ade80", "#22c55e", "#15803d", "#f0fdf4"]
+      }
+    ];
+
+    /* --------------------------------------------------------------------------
+       2. WATER RIPPLE ENGINE (Canvas 2D Fluid Simulation)
+       -------------------------------------------------------------------------- */
+    const canvas = document.getElementById('water-canvas');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let ripples = [];
+
+    function resizeCanvas() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Ripple {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.radius = 2;
+        this.maxRadius = Math.random() * 60 + 80;
+        this.alpha = 0.5;
+        this.speed = Math.random() * 1.5 + 1.5;
+      }
+      update() {
+        this.radius += this.speed;
+        this.alpha -= 0.008;
+      }
+      draw() {
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(56, 189, 248, ${Math.max(0, this.alpha)})`;
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+        ctx.restore();
+      }
+    }
+
+    function animateRipples() {
+      ctx.clearRect(0, 0, width, height);
+      for (let i = ripples.length - 1; i >= 0; i--) {
+        const r = ripples[i];
+        r.update();
+        r.draw();
+        if (r.alpha <= 0) ripples.splice(i, 1);
+      }
+      requestAnimationFrame(animateRipples);
+    }
+    animateRipples();
+
+    window.addEventListener('pointerdown', (e) => {
+      ripples.push(new Ripple(e.clientX, e.clientY));
+      setTimeout(() => ripples.push(new Ripple(e.clientX, e.clientY)), 150);
+    });
+
+    /* --------------------------------------------------------------------------
+       3. AMBIENT WATER SOUND GENERATOR (Web Audio API Synthesizer)
+       -------------------------------------------------------------------------- */
+    let audioCtx = null;
+    let isPlayingSound = false;
+    let noiseNode = null;
+
+    function initWaterAudio() {
+      if (audioCtx) return;
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      
+      // Generate Pink Noise for Water Stream
+      const bufferSize = audioCtx.sampleRate * 2;
+      const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+      const output = noiseBuffer.getChannelData(0);
+      let b0=0, b1=0, b2=0, b3=0, b4=0, b5=0, b6=0;
+      
+      for (let i = 0; i < bufferSize; i++) {
+        let white = Math.random() * 2 - 1;
+        b0 = 0.99886 * b0 + white * 0.0555179;
+        b1 = 0.99332 * b1 + white * 0.0750759;
+        b2 = 0.96900 * b2 + white * 0.1538520;
+        b3 = 0.86650 * b3 + white * 0.3104856;
+        b4 = 0.55000 * b4 + white * 0.5329522;
+        b5 = -0.7616 * b5 - white * 0.0168980;
+        output[i] = b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362;
+        output[i] *= 0.04; // Soft volume
+        b6 = white * 0.115926;
+      }
+
+      noiseNode = audioCtx.createBufferSource();
+      noiseNode.buffer = noiseBuffer;
+      noiseNode.loop = true;
+
+      // Lowpass Filter for soft trickling water
+      const filter = audioCtx.createBiquadFilter();
+      filter.type = 'lowpass';
+      filter.frequency.setValueAtTime(400, audioCtx.currentTime);
+
+      noiseNode.connect(filter);
+      filter.connect(audioCtx.destination);
+      noiseNode.start();
+    }
+
+    const soundToggle = document.getElementById('sound-toggle');
+    const soundIconOff = document.getElementById('sound-icon-off');
+    const soundWave = document.getElementById('sound-wave');
+
+    soundToggle.addEventListener('click', () => {
+      if (!isPlayingSound) {
+        initWaterAudio();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        isPlayingSound = true;
+        soundIconOff.style.display = 'none';
+        soundWave.style.display = 'flex';
+        soundToggle.classList.add('active');
+      } else {
+        if (audioCtx) audioCtx.suspend();
+        isPlayingSound = false;
+        soundIconOff.style.display = 'block';
+        soundWave.style.display = 'none';
+        soundToggle.classList.remove('active');
+      }
+    });
+
+    /* --------------------------------------------------------------------------
+       4. FLUID CURSOR & 3D CARD TILT INTERACTION
+       -------------------------------------------------------------------------- */
+    const cursor = document.getElementById('cursor');
+    let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      cursor.style.opacity = '1';
+    });
+
+    function renderCursor() {
+      cursorX += (mouseX - cursorX) * 0.15;
+      cursorY += (mouseY - cursorY) * 0.15;
+      cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
+      requestAnimationFrame(renderCursor);
+    }
+    renderCursor();
+
+    /* --------------------------------------------------------------------------
+       5. GALLERY RENDER & MAGNETIC TAB INDICATOR
+       -------------------------------------------------------------------------- */
+    const grid = document.getElementById('gallery-grid');
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabIndicator = document.getElementById('tab-indicator');
+
+    function updateTabIndicator(btn) {
+      tabIndicator.style.width = `${btn.offsetWidth}px`;
+      tabIndicator.style.transform = `translateX(${btn.offsetLeft - 6}px)`;
+    }
+
+    function renderGallery(filter = 'all') {
+      grid.innerHTML = '';
+      const filtered = filter === 'all' 
+        ? galleryItems 
+        : galleryItems.filter(item => item.category === filter);
+
+      filtered.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.setAttribute('data-id', item.id);
+
+        card.innerHTML = `
+          <div class="card-media">
+            <img src="${item.img}" onError="this.onerror=null;this.src='${item.fallback}';" alt="${item.title}" class="card-img" loading="lazy" />
+            <div class="card-overlay">
+              <span class="card-category">${item.category}</span>
+              <h3 class="card-title">${item.title}</h3>
+              <div class="card-meta">
+                <span>View Details</span>
+                <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked')">
+                  <i data-lucide="heart"></i>
                 </button>
-            `).join('');
-        }
+              </div>
+            </div>
+          </div>
+        `;
 
-        function renderGallery(items) {
-            const grid = document.getElementById('galleryGrid');
-            grid.innerHTML = items.map(p => `
-                <article class="bg-white rounded-3xl overflow-hidden border border-[#EBE1D3] shadow-xs space-y-3 p-4">
-                    <div class="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#F5EFE6]" onclick="openPreview('${p.id}')">
-                        <img src="${p.img}" onerror="this.src='https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=500'" class="w-full h-full object-cover">
-                        <span class="absolute top-3 left-3 bg-[#1C1917]/85 text-[#FDFBF7] text-[9px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">${p.code}</span>
-                    </div>
-                    <div class="space-y-1">
-                        <span class="text-[9px] font-bold uppercase tracking-widest text-[#C86D51]">${p.category}</span>
-                        <h4 class="font-serif text-base font-bold text-[#1C1917]">${p.title}</h4>
-                    </div>
-                    <div class="pt-2 border-t border-[#F5EFE6] flex items-center justify-between">
-                        <div>
-                            <span class="font-serif text-base font-bold text-[#1C1917]">${currentClient.currency}${p.price}</span>
-                            <span class="text-xs text-[#8C7A6B] line-through ml-1">${currentClient.currency}${p.mrp}</span>
-                        </div>
-                        <button onclick="openPreview('${p.id}')" class="bg-[#F5EFE6] text-[#1C1917] font-semibold text-xs px-4 py-2 rounded-full border border-[#EBE1D3]">
-                            Inspect Piece
-                        </button>
-                    </div>
-                </article>
-            `).join('');
-        }
+        // 3D Parallax Tilt Effect
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+          card.style.transform = `perspective(1000px) rotateX(${-y / 20}deg) rotateY(${x / 20}deg) translateZ(8px)`;
+        });
 
-        function filterCat(cat) {
-            if (cat === 'all') renderGallery(currentClient.products);
-            else renderGallery(currentClient.products.filter(x => x.category === cat));
-        }
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)`;
+        });
 
-        function openPreview(id) {
-            activeProduct = currentClient.products.find(x => x.id === id);
-            if (!activeProduct) return;
-            document.getElementById('modalCode').innerText = activeProduct.code;
-            document.getElementById('modalTag').innerText = activeProduct.category;
-            document.getElementById('modalTitle').innerText = activeProduct.title;
-            document.getElementById('modalPrice').innerText = `${currentClient.currency}${activeProduct.price}`;
-            document.getElementById('modalMrp').innerText = `${currentClient.currency}${activeProduct.mrp}`;
-            document.getElementById('modalDesc').innerText = activeProduct.desc;
-            document.getElementById('modalImg').src = activeProduct.img;
-            document.getElementById('previewModal').classList.remove('hidden');
-        }
+        // Open Lightbox
+        card.addEventListener('click', () => openLightbox(item));
 
-        function closePreview() { document.getElementById('previewModal').classList.add('hidden'); }
-        function addToBagFromModal() {
-            if (!activeProduct) return;
-            cart.push(activeProduct);
-            document.getElementById('bagCount').innerText = cart.length;
-            closePreview();
-        }
-    </script>
+        grid.appendChild(card);
+      });
+
+      lucide.createIcons();
+    }
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        tabBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        updateTabIndicator(btn);
+        renderGallery(btn.dataset.filter);
+      });
+    });
+
+    // Initialize indicator on active tab
+    const activeTab = document.querySelector('.tab-btn.active');
+    if (activeTab) updateTabIndicator(activeTab);
+
+    /* --------------------------------------------------------------------------
+       6. LIGHTBOX CONTROLLER
+       -------------------------------------------------------------------------- */
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxTitle = document.getElementById('lightbox-title');
+    const lightboxCat = document.getElementById('lightbox-cat');
+    const lightboxDesc = document.getElementById('lightbox-desc');
+    const downloadBtn = document.getElementById('download-btn');
+    const paletteContainer = document.getElementById('palette-swatches');
+
+    function openLightbox(item) {
+      lightboxImg.src = item.img;
+      lightboxImg.onerror = () => { lightboxImg.src = item.fallback; };
+      lightboxTitle.textContent = item.title;
+      lightboxCat.textContent = item.category.toUpperCase();
+      lightboxDesc.textContent = item.desc;
+      downloadBtn.href = item.img;
+
+      // Render color palette
+      paletteContainer.innerHTML = item.colors.map(c => 
+        `<div class="swatch" style="background: ${c};" title="${c}"></div>`
+      ).join('');
+
+      lightbox.classList.add('open');
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+    }
+
+    document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+    document.getElementById('lightbox-backdrop').addEventListener('click', closeLightbox);
+
+    /* --------------------------------------------------------------------------
+       7. THEME TOGGLE & INITIALIZATION
+       -------------------------------------------------------------------------- */
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('click', () => {
+      document.documentElement.classList.toggle('light');
+    });
+
+    // Initial Render
+    window.addEventListener('DOMContentLoaded', () => {
+      renderGallery();
+      lucide.createIcons();
+    });
+  </script>
 </body>
 </html>
