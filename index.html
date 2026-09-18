@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fourteen Blooms | Custom Handmade Pipe Cleaner Bouquets</title>
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     :root {
@@ -33,7 +32,6 @@
       color: var(--text-dark);
       overflow-x: hidden;
       scroll-behavior: smooth;
-      padding-bottom: 80px;
     }
 
     /* Scroll Animations */
@@ -47,12 +45,12 @@
       transform: translateY(0);
     }
 
-    /* Soft Glass Header */
+    /* Original Soft Header */
     header {
       position: fixed;
       top: 0;
       width: 100%;
-      background: rgba(253, 246, 248, 0.88);
+      background: rgba(253, 246, 248, 0.92);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       z-index: 100;
@@ -69,13 +67,12 @@
       font-weight: 600;
       color: var(--primary);
       text-decoration: none;
-      letter-spacing: -0.5px;
     }
 
     .nav-btn {
       background: var(--primary);
       color: #fff;
-      padding: 10px 24px;
+      padding: 10px 22px;
       border-radius: var(--radius-btn);
       text-decoration: none;
       font-size: 0.9rem;
@@ -89,32 +86,6 @@
     .nav-btn:hover {
       background: var(--primary-hover);
       transform: translateY(-2px);
-    }
-
-    /* Floating Unobtrusive Mobile CTA */
-    .floating-cta {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: var(--primary);
-      color: #fff;
-      padding: 14px 26px;
-      border-radius: var(--radius-btn);
-      font-weight: 600;
-      font-size: 0.95rem;
-      box-shadow: 0 8px 25px rgba(216, 27, 96, 0.35);
-      z-index: 99;
-      cursor: pointer;
-      border: none;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .floating-cta:hover {
-      transform: scale(1.05);
-      background: var(--primary-hover);
     }
 
     /* Hero Section */
@@ -151,7 +122,6 @@
       line-height: 1.6;
     }
 
-    /* Section Styling */
     .section-title {
       text-align: center;
       font-family: 'Playfair Display', serif;
@@ -167,7 +137,7 @@
       font-size: 0.95rem;
     }
 
-    /* 3-Step Process */
+    /* 3-Step Process Cards */
     .steps-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -316,6 +286,69 @@
       color: var(--primary);
     }
 
+    /* Order Form Section */
+    .order-section {
+      padding: 40px 6% 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .form-container {
+      max-width: 680px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      border-radius: var(--radius-card);
+      padding: 36px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(248, 187, 208, 0.3);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px solid #e2d2d8;
+      background: #fff;
+      font-family: inherit;
+      font-size: 0.92rem;
+      outline: none;
+      transition: border 0.2s ease;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary);
+    }
+
+    .submit-btn {
+      width: 100%;
+      background: var(--primary);
+      color: #fff;
+      padding: 14px;
+      border: none;
+      border-radius: var(--radius-btn);
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 20px rgba(216, 27, 96, 0.25);
+    }
+
+    .submit-btn:hover {
+      background: var(--primary-hover);
+      transform: translateY(-2px);
+    }
+
     /* FAQ Section */
     .faq-container {
       max-width: 800px;
@@ -325,7 +358,7 @@
 
     .faq-item {
       background: var(--card-bg);
-      border-radius: 14px;
+      border-radius: 16px;
       padding: 20px 24px;
       margin-bottom: 16px;
       box-shadow: var(--shadow);
@@ -345,7 +378,7 @@
       line-height: 1.5;
     }
 
-    /* Custom Order Modal Builder */
+    /* Custom Builder Modal */
     .modal-backdrop {
       position: fixed;
       top: 0;
@@ -387,52 +420,6 @@
       color: var(--text-muted);
     }
 
-    .form-group {
-      margin-bottom: 20px;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 0.88rem;
-      font-weight: 500;
-      margin-bottom: 8px;
-    }
-
-    .form-control {
-      width: 100%;
-      padding: 12px 16px;
-      border-radius: 12px;
-      border: 1px solid #e2d2d8;
-      background: #fff;
-      font-family: inherit;
-      font-size: 0.92rem;
-      outline: none;
-      transition: border 0.2s ease;
-    }
-
-    .form-control:focus {
-      border-color: var(--primary);
-    }
-
-    .submit-btn {
-      width: 100%;
-      background: var(--primary);
-      color: #fff;
-      padding: 14px;
-      border: none;
-      border-radius: 14px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 6px 20px rgba(216, 27, 96, 0.25);
-    }
-
-    .submit-btn:hover {
-      background: var(--primary-hover);
-      transform: translateY(-2px);
-    }
-
     footer {
       text-align: center;
       padding: 40px 6%;
@@ -444,7 +431,7 @@
     @media (max-width: 768px) {
       .hero h1 { font-size: 2.2rem; }
       .grid-container, .steps-container, .reviews-container { grid-template-columns: 1fr; }
-      .modal-box { padding: 22px; }
+      .form-container, .modal-box { padding: 24px; }
     }
   </style>
 </head>
@@ -453,42 +440,37 @@
   <!-- Header -->
   <header>
     <a href="#" class="brand-logo">fourteen blooms</a>
-    <button class="nav-btn" onclick="openBuilder('Custom Order')">Order Custom</button>
+    <button class="nav-btn" onclick="openModal('Custom Order')">Order Custom</button>
   </header>
-
-  <!-- Unobtrusive Floating Mobile CTA -->
-  <button class="floating-cta" onclick="openBuilder('Custom Order')">
-    Build Custom Bouquet 🌸
-  </button>
 
   <!-- Hero -->
   <section class="hero reveal">
-    <span class="badge">Handcrafted in Vancouver & Surrey, BC</span>
+    <span class="badge">HANDCRAFTED IN VANCOUVER & SURREY, BC</span>
     <h1>Forever Flowers Made with Love & Detail</h1>
     <p>Custom pipe cleaner flower bouquets tailored to your favorite colors. Perfect for birthdays, anniversaries, or special moments that last forever.</p>
-    <button class="nav-btn" style="padding: 14px 32px; font-size: 1rem;" onclick="openBuilder('Custom Order')">Explore Custom Builder</button>
+    <a href="#catalog" class="nav-btn" style="padding: 14px 32px; font-size: 1rem;">Explore Bouquets</a>
   </section>
 
   <!-- How It Works -->
   <section>
     <h2 class="section-title reveal">How Ordering Works</h2>
-    <p class="section-subtitle reveal">3 easy steps to get your custom handmade bouquet</p>
+    <p class="section-subtitle reveal">Simple 3-step process to get your custom bouquet</p>
 
     <div class="steps-container">
       <div class="step-card reveal">
         <div class="step-number">01</div>
-        <div class="step-title">Select Style</div>
-        <div class="step-desc">Pick your favorite bouquet layout or start from scratch.</div>
+        <div class="step-title">Choose Style</div>
+        <div class="step-desc">Pick your favorite bouquet design from our catalog below.</div>
       </div>
       <div class="step-card reveal">
         <div class="step-number">02</div>
-        <div class="step-title">Customize Colors</div>
-        <div class="step-desc">Choose color palettes, sizes, and pickup date.</div>
+        <div class="step-title">Customize Details</div>
+        <div class="step-desc">Select custom color palettes & required pickup date.</div>
       </div>
       <div class="step-card reveal">
         <div class="step-number">03</div>
         <div class="step-title">Instant DM Order</div>
-        <div class="step-desc">Send structured order details directly to our Instagram!</div>
+        <div class="step-desc">Click submit to send pre-filled order specs straight to our Instagram!</div>
       </div>
     </div>
   </section>
@@ -496,36 +478,36 @@
   <!-- Catalog -->
   <section id="catalog">
     <h2 class="section-title reveal">Popular Bouquet Styles</h2>
-    <p class="section-subtitle reveal">Click any design to customize and request an order</p>
+    <p class="section-subtitle reveal">Click any design to start your custom order request</p>
     
     <div class="grid-container">
-      <div class="card reveal" onclick="openBuilder('Hot Pink Velvet Lily')">
+      <div class="card reveal" onclick="selectBouquet('Hot Pink Velvet Lily')">
         <img src="https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=600" alt="Hot Pink Bouquet" class="card-img" />
         <div class="card-title">Hot Pink Velvet Lily</div>
         <div class="card-desc">Vibrant magenta lilies surrounded by soft pastel pink wrap & gold trim accents.</div>
         <div class="card-bottom">
           <span class="price">$45.00 CAD</span>
-          <span class="select-btn">Customize</span>
+          <span class="select-btn">Select</span>
         </div>
       </div>
 
-      <div class="card reveal" onclick="openBuilder('Royal Purple & Lavender')">
+      <div class="card reveal" onclick="selectBouquet('Royal Purple & Lavender')">
         <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?w=600" alt="Purple Bouquet" class="card-img" />
         <div class="card-title">Royal Purple & Lavender</div>
         <div class="card-desc">Hand-shaped purple blooms with lavender layers and iridescent ribbon details.</div>
         <div class="card-bottom">
           <span class="price">$50.00 CAD</span>
-          <span class="select-btn">Customize</span>
+          <span class="select-btn">Select</span>
         </div>
       </div>
 
-      <div class="card reveal" onclick="openBuilder('Classic Red & White Rose')">
+      <div class="card reveal" onclick="selectBouquet('Classic Red & White Rose')">
         <img src="https://images.unsplash.com/photo-1591886960571-74d43a9d4166?w=600" alt="Red Rose Bouquet" class="card-img" />
         <div class="card-title">Classic Red & White Rose</div>
         <div class="card-desc">Timeless arrangement featuring deep red blooms and custom bow ribbon.</div>
         <div class="card-bottom">
           <span class="price">$40.00 CAD</span>
-          <span class="select-btn">Customize</span>
+          <span class="select-btn">Select</span>
         </div>
       </div>
     </div>
@@ -533,27 +515,68 @@
 
   <!-- Testimonials -->
   <section>
-    <h2 class="section-title reveal">Loved by Locals</h2>
-    <p class="section-subtitle reveal">Real feedback from custom orders in BC</p>
+    <h2 class="section-title reveal">Loved by Customers</h2>
+    <p class="section-subtitle reveal">Real feedback from local bouquet orders in BC</p>
 
     <div class="reviews-container">
       <div class="review-card reveal">
         <div class="stars">★★★★★</div>
-        <div class="review-text">"Ordered a hot pink bouquet for my best friend's birthday and it turned out even cuter than the pictures!"</div>
+        <div class="review-text">"Ordered a hot pink bouquet for my best friend's birthday and it turned out even cuter than the pictures! Lasts forever too."</div>
         <div class="review-author">— Emily K. (Vancouver, BC)</div>
       </div>
 
       <div class="review-card reveal">
         <div class="stars">★★★★★</div>
-        <div class="review-text">"Super smooth pickup in Surrey! The pipe cleaner flowers look so detailed and high quality."</div>
+        <div class="review-text">"Super easy pickup in Surrey! The details on the pipe cleaner flowers are so clean and high quality."</div>
         <div class="review-author">— Jessica T. (Surrey, BC)</div>
       </div>
 
       <div class="review-card reveal">
         <div class="stars">★★★★★</div>
-        <div class="review-text">"Loved choosing my own custom colors. Highly recommend Fourteen Blooms!"</div>
+        <div class="review-text">"Loved being able to pick custom color combos for an anniversary gift. Highly recommend fourteen blooms!"</div>
         <div class="review-author">— Sarah M. (Burnaby, BC)</div>
       </div>
+    </div>
+  </section>
+
+  <!-- Order Section -->
+  <section class="order-section" id="order">
+    <h2 class="section-title reveal">Custom Order Request</h2>
+    <p class="section-subtitle reveal">Fill out your preferred bouquet details to instantly start a DM order</p>
+
+    <div class="form-container reveal">
+      <form onsubmit="handleSendDM(event)">
+        <div class="form-group">
+          <label>Selected Bouquet Style</label>
+          <input type="text" id="selectedStyle" class="form-control" value="Custom Color Combination" required />
+        </div>
+
+        <div class="form-group">
+          <label>Bouquet Size / Budget</label>
+          <select id="bouquetSize" class="form-control">
+            <option>Petite Bouquet ($30 - $35 CAD)</option>
+            <option selected>Standard Bouquet ($40 - $50 CAD)</option>
+            <option>Deluxe Grand Bouquet ($60+ CAD)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Preferred Color Palette (e.g. Pink & Gold, Blue & White)</label>
+          <input type="text" id="colorPalette" class="form-control" placeholder="Describe your preferred colors..." required />
+        </div>
+
+        <div class="form-group">
+          <label>Needed By Date (Vancouver / Surrey Pickup)</label>
+          <input type="date" id="pickupDate" class="form-control" required />
+        </div>
+
+        <div class="form-group">
+          <label>Custom Gift Card Message (Optional)</label>
+          <textarea id="customNote" class="form-control" rows="3" placeholder="e.g. Happy Birthday Sarah! ❤️"></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">Send Order Request via Instagram</button>
+      </form>
     </div>
   </section>
 
@@ -583,11 +606,11 @@
   <!-- Modal Custom Builder -->
   <div class="modal-backdrop" id="builderModal">
     <div class="modal-box">
-      <span class="close-btn" onclick="closeBuilder()">&times;</span>
+      <span class="close-btn" onclick="closeModal()">&times;</span>
       <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 6px;" id="modalStyleTitle">Custom Bouquet Request</h3>
-      <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px;">Fill out your choices to generate a pre-filled Instagram DM request</p>
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px;">Select options to send a pre-filled request to Instagram DMs</p>
 
-      <form onsubmit="handleSendDM(event)">
+      <form onsubmit="handleModalSendDM(event)">
         <div class="form-group">
           <label>Selected Style</label>
           <input type="text" id="modalStyleInput" class="form-control" readonly />
@@ -627,10 +650,9 @@
   </footer>
 
   <script>
-    // Set Minimum Date to Today
+    document.getElementById('pickupDate').min = new Date().toISOString().split('T')[0];
     document.getElementById('modalDate').min = new Date().toISOString().split('T')[0];
 
-    // Scroll Observer
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('active');
@@ -639,19 +661,35 @@
 
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
 
-    // Modal Builder Logic
-    function openBuilder(styleName) {
+    function selectBouquet(name) {
+      document.getElementById('selectedStyle').value = name;
+      document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function openModal(styleName) {
       document.getElementById('modalStyleTitle').innerText = styleName;
       document.getElementById('modalStyleInput').value = styleName;
       document.getElementById('builderModal').classList.add('active');
     }
 
-    function closeBuilder() {
+    function closeModal() {
       document.getElementById('builderModal').classList.remove('active');
     }
 
-    // Direct DM Redirect
     function handleSendDM(e) {
+      e.preventDefault();
+      const style = document.getElementById('selectedStyle').value;
+      const size = document.getElementById('bouquetSize').value;
+      const colors = document.getElementById('colorPalette').value;
+      const date = document.getElementById('pickupDate').value;
+      const note = document.getElementById('customNote').value;
+
+      const message = `Hi Fourteen Blooms! I'd like to place an order request:\n\n• Style: ${style}\n• Size: ${size}\n• Palette: ${colors}\n• Pickup Date: ${date}\n• Note: ${note || 'None'}`;
+
+      window.location.href = `https://ig.me/m/fourteenblooms?text=${encodeURIComponent(message)}`;
+    }
+
+    function handleModalSendDM(e) {
       e.preventDefault();
       const style = document.getElementById('modalStyleInput').value;
       const size = document.getElementById('modalSize').value;
