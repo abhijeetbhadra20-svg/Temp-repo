@@ -8,15 +8,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg-color: #fdf6f8;
-      --card-bg: #ffffff;
+      --bg-gradient: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 50%, #f48fb1 100%);
+      --glass-bg: rgba(255, 255, 255, 0.45);
+      --glass-bg-card: rgba(255, 255, 255, 0.55);
+      --glass-border: 1px solid rgba(255, 255, 255, 0.6);
+      --glass-shadow: 0 12px 32px 0 rgba(216, 27, 96, 0.12);
       --primary: #d81b60;
-      --primary-light: #f8bbd0;
+      --primary-dark: #ad1457;
       --text-dark: #2c1820;
-      --text-muted: #7a5c68;
-      --accent-purple: #8e24aa;
-      --shadow: 0 10px 30px rgba(216, 27, 96, 0.08);
-      --radius: 18px;
+      --text-muted: #6a4c58;
+      --radius: 0px; /* Sharp Edges Everywhere */
     }
 
     * {
@@ -27,43 +28,81 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: var(--bg-color);
+      background: var(--bg-gradient);
+      background-attachment: fixed;
       color: var(--text-dark);
       overflow-x: hidden;
       scroll-behavior: smooth;
+      min-height: 100vh;
     }
 
-    /* Scroll Animation Classes */
+    /* Keyframe Animations */
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Scroll Reveal Animations */
     .reveal {
       opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+      transform: translateY(50px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .reveal.active {
       opacity: 1;
       transform: translateY(0);
     }
 
-    /* Navbar */
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-left.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* Glassmorphism Header */
     header {
       position: fixed;
       top: 0;
       width: 100%;
-      background: rgba(253, 246, 248, 0.85);
-      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.35);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       z-index: 100;
-      padding: 15px 5%;
+      padding: 18px 6%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid rgba(248, 187, 208, 0.3);
+      border-bottom: var(--glass-border);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+      animation: slideDown 0.8s ease-out;
     }
 
     .brand-logo {
       font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       font-weight: 600;
-      color: var(--primary);
+      color: var(--primary-dark);
       text-decoration: none;
       letter-spacing: -0.5px;
     }
@@ -71,116 +110,136 @@
     .nav-btn {
       background: var(--primary);
       color: #fff;
-      padding: 10px 22px;
-      border-radius: 30px;
+      padding: 10px 24px;
+      border-radius: var(--radius);
       text-decoration: none;
       font-size: 0.9rem;
       font-weight: 500;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(216, 27, 96, 0.25);
+      border: var(--glass-border);
+      box-shadow: 0 6px 20px rgba(216, 27, 96, 0.2);
     }
 
     .nav-btn:hover {
-      transform: translateY(-2px);
-      background: #c2185b;
+      background: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(216, 27, 96, 0.35);
     }
 
     /* Hero Section */
     .hero {
-      padding: 140px 5% 80px;
+      padding: 150px 6% 90px;
       text-align: center;
       max-width: 900px;
       margin: 0 auto;
+      animation: slideUp 1s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .badge {
       display: inline-block;
-      background: var(--primary-light);
-      color: var(--primary);
-      padding: 6px 16px;
-      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(10px);
+      color: var(--primary-dark);
+      padding: 8px 20px;
+      border-radius: var(--radius);
       font-size: 0.85rem;
-      font-weight: 500;
-      margin-bottom: 20px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      border: var(--glass-border);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
     }
 
     .hero h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 3rem;
-      line-height: 1.2;
-      margin-bottom: 20px;
+      font-size: 3.2rem;
+      line-height: 1.25;
+      margin-bottom: 22px;
       color: var(--text-dark);
     }
 
     .hero p {
       color: var(--text-muted);
-      font-size: 1.1rem;
-      margin-bottom: 35px;
+      font-size: 1.15rem;
+      margin-bottom: 38px;
+      line-height: 1.6;
     }
 
-    /* Product Grid */
+    /* Section Titles */
     .section-title {
       text-align: center;
       font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
-      margin-bottom: 10px;
+      font-size: 2.4rem;
+      margin-bottom: 12px;
+      color: var(--text-dark);
     }
 
     .section-subtitle {
       text-align: center;
       color: var(--text-muted);
       margin-bottom: 50px;
-      font-size: 0.95rem;
+      font-size: 1rem;
     }
 
+    /* Glassmorphism Product Grid */
     .grid-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-      padding: 0 5% 80px;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 32px;
+      padding: 0 6% 90px;
       max-width: 1200px;
       margin: 0 auto;
     }
 
     .card {
-      background: var(--card-bg);
+      background: var(--glass-bg-card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border-radius: var(--radius);
-      padding: 16px;
-      box-shadow: var(--shadow);
-      transition: all 0.4s ease;
+      padding: 20px;
+      box-shadow: var(--glass-shadow);
+      border: var(--glass-border);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       cursor: pointer;
       position: relative;
-      border: 1px solid rgba(248, 187, 208, 0.2);
+      overflow: hidden;
     }
 
     .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(216, 27, 96, 0.15);
+      transform: translateY(-10px) scale(1.01);
+      background: rgba(255, 255, 255, 0.75);
+      box-shadow: 0 20px 40px rgba(216, 27, 96, 0.2);
+    }
+
+    .card-img-wrapper {
+      overflow: hidden;
+      margin-bottom: 18px;
     }
 
     .card-img {
       width: 100%;
-      height: 280px;
-      border-radius: 12px;
+      height: 290px;
       object-fit: cover;
-      margin-bottom: 16px;
-      transition: transform 0.5s ease;
+      border-radius: var(--radius);
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .card:hover .card-img {
-      transform: scale(1.02);
+      transform: scale(1.06);
     }
 
     .card-title {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       font-weight: 600;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
+      color: var(--text-dark);
     }
 
     .card-desc {
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       color: var(--text-muted);
-      margin-bottom: 14px;
+      margin-bottom: 18px;
+      line-height: 1.5;
     }
 
     .card-bottom {
@@ -191,19 +250,19 @@
 
     .price {
       font-weight: 600;
-      color: var(--primary);
-      font-size: 1.1rem;
+      color: var(--primary-dark);
+      font-size: 1.2rem;
     }
 
     .select-btn {
-      background: var(--bg-color);
+      background: rgba(255, 255, 255, 0.8);
       color: var(--primary);
-      border: 1px solid var(--primary-light);
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      transition: all 0.2s ease;
+      border: var(--glass-border);
+      padding: 9px 20px;
+      border-radius: var(--radius);
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
     }
 
     .card:hover .select-btn {
@@ -211,84 +270,92 @@
       color: #fff;
     }
 
-    /* Order / Customization Form */
+    /* Glassmorphism Order Section */
     .order-section {
-      background: #ffffff;
-      padding: 80px 5%;
-      border-radius: 30px 30px 0 0;
-      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.02);
+      padding: 90px 6%;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     .form-container {
-      max-width: 650px;
+      max-width: 680px;
       margin: 0 auto;
-      background: var(--bg-color);
-      padding: 35px;
+      background: rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 42px;
       border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(248, 187, 208, 0.3);
+      box-shadow: var(--glass-shadow);
+      border: var(--glass-border);
     }
 
     .form-group {
-      margin-bottom: 22px;
+      margin-bottom: 24px;
     }
 
     .form-group label {
       display: block;
-      font-size: 0.9rem;
-      font-weight: 500;
-      margin-bottom: 8px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--text-dark);
     }
 
     .form-control {
       width: 100%;
-      padding: 12px 16px;
-      border-radius: 10px;
-      border: 1px solid #e2d2d8;
-      background: #fff;
+      padding: 14px 18px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(216, 27, 96, 0.2);
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
       font-family: inherit;
       font-size: 0.95rem;
+      color: var(--text-dark);
       outline: none;
-      transition: border 0.3s ease;
+      transition: all 0.3s ease;
     }
 
     .form-control:focus {
       border-color: var(--primary);
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 0 15px rgba(216, 27, 96, 0.15);
     }
 
     .submit-btn {
       width: 100%;
       background: var(--primary);
       color: #fff;
-      padding: 14px;
-      border: none;
-      border-radius: 12px;
-      font-size: 1rem;
+      padding: 16px;
+      border: var(--glass-border);
+      border-radius: var(--radius);
+      font-size: 1.05rem;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
-      box-shadow: 0 6px 20px rgba(216, 27, 96, 0.25);
+      box-shadow: 0 8px 25px rgba(216, 27, 96, 0.3);
     }
 
     .submit-btn:hover {
-      background: #c2185b;
+      background: var(--primary-dark);
       transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(216, 27, 96, 0.4);
     }
 
     /* Footer */
     footer {
       text-align: center;
-      padding: 40px 5%;
+      padding: 40px 6%;
       color: var(--text-muted);
-      font-size: 0.85rem;
-      border-top: 1px solid rgba(248, 187, 208, 0.3);
+      font-size: 0.88rem;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border-top: var(--glass-border);
     }
 
-    /* Responsive adjustments */
     @media (max-width: 768px) {
-      .hero h1 { font-size: 2.2rem; }
+      .hero h1 { font-size: 2.3rem; }
       .grid-container { grid-template-columns: 1fr; }
-      .form-container { padding: 22px; }
+      .form-container { padding: 26px; }
     }
   </style>
 </head>
@@ -301,11 +368,11 @@
   </header>
 
   <!-- Hero Section -->
-  <section class="hero reveal">
+  <section class="hero">
     <span class="badge">Handcrafted in Vancouver & Surrey, BC</span>
     <h1>Forever Flowers Made with Love & Detail</h1>
     <p>Custom pipe cleaner flower bouquets tailored to your favorite colors. Perfect for birthdays, anniversaries, or special moments that last forever.</p>
-    <a href="#catalog" class="nav-btn" style="padding: 14px 32px; font-size: 1rem;">Explore Bouquets</a>
+    <a href="#catalog" class="nav-btn" style="padding: 15px 36px; font-size: 1rem;">Explore Bouquets</a>
   </section>
 
   <!-- Bouquet Catalog -->
@@ -316,7 +383,9 @@
     <div class="grid-container">
       <!-- Card 1 -->
       <div class="card reveal" onclick="selectBouquet('Hot Pink Velvet Lily')">
-        <img src="https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=600" alt="Hot Pink Bouquet" class="card-img" />
+        <div class="card-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=600" alt="Hot Pink Bouquet" class="card-img" />
+        </div>
         <div class="card-title">Hot Pink Velvet Lily</div>
         <div class="card-desc">Vibrant magenta lilies surrounded by soft pastel pink wrap & gold trim accents.</div>
         <div class="card-bottom">
@@ -327,7 +396,9 @@
 
       <!-- Card 2 -->
       <div class="card reveal" onclick="selectBouquet('Royal Purple & Lavender')">
-        <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?w=600" alt="Purple Bouquet" class="card-img" />
+        <div class="card-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?w=600" alt="Purple Bouquet" class="card-img" />
+        </div>
         <div class="card-title">Royal Purple & Lavender</div>
         <div class="card-desc">Hand-shaped purple blooms with lavender layers and iridescent ribbon details.</div>
         <div class="card-bottom">
@@ -337,8 +408,10 @@
       </div>
 
       <!-- Card 3 -->
-      <div class="card reveal" onclick="selectBouquet('Sunny Daisy & Tulip Mix')">
-        <img src="https://images.unsplash.com/photo-1591886960571-74d43a9d4166?w=600" alt="Red & Gold Bouquet" class="card-img" />
+      <div class="card reveal" onclick="selectBouquet('Classic Red & White Rose')">
+        <div class="card-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1591886960571-74d43a9d4166?w=600" alt="Red & Gold Bouquet" class="card-img" />
+        </div>
         <div class="card-title">Classic Red & White Rose</div>
         <div class="card-desc">Timeless arrangement featuring deep red blooms and custom bow ribbon.</div>
         <div class="card-bottom">
@@ -349,7 +422,7 @@
     </div>
   </section>
 
-  <!-- Interactive Order Form -->
+  <!-- Order Form Section -->
   <section class="order-section" id="order">
     <h2 class="section-title reveal">Custom Order Request</h2>
     <p class="section-subtitle reveal">Fill out your preferred bouquet details to instantly start a DM order</p>
@@ -386,26 +459,30 @@
     <p>© 2026 fourteen blooms • Handcrafted Pipe Cleaner Art in Vancouver & Surrey, BC</p>
   </footer>
 
-  <!-- Interactive Scripts & Animations -->
   <script>
-    // Scroll Reveal Animation (Intersection Observer)
+    // Intersection Observer for Smooth Scroll Animations
+    const observerOptions = {
+      threshold: 0.15,
+      rootMargin: "0px 0px -50px 0px"
+    };
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('active');
         }
       });
-    }, { threshold: 0.1 });
+    }, observerOptions);
 
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
 
-    // Interactive Card Selector
+    // Card Selection Logic
     function selectBouquet(name) {
       document.getElementById('selectedStyle').value = name;
       document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
     }
 
-    // Form Submit Direct Redirect to Instagram DM / Summary
+    // Form Redirection Logic
     function handleFormSubmit(e) {
       e.preventDefault();
       const style = document.getElementById('selectedStyle').value;
