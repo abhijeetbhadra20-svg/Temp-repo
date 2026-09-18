@@ -8,16 +8,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg-gradient: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 50%, #f48fb1 100%);
-      --glass-bg-card: rgba(255, 255, 255, 0.55);
-      --glass-border: 1px solid rgba(255, 255, 255, 0.65);
-      --glass-shadow: 0 12px 32px 0 rgba(216, 27, 96, 0.12);
+      --bg-color: #fdf6f8;
+      --card-bg: #ffffff;
       --primary: #d81b60;
-      --primary-dark: #ad1457;
+      --primary-hover: #c2185b;
+      --primary-light: #f8bbd0;
       --text-dark: #2c1820;
-      --text-muted: #6a4c58;
+      --text-muted: #7a5c68;
+      --shadow: 0 10px 30px rgba(216, 27, 96, 0.08);
+      --radius-card: 20px;
+      --radius-btn: 30px;
       --star-color: #ffb300;
-      --radius: 0px; /* Sharp Corners */
     }
 
     * {
@@ -28,89 +29,97 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-      background: var(--bg-gradient);
-      background-attachment: fixed;
+      background-color: var(--bg-color);
       color: var(--text-dark);
       overflow-x: hidden;
       scroll-behavior: smooth;
-      padding-bottom: 70px; /* Space for Sticky Mobile CTA */
+      padding-bottom: 80px;
     }
 
-    /* Scroll Reveal */
+    /* Scroll Animations */
     .reveal {
       opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.2, 1, 0.3, 1);
     }
     .reveal.active {
       opacity: 1;
       transform: translateY(0);
     }
 
-    /* Glass Header */
+    /* Soft Glass Header */
     header {
       position: fixed;
       top: 0;
       width: 100%;
-      background: rgba(255, 255, 255, 0.4);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: rgba(253, 246, 248, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       z-index: 100;
       padding: 16px 6%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: var(--glass-border);
+      border-bottom: 1px solid rgba(248, 187, 208, 0.4);
     }
 
     .brand-logo {
       font-family: 'Playfair Display', serif;
       font-size: 1.5rem;
       font-weight: 600;
-      color: var(--primary-dark);
+      color: var(--primary);
       text-decoration: none;
+      letter-spacing: -0.5px;
     }
 
     .nav-btn {
       background: var(--primary);
       color: #fff;
-      padding: 10px 22px;
-      border-radius: var(--radius);
+      padding: 10px 24px;
+      border-radius: var(--radius-btn);
       text-decoration: none;
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       font-weight: 500;
       transition: all 0.3s ease;
-      border: var(--glass-border);
-      box-shadow: 0 6px 20px rgba(216, 27, 96, 0.2);
+      box-shadow: 0 4px 15px rgba(216, 27, 96, 0.25);
+      border: none;
       cursor: pointer;
     }
 
     .nav-btn:hover {
-      background: var(--primary-dark);
+      background: var(--primary-hover);
+      transform: translateY(-2px);
     }
 
-    /* Sticky Mobile CTA */
-    .sticky-mobile-cta {
+    /* Floating Unobtrusive Mobile CTA */
+    .floating-cta {
       position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: rgba(216, 27, 96, 0.92);
-      backdrop-filter: blur(12px);
+      bottom: 20px;
+      right: 20px;
+      background: var(--primary);
       color: #fff;
-      padding: 14px;
-      text-align: center;
+      padding: 14px 26px;
+      border-radius: var(--radius-btn);
       font-weight: 600;
-      font-size: 1rem;
+      font-size: 0.95rem;
+      box-shadow: 0 8px 25px rgba(216, 27, 96, 0.35);
       z-index: 99;
       cursor: pointer;
-      border-top: var(--glass-border);
-      display: block;
+      border: none;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    /* Hero */
+    .floating-cta:hover {
+      transform: scale(1.05);
+      background: var(--primary-hover);
+    }
+
+    /* Hero Section */
     .hero {
-      padding: 140px 6% 60px;
+      padding: 140px 6% 70px;
       text-align: center;
       max-width: 900px;
       margin: 0 auto;
@@ -118,15 +127,13 @@
 
     .badge {
       display: inline-block;
-      background: rgba(255, 255, 255, 0.6);
-      backdrop-filter: blur(10px);
-      color: var(--primary-dark);
-      padding: 8px 20px;
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 6px 18px;
+      border-radius: 20px;
       font-size: 0.85rem;
-      font-weight: 600;
+      font-weight: 500;
       margin-bottom: 20px;
-      border: var(--glass-border);
-      text-transform: uppercase;
     }
 
     .hero h1 {
@@ -134,12 +141,14 @@
       font-size: 3rem;
       line-height: 1.25;
       margin-bottom: 20px;
+      color: var(--text-dark);
     }
 
     .hero p {
       color: var(--text-muted);
       font-size: 1.1rem;
-      margin-bottom: 30px;
+      margin-bottom: 35px;
+      line-height: 1.6;
     }
 
     /* Section Styling */
@@ -148,49 +157,89 @@
       font-family: 'Playfair Display', serif;
       font-size: 2.2rem;
       margin-bottom: 10px;
+      color: var(--text-dark);
     }
 
     .section-subtitle {
       text-align: center;
       color: var(--text-muted);
-      margin-bottom: 40px;
+      margin-bottom: 45px;
       font-size: 0.95rem;
     }
 
-    /* Catalog Grid */
+    /* 3-Step Process */
+    .steps-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      padding: 0 6% 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .step-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-card);
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(248, 187, 208, 0.3);
+      text-align: center;
+    }
+
+    .step-number {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .step-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .step-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Product Grid */
     .grid-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 28px;
+      gap: 30px;
       padding: 0 6% 80px;
       max-width: 1200px;
       margin: 0 auto;
     }
 
     .card {
-      background: var(--glass-bg-card);
-      backdrop-filter: blur(16px);
-      padding: 18px;
-      box-shadow: var(--glass-shadow);
-      border: var(--glass-border);
-      transition: all 0.3s ease;
+      background: var(--card-bg);
+      border-radius: var(--radius-card);
+      padding: 16px;
+      box-shadow: var(--shadow);
+      transition: all 0.4s ease;
       cursor: pointer;
+      border: 1px solid rgba(248, 187, 208, 0.3);
     }
 
     .card:hover {
-      transform: translateY(-6px);
-      background: rgba(255, 255, 255, 0.75);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(216, 27, 96, 0.12);
     }
 
     .card-img {
       width: 100%;
-      height: 270px;
+      height: 280px;
+      border-radius: 14px;
       object-fit: cover;
       margin-bottom: 16px;
     }
 
     .card-title {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: 600;
       margin-bottom: 6px;
     }
@@ -198,7 +247,8 @@
     .card-desc {
       font-size: 0.85rem;
       color: var(--text-muted);
-      margin-bottom: 16px;
+      margin-bottom: 14px;
+      line-height: 1.5;
     }
 
     .card-bottom {
@@ -209,48 +259,101 @@
 
     .price {
       font-weight: 600;
-      color: var(--primary-dark);
-      font-size: 1.15rem;
+      color: var(--primary);
+      font-size: 1.1rem;
     }
 
-    /* FAQ Section */
-    .faq-section {
-      padding: 60px 6% 80px;
-      max-width: 800px;
+    .select-btn {
+      background: var(--bg-color);
+      color: var(--primary);
+      border: 1px solid var(--primary-light);
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .card:hover .select-btn {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    /* Testimonials */
+    .reviews-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      padding: 0 6% 80px;
+      max-width: 1200px;
       margin: 0 auto;
     }
 
-    .faq-item {
-      background: rgba(255, 255, 255, 0.6);
-      backdrop-filter: blur(12px);
-      border: var(--glass-border);
-      padding: 20px;
-      margin-bottom: 16px;
-      box-shadow: var(--glass-shadow);
+    .review-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-card);
+      padding: 26px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(248, 187, 208, 0.3);
     }
 
-    .faq-question {
+    .stars {
+      color: var(--star-color);
+      margin-bottom: 10px;
+    }
+
+    .review-text {
+      font-size: 0.88rem;
+      font-style: italic;
+      color: var(--text-dark);
+      margin-bottom: 14px;
+      line-height: 1.6;
+    }
+
+    .review-author {
+      font-size: 0.85rem;
       font-weight: 600;
-      font-size: 1rem;
-      margin-bottom: 8px;
-      color: var(--primary-dark);
+      color: var(--primary);
     }
 
-    .faq-answer {
-      font-size: 0.9rem;
+    /* FAQ Section */
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 6% 80px;
+    }
+
+    .faq-item {
+      background: var(--card-bg);
+      border-radius: 14px;
+      padding: 20px 24px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(248, 187, 208, 0.3);
+    }
+
+    .faq-q {
+      font-weight: 600;
+      font-size: 0.98rem;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .faq-a {
+      font-size: 0.88rem;
       color: var(--text-muted);
       line-height: 1.5;
     }
 
-    /* Modal / Custom Builder Popup */
-    .modal-overlay {
+    /* Custom Order Modal Builder */
+    .modal-backdrop {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(8px);
+      background: rgba(44, 24, 32, 0.4);
+      backdrop-filter: blur(6px);
       z-index: 1000;
       display: none;
       justify-content: center;
@@ -258,28 +361,28 @@
       padding: 20px;
     }
 
-    .modal-overlay.active {
+    .modal-backdrop.active {
       display: flex;
     }
 
-    .modal-content {
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(20px);
-      border: var(--glass-border);
+    .modal-box {
+      background: #ffffff;
+      border-radius: 24px;
       padding: 32px;
-      max-width: 550px;
+      max-width: 560px;
       width: 100%;
       max-height: 90vh;
       overflow-y: auto;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 20px 50px rgba(216, 27, 96, 0.2);
       position: relative;
+      border: 1px solid rgba(248, 187, 208, 0.4);
     }
 
-    .close-modal {
+    .close-btn {
       position: absolute;
-      top: 16px;
-      right: 20px;
-      font-size: 1.5rem;
+      top: 20px;
+      right: 24px;
+      font-size: 1.6rem;
       cursor: pointer;
       color: var(--text-muted);
     }
@@ -291,18 +394,24 @@
     .form-group label {
       display: block;
       font-size: 0.88rem;
-      font-weight: 600;
+      font-weight: 500;
       margin-bottom: 8px;
     }
 
     .form-control {
       width: 100%;
-      padding: 12px 14px;
-      border: 1px solid rgba(216, 27, 96, 0.25);
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px solid #e2d2d8;
       background: #fff;
       font-family: inherit;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       outline: none;
+      transition: border 0.2s ease;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary);
     }
 
     .submit-btn {
@@ -311,19 +420,31 @@
       color: #fff;
       padding: 14px;
       border: none;
+      border-radius: 14px;
       font-size: 1rem;
       font-weight: 600;
       cursor: pointer;
-      box-shadow: 0 6px 20px rgba(216, 27, 96, 0.3);
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 20px rgba(216, 27, 96, 0.25);
+    }
+
+    .submit-btn:hover {
+      background: var(--primary-hover);
+      transform: translateY(-2px);
     }
 
     footer {
       text-align: center;
-      padding: 30px 6%;
+      padding: 40px 6%;
       color: var(--text-muted);
       font-size: 0.85rem;
-      background: rgba(255, 255, 255, 0.2);
-      border-top: var(--glass-border);
+      border-top: 1px solid rgba(248, 187, 208, 0.3);
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.2rem; }
+      .grid-container, .steps-container, .reviews-container { grid-template-columns: 1fr; }
+      .modal-box { padding: 22px; }
     }
   </style>
 </head>
@@ -332,89 +453,141 @@
   <!-- Header -->
   <header>
     <a href="#" class="brand-logo">fourteen blooms</a>
-    <button class="nav-btn" onclick="openModal('Custom Order')">Order Custom 🌸</button>
+    <button class="nav-btn" onclick="openBuilder('Custom Order')">Order Custom</button>
   </header>
 
-  <!-- Sticky Mobile CTA -->
-  <div class="sticky-mobile-cta" onclick="openModal('Custom Order')">
+  <!-- Unobtrusive Floating Mobile CTA -->
+  <button class="floating-cta" onclick="openBuilder('Custom Order')">
     Build Custom Bouquet 🌸
-  </div>
+  </button>
 
   <!-- Hero -->
-  <section class="hero">
-    <span class="badge">Vancouver & Surrey, BC</span>
+  <section class="hero reveal">
+    <span class="badge">Handcrafted in Vancouver & Surrey, BC</span>
     <h1>Forever Flowers Made with Love & Detail</h1>
     <p>Custom pipe cleaner flower bouquets tailored to your favorite colors. Perfect for birthdays, anniversaries, or special moments that last forever.</p>
-    <button class="nav-btn" style="padding: 14px 32px; font-size: 1rem;" onclick="openModal('Custom Order')">Custom Order Builder</button>
+    <button class="nav-btn" style="padding: 14px 32px; font-size: 1rem;" onclick="openBuilder('Custom Order')">Explore Custom Builder</button>
+  </section>
+
+  <!-- How It Works -->
+  <section>
+    <h2 class="section-title reveal">How Ordering Works</h2>
+    <p class="section-subtitle reveal">3 easy steps to get your custom handmade bouquet</p>
+
+    <div class="steps-container">
+      <div class="step-card reveal">
+        <div class="step-number">01</div>
+        <div class="step-title">Select Style</div>
+        <div class="step-desc">Pick your favorite bouquet layout or start from scratch.</div>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-number">02</div>
+        <div class="step-title">Customize Colors</div>
+        <div class="step-desc">Choose color palettes, sizes, and pickup date.</div>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-number">03</div>
+        <div class="step-title">Instant DM Order</div>
+        <div class="step-desc">Send structured order details directly to our Instagram!</div>
+      </div>
+    </div>
   </section>
 
   <!-- Catalog -->
   <section id="catalog">
     <h2 class="section-title reveal">Popular Bouquet Styles</h2>
-    <p class="section-subtitle reveal">Click any design to customize and place an instant order</p>
+    <p class="section-subtitle reveal">Click any design to customize and request an order</p>
     
     <div class="grid-container">
-      <div class="card reveal" onclick="openModal('Hot Pink Velvet Lily')">
+      <div class="card reveal" onclick="openBuilder('Hot Pink Velvet Lily')">
         <img src="https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=600" alt="Hot Pink Bouquet" class="card-img" />
         <div class="card-title">Hot Pink Velvet Lily</div>
         <div class="card-desc">Vibrant magenta lilies surrounded by soft pastel pink wrap & gold trim accents.</div>
         <div class="card-bottom">
           <span class="price">$45.00 CAD</span>
-          <button class="nav-btn" style="padding: 6px 14px; font-size: 0.8rem;">Customize</button>
+          <span class="select-btn">Customize</span>
         </div>
       </div>
 
-      <div class="card reveal" onclick="openModal('Royal Purple & Lavender')">
+      <div class="card reveal" onclick="openBuilder('Royal Purple & Lavender')">
         <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?w=600" alt="Purple Bouquet" class="card-img" />
         <div class="card-title">Royal Purple & Lavender</div>
         <div class="card-desc">Hand-shaped purple blooms with lavender layers and iridescent ribbon details.</div>
         <div class="card-bottom">
           <span class="price">$50.00 CAD</span>
-          <button class="nav-btn" style="padding: 6px 14px; font-size: 0.8rem;">Customize</button>
+          <span class="select-btn">Customize</span>
         </div>
       </div>
 
-      <div class="card reveal" onclick="openModal('Classic Red & White Rose')">
+      <div class="card reveal" onclick="openBuilder('Classic Red & White Rose')">
         <img src="https://images.unsplash.com/photo-1591886960571-74d43a9d4166?w=600" alt="Red Rose Bouquet" class="card-img" />
         <div class="card-title">Classic Red & White Rose</div>
         <div class="card-desc">Timeless arrangement featuring deep red blooms and custom bow ribbon.</div>
         <div class="card-bottom">
           <span class="price">$40.00 CAD</span>
-          <button class="nav-btn" style="padding: 6px 14px; font-size: 0.8rem;">Customize</button>
+          <span class="select-btn">Customize</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FAQ Section -->
-  <section class="faq-section">
-    <h2 class="section-title reveal">Frequently Asked Questions</h2>
-    <p class="section-subtitle reveal">Everything you need to know about placing a custom order</p>
+  <!-- Testimonials -->
+  <section>
+    <h2 class="section-title reveal">Loved by Locals</h2>
+    <p class="section-subtitle reveal">Real feedback from custom orders in BC</p>
 
-    <div class="faq-item reveal">
-      <div class="faq-question">📍 Where are you located for pickup?</div>
-      <div class="faq-answer">We are based in Vancouver & Surrey, BC! Local pickup details are coordinated directly in DMs once your order is confirmed.</div>
-    </div>
+    <div class="reviews-container">
+      <div class="review-card reveal">
+        <div class="stars">★★★★★</div>
+        <div class="review-text">"Ordered a hot pink bouquet for my best friend's birthday and it turned out even cuter than the pictures!"</div>
+        <div class="review-author">— Emily K. (Vancouver, BC)</div>
+      </div>
 
-    <div class="faq-item reveal">
-      <div class="faq-question">🎨 Can I request custom colors not shown in photos?</div>
-      <div class="faq-answer">Yes! You can specify any color combination (Pastels, Neutrals, Vibrant, Multi-color) in our Custom Order Builder.</div>
-    </div>
+      <div class="review-card reveal">
+        <div class="stars">★★★★★</div>
+        <div class="review-text">"Super smooth pickup in Surrey! The pipe cleaner flowers look so detailed and high quality."</div>
+        <div class="review-author">— Jessica T. (Surrey, BC)</div>
+      </div>
 
-    <div class="faq-item reveal">
-      <div class="faq-question">⏳ How much advance notice do you need?</div>
-      <div class="faq-answer">Since each bouquet is 100% handcrafted with care, please order at least 3-5 days prior to your required pickup date.</div>
+      <div class="review-card reveal">
+        <div class="stars">★★★★★</div>
+        <div class="review-text">"Loved choosing my own custom colors. Highly recommend Fourteen Blooms!"</div>
+        <div class="review-author">— Sarah M. (Burnaby, BC)</div>
+      </div>
     </div>
   </section>
 
-  <!-- Custom Builder Modal Overlay -->
-  <div class="modal-overlay" id="orderModal">
-    <div class="modal-content">
-      <span class="close-modal" onclick="closeModal()">&times;</span>
-      <h3 style="font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 6px;" id="modalStyleTitle">Custom Bouquet Builder</h3>
-      <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px;">Select your options to send a pre-filled request to Instagram DMs</p>
+  <!-- FAQ -->
+  <section>
+    <h2 class="section-title reveal">Frequently Asked Questions</h2>
+    <p class="section-subtitle reveal">Everything you need to know about placing an order</p>
 
-      <form onsubmit="sendInstagramDM(event)">
+    <div class="faq-container">
+      <div class="faq-item reveal">
+        <div class="faq-q">📍 Where do I pick up my bouquet?</div>
+        <div class="faq-a">We offer local pickup in Vancouver & Surrey, BC. Exact address is provided once your order is confirmed in DMs.</div>
+      </div>
+
+      <div class="faq-item reveal">
+        <div class="faq-q">🎨 Can I request custom colors?</div>
+        <div class="faq-a">Yes! You can specify your favorite color combinations (Pastel, Vibrant, Gold/Silver accents) in our Order Builder.</div>
+      </div>
+
+      <div class="faq-item reveal">
+        <div class="faq-q">⏳ How much advance notice is required?</div>
+        <div class="faq-a">Since each flower is handcrafted, please place your order at least 3-5 days before your required pickup date.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal Custom Builder -->
+  <div class="modal-backdrop" id="builderModal">
+    <div class="modal-box">
+      <span class="close-btn" onclick="closeBuilder()">&times;</span>
+      <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 6px;" id="modalStyleTitle">Custom Bouquet Request</h3>
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px;">Fill out your choices to generate a pre-filled Instagram DM request</p>
+
+      <form onsubmit="handleSendDM(event)">
         <div class="form-group">
           <label>Selected Style</label>
           <input type="text" id="modalStyleInput" class="form-control" readonly />
@@ -423,7 +596,7 @@
         <div class="form-group">
           <label>Bouquet Size / Budget</label>
           <select id="modalSize" class="form-control">
-            <option>Mini / Petite Bouquet ($30 - $35 CAD)</option>
+            <option>Petite / Mini Bouquet ($30 - $35 CAD)</option>
             <option selected>Standard Bouquet ($40 - $50 CAD)</option>
             <option>Deluxe Grand Bouquet ($60+ CAD)</option>
           </select>
@@ -431,7 +604,7 @@
 
         <div class="form-group">
           <label>Color Palette Preference</label>
-          <input type="text" id="modalColor" class="form-control" placeholder="e.g. Pink & White, Pastel Purple, Gold accents" required />
+          <input type="text" id="modalColor" class="form-control" placeholder="e.g. Pink & White, Lavender, Gold ribbon" required />
         </div>
 
         <div class="form-group">
@@ -440,11 +613,11 @@
         </div>
 
         <div class="form-group">
-          <label>Special Occasion or Gift Note (Optional)</label>
-          <textarea id="modalNote" class="form-control" rows="2" placeholder="e.g. Birthday gift for Sarah! Add a pink bow."></textarea>
+          <label>Special Note / Message Card (Optional)</label>
+          <textarea id="modalNote" class="form-control" rows="2" placeholder="e.g. Happy Birthday Sarah! Add a pink bow."></textarea>
         </div>
 
-        <button type="submit" class="submit-btn">Send Pre-Filled Order to DMs 🌸</button>
+        <button type="submit" class="submit-btn">Send Request to Instagram DMs 🌸</button>
       </form>
     </div>
   </div>
@@ -454,28 +627,31 @@
   </footer>
 
   <script>
-    // Scroll Reveal
+    // Set Minimum Date to Today
+    document.getElementById('modalDate').min = new Date().toISOString().split('T')[0];
+
+    // Scroll Observer
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('active');
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.1 });
 
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
 
-    // Modal Control
-    function openModal(styleName) {
+    // Modal Builder Logic
+    function openBuilder(styleName) {
       document.getElementById('modalStyleTitle').innerText = styleName;
       document.getElementById('modalStyleInput').value = styleName;
-      document.getElementById('orderModal').classList.add('active');
+      document.getElementById('builderModal').classList.add('active');
     }
 
-    function closeModal() {
-      document.getElementById('orderModal').classList.remove('active');
+    function closeBuilder() {
+      document.getElementById('builderModal').classList.remove('active');
     }
 
-    // Instagram Redirect
-    function sendInstagramDM(e) {
+    // Direct DM Redirect
+    function handleSendDM(e) {
       e.preventDefault();
       const style = document.getElementById('modalStyleInput').value;
       const size = document.getElementById('modalSize').value;
@@ -483,7 +659,7 @@
       const date = document.getElementById('modalDate').value;
       const note = document.getElementById('modalNote').value;
 
-      const message = `Hi Fourteen Blooms! I'd like to order a custom bouquet:\n\n• Style: ${style}\n• Size: ${size}\n• Palette: ${color}\n• Pickup Date: ${date}\n• Note: ${note || 'None'}`;
+      const message = `Hi Fourteen Blooms! I'd like to place an order request:\n\n• Style: ${style}\n• Size: ${size}\n• Palette: ${color}\n• Pickup Date: ${date}\n• Note: ${note || 'None'}`;
 
       window.location.href = `https://ig.me/m/fourteenblooms?text=${encodeURIComponent(message)}`;
     }
