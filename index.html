@@ -1441,6 +1441,117 @@
       .device-showcase-scene .screen-art-photo{overflow:hidden}
     }
 
+  
+    /* Less haze, more hierarchy — keep glass visible but let the actual UI read */
+    body{
+      background:
+        radial-gradient(ellipse at 8% 10%,rgba(190,207,180,.27),transparent 25%),
+        radial-gradient(ellipse at 90% 20%,rgba(239,164,119,.13),transparent 23%),
+        #fbf4e9;
+    }
+    .hero-art.hero-scene.hero-v6-scene.hero-abstract{
+      background:
+        radial-gradient(ellipse at 11% 33%,rgba(190,206,180,.53),transparent 31%),
+        radial-gradient(ellipse at 82% 79%,rgba(255,130,91,.55),transparent 30%),
+        radial-gradient(ellipse at 47% 9%,rgba(247,221,182,.82),transparent 27%),
+        linear-gradient(108deg,#fff5e9 0%,#f5f0e3 48%,#dce6d3 100%);
+    }
+    .abstract-orb{filter:blur(34px);opacity:.47}
+    .orb-sage{background:#c2d0b8;opacity:.56}
+    .orb-peach{background:#f2d5b1;opacity:.62}
+    .orb-orange{background:#ff936d;opacity:.61}
+    .abstract-wash{filter:blur(30px);opacity:.62}
+    .abstract-main-glass{
+      background:linear-gradient(135deg,rgba(255,255,255,.65),rgba(255,252,246,.38));
+      border-color:rgba(255,255,255,.98);
+      box-shadow:0 22px 55px rgba(53,73,52,.075),inset 0 1px rgba(255,255,255,1),inset 0 -1px rgba(255,255,255,.4);
+      backdrop-filter:blur(22px) saturate(1.12);-webkit-backdrop-filter:blur(22px) saturate(1.12);
+    }
+    .abstract-main-glass h1{color:#25382b;text-shadow:0 1px rgba(255,255,255,.24)}
+    .abstract-main-glass p{color:#586a58;font-size:13px}
+    .abstract-side-glass{
+      background:linear-gradient(135deg,rgba(255,255,255,.8),rgba(255,251,244,.53));
+      box-shadow:0 13px 32px rgba(44,63,45,.055),inset 0 1px rgba(255,255,255,1);
+      backdrop-filter:blur(18px) saturate(1.08);-webkit-backdrop-filter:blur(18px) saturate(1.08);
+    }
+    .abstract-side-glass p{color:#304333}
+    .abstract-glass-tile{
+      background:linear-gradient(145deg,rgba(255,255,255,.67),rgba(255,255,255,.35));
+      backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+    }
+    .abstract-glass-chip{background:rgba(255,252,245,.67);color:#586b57}
+    .device-showcase-heading h2{color:#26392b}
+    .device-showcase-heading p{color:#687363}
+    .device-showcase-scene{
+      background:
+        radial-gradient(ellipse at 18% 30%,rgba(188,207,179,.56),transparent 27%),
+        radial-gradient(ellipse at 85% 17%,rgba(223,156,112,.47),transparent 22%),
+        radial-gradient(ellipse at 75% 95%,rgba(255,250,239,.8),transparent 27%),
+        linear-gradient(125deg,#f7eddf,#edf0e3 58%,#f5e6d6);
+    }
+    .device-showcase-scene .scene-device{width:68%;left:16%}
+    .screen-art-css .screen-photo-panel{
+      background:
+        linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.06)),
+        url("https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=700&q=80") center/cover;
+    }
+    .screen-art-css .screen-photo-panel:after{display:none}
+    .screen-art-css .screen-photo-panel{border:3px solid rgba(255,255,255,.78);box-shadow:0 6px 15px rgba(44,64,48,.1)}
+    .screen-art-css .screen-photo-orb{opacity:.45}
+    /* Product photography now lives inside the designed website previews */
+    .browser-products span{isolation:isolate;overflow:hidden;background:#eae6d9}
+    .browser-products span:before{display:none}
+    .browser-products span img{
+      display:block;position:absolute;inset:0;width:100%;height:100%;
+      object-fit:cover;opacity:.94;transition:transform .5s var(--ease);
+    }
+    .project:hover .browser-products span img{transform:scale(1.055)}
+    .canvas-photo{
+      position:absolute;z-index:2;right:7%;top:25%;width:35%;height:46%;
+      border:3px solid rgba(255,255,255,.9);border-radius:5px;
+      background-position:center;background-size:cover;
+      box-shadow:0 6px 16px rgba(40,56,42,.12);
+    }
+    .canvas-store .canvas-photo{background-image:url("https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=500&q=80")}
+    .canvas-aura .canvas-photo{background-image:url("https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=500&q=80")}
+    .canvas-auto .canvas-photo{background-image:url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=500&q=80")}
+    .canvas-ui-title{
+      position:absolute;z-index:3;left:8%;right:49%;top:28%;height:6%;
+      background:rgba(43,61,45,.72);border-radius:2px;
+    }
+    .canvas-ui-lines{
+      position:absolute;z-index:3;left:8%;width:29%;top:39%;height:3px;
+      background:rgba(77,95,73,.28);box-shadow:0 7px rgba(77,95,73,.19),0 14px rgba(77,95,73,.12);
+    }
+    .canvas-aura .canvas-ui-title,.canvas-auto .canvas-ui-title{background:rgba(43,61,45,.78)}
+    .canvas-aura .canvas-ui-lines,.canvas-auto .canvas-ui-lines{top:41%}
+    .mini-site{
+      background:rgba(255,252,245,.76);
+      box-shadow:0 24px 55px rgba(39,57,43,.16),inset 0 1px rgba(255,255,255,1);
+    }
+    .mini-site-caption{background:rgba(255,252,245,.91);color:#29382d}
+    .mini-site-caption b{font-size:10px;color:#29382d}
+    .mini-site-caption span{color:#65715f}
+    .project-visual{
+      background:linear-gradient(135deg,rgba(255,255,255,.43),rgba(255,250,242,.16));
+      box-shadow:0 12px 30px rgba(42,60,44,.05),inset 0 1px rgba(255,255,255,.98);
+    }
+    .project-visual:after{background:linear-gradient(135deg,rgba(255,255,255,.02),transparent 47%,rgba(45,60,44,.08))}
+    .project-info h3{font-size:20px}
+    .project-info p{font-size:12px;line-height:1.85;color:#5f6e5d}
+    .project-tags span{font-size:9px;color:#536b51;background:rgba(255,255,255,.42)}
+    .section-head h2{color:#29382d}
+    .section-note{color:#64715f}
+    .service-card p{font-size:12px;line-height:1.82;color:#64705f}
+    .about-copy,.principle p,.process-step p{color:#64705f}
+    .contact-copy{color:#536650}
+    @media(max-width:680px){
+      .device-showcase-scene .scene-device{width:81%;left:9.5%}
+      .canvas-photo{border-width:2px}
+      .project-info p{font-size:11px}
+      .abstract-main-glass{backdrop-filter:blur(18px) saturate(1.08);-webkit-backdrop-filter:blur(18px) saturate(1.08)}
+    }
+
   </style>
 </head>
 <body>
@@ -1573,10 +1684,10 @@
                     <div class="browser-kicker">Objects for everyday life</div>
                     <div class="browser-title">Find your<br>new favourite.</div>
                     <div class="browser-bottom"><div><div class="browser-line"></div><div class="browser-line" style="width:62%"></div></div><span class="browser-pill">SHOP NOW ↗</span></div>
-                    <div class="browser-products"><span></span><span></span><span></span></div>
+                    <div class="browser-products"><span><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=240&q=80" alt="Minimal wristwatch product"></span><span><img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=240&q=80" alt="Compact camera product"></span><span><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=240&q=80" alt="Headphones product"></span></div>
                   </div>
                 </div>
-                <div class="mini-site"><div class="mini-site-canvas canvas-store" aria-hidden="true"></div><div class="mini-site-caption"><b>AMANE / Storefront</b><span>Product-led e-commerce experience</span></div></div>
+                <div class="mini-site"><div class="mini-site-canvas canvas-store" aria-hidden="true"><span class="canvas-photo"></span><span class="canvas-ui-title"></span><span class="canvas-ui-lines"></span></div><div class="mini-site-caption"><b>AMANE / Storefront</b><span>Product-led e-commerce experience</span></div></div>
               </div>
             </a>
             <div class="project-info"><div><h3>Amane Store</h3><p>An independent e-commerce build exploring product discovery, storefront structure and a cohesive shopping experience.</p></div><div class="project-tags"><span>E-commerce</span><span>Live website ↗</span></div></div>
@@ -1596,7 +1707,7 @@
                     <div class="browser-bottom" style="margin-top:10px"><span class="browser-pill">CUSTOMISE ↗</span><span class="browser-kicker">01 / 03</span></div>
                   </div>
                 </div>
-                <div class="mini-site"><div class="mini-site-canvas canvas-aura" aria-hidden="true"></div><div class="mini-site-caption"><b>AURA / Order flow</b><span>Interactive order intake concept</span></div></div>
+                <div class="mini-site"><div class="mini-site-canvas canvas-aura" aria-hidden="true"><span class="canvas-photo"></span><span class="canvas-ui-title"></span><span class="canvas-ui-lines"></span></div><div class="mini-site-caption"><b>AURA / Order flow</b><span>Interactive order intake concept</span></div></div>
               </div>
             </a>
             <div class="project-info"><div><h3>AURA Order Experience</h3><p>A custom-order flow concept designed to make choices and project details easier to collect.</p></div><div class="project-tags"><span>Interactive</span><span>Demo ↗</span></div></div>
@@ -1616,7 +1727,7 @@
                     <div class="browser-bottom" style="margin-top:10px"><span class="browser-pill">BOOK A DETAIL</span><span class="browser-kicker">01 / 04</span></div>
                   </div>
                 </div>
-                <div class="mini-site"><div class="mini-site-canvas canvas-auto" aria-hidden="true"></div><div class="mini-site-caption"><b>NORTHLINE / Auto care</b><span>Service-business visual direction</span></div></div>
+                <div class="mini-site"><div class="mini-site-canvas canvas-auto" aria-hidden="true"><span class="canvas-photo"></span><span class="canvas-ui-title"></span><span class="canvas-ui-lines"></span></div><div class="mini-site-caption"><b>NORTHLINE / Auto care</b><span>Service-business visual direction</span></div></div>
               </div>
             </a>
             <div class="project-info"><div><h3>Northline Auto Care</h3><p>A concept direction for a service business that needs to communicate quality, build trust and invite bookings.</p></div><div class="project-tags"><span>Concept study</span><span>Service business</span></div></div>
