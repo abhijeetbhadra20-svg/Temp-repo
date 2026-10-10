@@ -11,9 +11,9 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --paper:#f1efe8;--paper-2:#e8e6dc;--ink:#191a17;--muted:#73746c;
-      --line:rgba(25,26,23,.14);--acid:#d8ff54;--dark:#171915;--dark-2:#20221c;
-      --white:#fffef8;--radius:24px;--ease:cubic-bezier(.2,.75,.25,1);
+      --paper:#f7f0e5;--paper-2:#f1e3d3;--ink:#29211d;--muted:#7a6d63;
+      --line:rgba(41,33,29,.14);--acid:#ed7138;--orange-soft:#ffb16d;--dark:#29211d;--dark-2:#352821;
+      --white:#fff9f1;--radius:24px;--ease:cubic-bezier(.2,.75,.25,1);
       --heading:'Manrope',sans-serif;--body:'DM Sans',sans-serif;--mono:'DM Mono',monospace;
     }
     *{box-sizing:border-box}
@@ -362,6 +362,112 @@
       .nav-cta::before,.btn::before{display:none}
     }
 
+  
+    /* Cream + two-orange visual system. Edges stay crisp and the effects stay quiet. */
+    :root{--paper:#f7f0e5;--paper-2:#f1e3d3;--ink:#29211d;--muted:#7a6d63;--line:rgba(41,33,29,.14);--acid:#ed7138;--orange-soft:#ffb16d;--dark:#29211d;--dark-2:#352821;--white:#fff9f1}
+    body{background:var(--paper);color:var(--ink)}
+    .site-header{background:rgba(247,240,229,.18)}
+    .site-header .nav{
+      border:1px solid rgba(255,255,255,.82);
+      border-radius:8px;
+      background:rgba(255,250,242,.86);
+      background-image:linear-gradient(125deg,rgba(255,255,255,.64),rgba(255,255,255,.16));
+      box-shadow:0 8px 28px rgba(76,49,29,.055),inset 0 1px rgba(255,255,255,.92);
+      backdrop-filter:blur(20px) saturate(1.12);
+      -webkit-backdrop-filter:blur(20px) saturate(1.12);
+    }
+    .site-header .nav:hover{box-shadow:0 12px 32px rgba(76,49,29,.075),inset 0 1px rgba(255,255,255,.98)}
+    .brand-mark{background:#2b211c;color:#ffb16d;border-radius:5px;transform:none}
+    .brand:hover .brand-mark{transform:translateY(-1px)}
+    .nav-cta,.btn{
+      border-radius:5px;
+      background:var(--acid);
+      border-color:var(--acid);
+      color:#281d17;
+      box-shadow:0 4px 0 rgba(41,33,29,.06),inset 0 1px rgba(255,255,255,.27);
+      letter-spacing:.005em;
+    }
+    .nav-cta:hover,.btn:hover{background:var(--orange-soft);border-color:var(--orange-soft);color:#281d17}
+    .nav-cta::before,.btn::before{background:linear-gradient(90deg,transparent,rgba(255,255,255,.32),transparent)}
+    .menu-toggle{border-radius:5px;background:rgba(255,255,255,.38)}
+    .availability{border-radius:5px;background:rgba(255,255,255,.42);border-color:rgba(110,81,60,.16);box-shadow:none}
+    .hero h1 .underline-mark:after{background:linear-gradient(90deg,var(--acid),var(--orange-soft));height:13%;bottom:6%;border-radius:0;transform:rotate(-1.4deg)}
+    .hero h1 .serif{color:#b95325}
+    .art-glow{background:radial-gradient(circle at 35% 35%,#ffbd80 0,#f39a5c 26%,#e8c4a1 48%,rgba(247,220,191,.02) 72%);opacity:.75}
+    .photo-main,.photo-small{border-color:var(--paper);border-radius:4px}
+    .photo-main{border-radius:4px 4px 54px 4px}
+    .photo-small{transform:rotate(-3deg)}
+    .stamp{border-radius:5px;background:rgba(255,249,241,.87);border-color:rgba(41,33,29,.6)}
+    .floating-tag{background:var(--orange-soft);border-radius:5px;animation:none;box-shadow:0 15px 35px rgba(105,58,25,.12),inset 0 1px rgba(255,255,255,.35)}
+    .floating-tag .label{color:#62402d}
+    .marquee{background:#f0e1cf;border-color:rgba(41,33,29,.13)}
+    .marquee-set i{color:#d35e2b}
+    .work-section{
+      background:linear-gradient(135deg,#f2e5d6 0%,#f7f0e5 65%,#f6e4d3 100%);
+      color:var(--ink);
+    }
+    .work-section:before{background:radial-gradient(circle,rgba(237,113,56,.14),transparent 68%)}
+    .work-section .label{color:#895d43}
+    .work-section .section-note{color:#76665b}
+    .project-visual{border-radius:5px;box-shadow:inset 0 1px rgba(255,255,255,.25),0 10px 32px rgba(78,46,24,.07)}
+    .project-visual:after{background:linear-gradient(180deg,rgba(20,14,10,.02) 24%,rgba(20,14,10,.44) 100%)}
+    .browser-card,.mini-site{border-radius:5px}
+    .browser-pill{border-radius:2px;background:var(--acid);color:#2b211c}
+    .project-index{border-radius:4px;background:rgba(41,33,29,.72);border-color:rgba(255,249,241,.25)}
+    .project-index span{color:var(--orange-soft)}
+    .project-link-icon{border-radius:4px;background:var(--acid);color:#29211d;opacity:1;transform:none}
+    .project-info h3{color:var(--ink)}
+    .project-info p{color:#75665b}
+    .project-tags span{color:#715747;border-color:rgba(41,33,29,.2);border-radius:3px}
+    .work-foot{color:#75665b;border-color:rgba(41,33,29,.17)}
+    .work-foot strong{color:#c35224}
+    .work-foot .text-link{color:var(--ink)!important;border-color:rgba(41,33,29,.25)!important}
+    .work-foot .text-link:hover{border-color:var(--acid)!important}
+    .services{background:var(--paper)}
+    .service-card{
+      border-radius:5px;
+      background:rgba(255,251,244,.72);
+      border:1px solid rgba(130,92,62,.18);
+      box-shadow:inset 0 1px rgba(255,255,255,.9),0 6px 24px rgba(76,49,29,.025);
+      backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    }
+    .service-card:hover{background:#fff7ed;border-color:rgba(218,101,47,.42);box-shadow:0 13px 30px rgba(76,49,29,.055),inset 0 1px #fff}
+    .service-icon{border-radius:5px;border-color:rgba(41,33,29,.16);color:#c45b2b;background:rgba(237,113,56,.06)}
+    .about-section{background:#f0e4d6}
+    .about-intro h2 em,.section-head h2 em{color:#b95325}
+    .principles{border-color:rgba(41,33,29,.16)}
+    .principle{border-color:rgba(41,33,29,.16)}
+    .process-section{background:#fbf5ec;color:var(--ink)}
+    .process-section .label{color:#a4542e}
+    .process-section .section-note{color:#76665b}
+    .process-grid{border-color:rgba(41,33,29,.2)}
+    .process-step+.process-step{border-color:rgba(41,33,29,.16)}
+    .process-step .label{color:#c45b2b}
+    .process-step .step-dot{border-color:rgba(41,33,29,.2);color:#554338;border-radius:4px}
+    .process-step p{color:#78685d}
+    .contact-section{background:#f3c19d}
+    .contact-section:after{color:rgba(125,62,29,.05)}
+    .contact-section .label{color:#7a4225}
+    .contact-copy{color:#684a39}
+    .contact-actions .btn{background:var(--ink);color:var(--white);border-color:var(--ink);border-radius:5px}
+    .contact-actions .btn:hover{background:var(--orange-soft);color:var(--ink);border-color:var(--orange-soft)}
+    .contact-actions small{color:#72523f}
+    footer{background:#29211d;color:#e3d0bf}
+    .footer-brand{color:#fff7ec}
+    .footer-brand .brand-mark{background:var(--acid);color:#29211d}
+    .footer-note,.footer-links a{color:#d0bca9}
+    .footer-links a:hover{color:var(--orange-soft)}
+    .reveal{filter:blur(2px);transform:translateY(18px);transition:opacity .68s var(--ease),transform .68s var(--ease),filter .72s var(--ease)}
+    .reveal.in-view{filter:blur(0)}
+    @media(max-width:680px){
+      .site-header .nav{border-radius:6px}
+      .nav-links.open{border:1px solid rgba(255,255,255,.86);border-radius:6px;background:rgba(255,249,241,.94);box-shadow:0 18px 45px rgba(76,49,29,.13),inset 0 1px rgba(255,255,255,.95)}
+      .service-card{border-radius:5px}
+      .project-visual{border-radius:5px}
+      .project-link-icon{border-radius:4px}
+    }
+    @media(prefers-reduced-motion:reduce){.reveal{filter:none}}
+
   </style>
 </head>
 <body>
@@ -403,8 +509,8 @@
         </div>
         <div class="hero-art" aria-label="Editorial website and product photography collage">
           <div class="art-glow"></div>
-          <div class="hero-photo photo-main"><img fetchpriority="high" src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=1100&q=85" alt="Carefully styled skincare bottles in soft natural light"></div>
-          <div class="hero-photo photo-small"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=700&q=80" alt="Warm, designed restaurant interior" loading="lazy"></div>
+          <div class="hero-photo photo-main"><img fetchpriority="high" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=88" alt="Minimal developer workspace with a laptop and code editor"></div>
+          <div class="hero-photo photo-small"><img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=900&q=85" alt="Code on a screen during a software development session" loading="lazy"></div>
           <div class="stamp"><span>Design with<br>purpose ✳<br>Est. 2026</span></div>
           <div class="floating-tag"><span class="label">The point of it all</span><strong>Make it<br>matter.</strong><p>Less noise. More clarity. Better experiences.</p></div>
         </div>
@@ -428,7 +534,7 @@
           <article class="project featured reveal">
             <a href="https://amane-store-smoky.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Visit Amane Store live project">
               <div class="project-visual">
-                <img class="project-image" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1600&q=85" alt="Minimal product photography for an online store" loading="lazy">
+                <img class="project-image" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1600&q=85" alt="Developers collaborating around screens in a bright workspace" loading="lazy">
                 <span class="project-index"><span>01</span> LIVE BUILD · SELF-INITIATED</span><span class="project-link-icon">↗</span>
                 <div class="browser-card">
                   <div class="browser-top"><b></b><b></b><b></b></div>
@@ -448,7 +554,7 @@
           <article class="project reveal delay-1">
             <a href="aura-demo.html" aria-label="Explore AURA custom order intake demo">
               <div class="project-visual">
-                <img class="project-image" src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1000&q=80" alt="Elegant event styling with flowers and warm details" loading="lazy">
+                <img class="project-image" src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1100&q=85" alt="Close view of code on a monitor" loading="lazy">
                 <span class="project-index"><span>02</span> INTERACTIVE DEMO</span><span class="project-link-icon">↗</span>
                 <div class="browser-card">
                   <div class="browser-top"><b></b><b></b><b></b></div>
@@ -468,7 +574,7 @@
           <article class="project reveal delay-2">
             <a href="#contact" aria-label="Discuss a website concept for an auto service business">
               <div class="project-visual">
-                <img class="project-image" src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1000&q=80" alt="Premium car exterior in dramatic light" loading="lazy">
+                <img class="project-image" src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1100&q=85" alt="Developer workspace showing source code on a laptop" loading="lazy">
                 <span class="project-index"><span>03</span> VISUAL CONCEPT</span><span class="project-link-icon">↗</span>
                 <div class="browser-card">
                   <div class="browser-top"><b></b><b></b><b></b></div>
