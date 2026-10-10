@@ -886,6 +886,150 @@
       .scene-device,.scene-code-card{animation:none}
     }
 
+  
+    /* Glassmorphism direction from the supplied references — soft blobs and clear type */
+    :root{--paper:#faf2e7;--paper-2:#ece9dd;--ink:#29382d;--muted:#73776c;--line:rgba(41,56,45,.15);--acid:#d58256;--orange-soft:#e7a071;--sage:#b8c0aa;--sage-deep:#78856e;--dark:#29382d;--dark-2:#35483b;--white:#fffaf2;--heading:'Sora',sans-serif;--body:'Inter',sans-serif;--mono:'IBM Plex Mono',monospace}
+    body{background:#faf3e9;color:var(--ink)}
+    .wrap{width:min(1170px,calc(100% - 54px))}
+    .site-header{padding:10px 0 0;background:transparent}
+    .site-header .nav{height:68px;border-radius:8px;background:rgba(255,252,246,.56);border-color:rgba(255,255,255,.85);box-shadow:0 8px 34px rgba(45,58,42,.065),inset 0 1px rgba(255,255,255,.96);backdrop-filter:blur(24px) saturate(1.18);-webkit-backdrop-filter:blur(24px) saturate(1.18)}
+    .brand-mark{border-radius:6px;background:#29382d;color:#f0b18a}
+    .nav-cta,.btn{border-radius:6px;background:#29382d;border-color:#29382d;color:#fffaf2}
+    .nav-cta:hover,.btn:hover{background:#d58256;border-color:#d58256;color:#fffaf2}
+    .hero-v6{padding-top:28px;padding-bottom:58px}
+    .hero-minihead{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:0 3px 14px;color:#778071}
+    .hero-kicker,.hero-minihead-right{font:500 9px/1.5 var(--mono);letter-spacing:.12em}
+    .hero-kicker{display:inline-flex;align-items:center;gap:8px}
+    .hero-kicker i,.stage-label i{display:inline-block;width:6px;height:6px;border-radius:50%;background:#d58256;box-shadow:0 0 0 4px rgba(213,130,86,.12)}
+    .hero-art.hero-scene.hero-v6-scene{
+      height:clamp(530px,58vw,655px);min-height:0;width:100%;margin:0 auto;overflow:hidden;isolation:isolate;
+      border-radius:15px;border:1px solid rgba(255,255,255,.9);
+      background:linear-gradient(135deg,#fcf5eb 0%,#f6eddf 45%,#eff0e4 100%);
+      box-shadow:0 22px 65px rgba(58,64,45,.08),inset 0 1px rgba(255,255,255,.98);
+    }
+    .hero-v6-scene .scene-grid{opacity:.22;background-size:42px 42px;mask-image:linear-gradient(180deg,rgba(0,0,0,.7),transparent 78%)}
+    .hero-v6-scene .scene-orb-sage{width:clamp(230px,30vw,380px);height:clamp(230px,30vw,380px);left:5%;top:18%;background:#c5d0b9;opacity:.72;filter:blur(1px)}
+    .hero-v6-scene .scene-orb-orange{width:clamp(160px,20vw,255px);height:clamp(160px,20vw,255px);right:6%;top:13%;background:#e8a071;opacity:.74;filter:blur(1px)}
+    .hero-blob{position:absolute;z-index:0;pointer-events:none;filter:blur(24px);opacity:.65}
+    .hero-blob-peach{width:31%;height:42%;right:5%;bottom:7%;border-radius:42% 58% 63% 37%/47% 39% 61% 53%;background:rgba(242,151,112,.42);transform:rotate(-19deg)}
+    .hero-blob-sage{width:31%;height:44%;left:28%;bottom:4%;border-radius:63% 37% 43% 57%/46% 55% 45% 54%;background:rgba(162,184,151,.44);transform:rotate(16deg)}
+    .hero-v6-scene .scene-device{width:66%;left:17%;top:32%;z-index:3;filter:drop-shadow(0 23px 23px rgba(38,54,42,.14));animation:device-settle .9s var(--ease) both}
+    .hero-v6-scene .device-screen{border-color:#334237;background:#fffaf2;box-shadow:inset 0 0 0 1px rgba(255,255,255,.78),0 0 0 1px rgba(255,255,255,.25)}
+    .stage-glass-main{
+      position:absolute;z-index:6;left:23%;top:5%;width:54%;min-height:155px;padding:20px 28px 18px;
+      display:flex;align-items:center;flex-direction:column;justify-content:center;text-align:center;
+      border:1px solid rgba(255,255,255,.85);border-radius:13px;
+      background:linear-gradient(135deg,rgba(255,255,255,.59),rgba(255,250,241,.34));
+      box-shadow:0 14px 38px rgba(51,66,50,.075),inset 0 1px rgba(255,255,255,.94);
+      backdrop-filter:blur(25px) saturate(1.16);-webkit-backdrop-filter:blur(25px) saturate(1.16);
+    }
+    .stage-label{display:inline-flex;align-items:center;gap:8px;font:500 8px var(--mono);letter-spacing:.17em;color:#737c6b;margin-bottom:8px}
+    .stage-label i{width:5px;height:5px}
+    .stage-glass-main h1{font:600 clamp(24px,3.6vw,43px)/1.06 var(--heading);letter-spacing:-.07em;color:#29382d;margin:0 0 7px}
+    .stage-glass-main h1 em{font-family:Georgia,serif;font-weight:400;color:#bd7955}
+    .stage-glass-main p{font:400 11px/1.6 var(--body);color:#72796b;margin:0 0 10px}
+    .stage-cta{display:inline-flex;align-items:center;gap:13px;padding:8px 11px;border:1px solid rgba(43,58,44,.15);border-radius:5px;background:rgba(255,255,255,.42);font:600 9px var(--body);color:#354739;transition:background .25s,border-color .25s,transform .25s}
+    .stage-cta span{font-size:13px;color:#bd7955;transition:transform .25s}
+    .stage-cta:hover{background:rgba(255,255,255,.8);border-color:rgba(213,130,86,.55);transform:translateY(-2px)}
+    .stage-cta:hover span{transform:translate(2px,-2px)}
+    .stage-glass-note{
+      position:absolute;z-index:7;left:4%;top:46%;width:17%;padding:16px 14px;
+      border:1px solid rgba(255,255,255,.82);border-radius:10px;
+      background:linear-gradient(145deg,rgba(255,255,255,.67),rgba(255,250,242,.31));
+      box-shadow:0 12px 28px rgba(45,58,42,.06),inset 0 1px rgba(255,255,255,.98);
+      backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+    }
+    .note-index{font:500 7px/1.5 var(--mono);letter-spacing:.1em;color:#78826f}
+    .stage-glass-note p{font:500 clamp(11px,1.5vw,17px)/1.35 var(--heading);letter-spacing:-.045em;color:#354538;margin:10px 0 13px}
+    .note-bars{display:flex;flex-direction:column;gap:4px}
+    .note-bars i{height:3px;width:85%;background:rgba(116,130,105,.25);border-radius:2px}
+    .note-bars i:nth-child(2){width:62%}.note-bars i:nth-child(3){width:43%;background:rgba(213,130,86,.55)}
+    .hero-v6-scene .scene-code-card{
+      z-index:7;right:7%;top:48%;width:16%;padding-bottom:12px;transform:rotate(0);
+      background:linear-gradient(140deg,rgba(42,61,47,.94),rgba(42,61,47,.79));
+      border:1px solid rgba(255,255,255,.43);border-radius:9px;
+      box-shadow:0 15px 32px rgba(39,57,43,.17),inset 0 1px rgba(255,255,255,.15);
+      backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    }
+    .hero-v6-scene .code-card-top{height:28px}
+    .hero-v6-scene .code-lines{gap:7px}
+    .hero-v6-scene .scene-plant{left:1.5%;bottom:4%;height:43%;width:16%;z-index:2}
+    .hero-v6-scene .scene-plant .plant-vase{background:linear-gradient(90deg,#d7cbbb,#fff9ef 45%,#e4d9c8)}
+    .hero-v6-scene .scene-cup{right:3%;bottom:5%;width:9%;height:15%;z-index:4}
+    .hero-v6-scene .scene-caption{
+      bottom:2.5%;z-index:8;padding:7px 10px;border:1px solid rgba(255,255,255,.8);border-radius:5px;
+      background:rgba(255,252,246,.53);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);
+      box-shadow:0 5px 18px rgba(48,61,45,.04);font-size:7px;letter-spacing:.08em;color:#778071;
+    }
+    .hero-v6-scene .caption-dot{background:#d58256}
+    .work-section{background:linear-gradient(140deg,#faf3e9,#f2ecdf);color:#29382d}
+    .work-section .label{color:#78856e}
+    .work-section .section-note{color:#72776a}
+    .project-visual{border-radius:10px;border:1px solid rgba(255,255,255,.86);box-shadow:0 12px 32px rgba(42,60,44,.06),inset 0 1px rgba(255,255,255,.4)}
+    .project-index{border-radius:6px}
+    .project-link-icon{border-radius:6px}
+    .mini-site-caption{border-radius:5px}
+    .services{background:#f0efe4}
+    .service-card{border-radius:10px;background:linear-gradient(145deg,rgba(255,255,255,.61),rgba(255,250,242,.32));border:1px solid rgba(255,255,255,.82);box-shadow:0 10px 30px rgba(42,60,44,.045),inset 0 1px rgba(255,255,255,.92);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+    .service-card:hover{background:linear-gradient(145deg,rgba(255,255,255,.86),rgba(255,250,242,.5));border-color:rgba(120,133,110,.44);box-shadow:0 15px 34px rgba(42,60,44,.075),inset 0 1px rgba(255,255,255,.98)}
+    .service-icon{border-radius:7px}
+    .about-section{background:linear-gradient(130deg,#e9ecdf,#f4e9dc)}
+    .process-section{background:#faf3e9}
+    .contact-section{background:linear-gradient(135deg,#dce4d4,#f5e8db)}
+    .contact-actions{border-radius:10px;background:linear-gradient(145deg,rgba(255,255,255,.61),rgba(255,250,242,.29));border-color:rgba(255,255,255,.84);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+    @media(max-width:900px){
+      .wrap{width:min(100% - 40px,760px)}
+      .hero-art.hero-scene.hero-v6-scene{height:560px}
+      .hero-v6-scene .scene-device{width:69%;left:15.5%;top:35%}
+      .stage-glass-main{left:19%;width:62%}
+      .stage-glass-note{left:3%;width:18%;padding:13px 10px}
+      .hero-v6-scene .scene-code-card{right:4%;width:17%;top:50%}
+    }
+    @media(max-width:680px){
+      .wrap{width:calc(100% - 28px)}
+      .site-header .nav{height:60px;border-radius:7px}
+      .hero-v6{padding-top:23px;padding-bottom:40px}
+      .hero-minihead{margin:0 2px 11px;align-items:flex-start}
+      .hero-kicker,.hero-minihead-right{font-size:7px;letter-spacing:.07em}
+      .hero-art.hero-scene.hero-v6-scene{height:440px;border-radius:9px}
+      .stage-glass-main{left:7%;top:4%;width:86%;min-height:125px;padding:14px 12px 12px;border-radius:9px}
+      .stage-label{font-size:7px;margin-bottom:6px}
+      .stage-glass-main h1{font-size:clamp(24px,7.3vw,32px);margin-bottom:6px}
+      .stage-glass-main p{font-size:10px;margin-bottom:8px}
+      .stage-cta{padding:7px 9px;font-size:8px;border-radius:4px}
+      .hero-v6-scene .scene-device{width:78%;left:11%;top:37%}
+      .hero-v6-scene .device-screen{border-width:5px 5px 8px;border-radius:11px 11px 5px 5px}
+      .hero-v6-scene .scene-plant{left:-1%;bottom:5%;height:31%;width:21%}
+      .hero-v6-scene .scene-cup{right:2%;bottom:7%;width:10%;height:12%}
+      .hero-v6-scene .scene-code-card{width:22%;right:3%;top:58%;border-radius:6px}
+      .hero-v6-scene .code-card-top{height:18px;padding:0 5px;gap:3px}
+      .hero-v6-scene .code-lines{gap:4px}
+      .stage-glass-note{left:4%;top:52%;width:22%;padding:9px 8px;border-radius:7px}
+      .stage-glass-note p{font-size:10px;margin:7px 0}
+      .note-index{font-size:5px}
+      .note-bars{gap:3px}.note-bars i{height:2px}
+      .hero-v6-scene .scene-caption{bottom:2%;max-width:70%;white-space:normal;text-align:center;font-size:6px;padding:6px 8px}
+      .hero-v6-scene .scene-orb-sage{left:1%;top:26%;width:40vw;height:40vw}
+      .hero-v6-scene .scene-orb-orange{right:-2%;top:30%;width:30vw;height:30vw}
+      .hero-v6-scene .hero-blob-peach{width:45%;height:35%;right:-8%;bottom:9%}
+      .hero-v6-scene .hero-blob-sage{width:47%;height:34%;left:18%;bottom:4%}
+      .hero-v6-scene .scene-grid{background-size:25px 25px}
+      .section{padding:66px 0}
+      .section-head h2{font-size:clamp(35px,9vw,49px)}
+      .featured .project-visual,.project-visual{aspect-ratio:1.12}
+      .service-card{border-radius:8px}
+      .contact-actions{border-radius:8px}
+    }
+    @media(max-width:390px){
+      .hero-art.hero-scene.hero-v6-scene{height:410px}
+      .hero-v6-scene .scene-device{top:40%;width:80%;left:10%}
+      .stage-glass-main{min-height:116px}
+      .stage-glass-note{top:55%;left:2%;width:22%}
+      .hero-v6-scene .scene-code-card{top:60%;right:2%;width:23%}
+      .hero-v6-scene .scene-plant{width:22%;height:28%}
+      .hero-minihead-right{font-size:6px}
+    }
+
   </style>
 </head>
 <body>
@@ -907,69 +1051,68 @@
   </header>
 
   <main id="top">
-    <section class="hero wrap">
-      <div class="hero-top">
-        <div class="eyebrow"><span class="dot"></span> Independent builder · Working worldwide</div>
-        <div class="availability"><span class="dot"></span> Open to new collaborations</div>
+    <section class="hero wrap hero-v6">
+      <div class="hero-minihead">
+        <span class="hero-kicker"><i></i> INDEPENDENT WEB DESIGN & DEVELOPMENT</span>
+        <span class="hero-minihead-right">DESIGN · BUILD · LAUNCH</span>
       </div>
-      <div class="hero-grid">
-        <div class="hero-copy-side">
-          <h1>Good businesses deserve <span class="serif">better</span> <span class="underline-mark">websites.</span></h1>
-          <p class="hero-copy">I build thoughtful, modern web experiences that help small businesses look credible, explain their value and turn more visits into real enquiries.</p>
-          <div class="hero-actions">
-            <a class="btn" href="#work">Explore the work <span class="arrow">↗</span></a>
-            <a class="text-link" href="#about">A little about me <span class="arrow">↓</span></a>
-          </div>
-          <div class="hero-foot">
-            <div class="micro-stat"><div class="micro-icon">↗</div><div><strong>Built for the real world</strong><span>Clear, useful, responsive</span></div></div>
-            <div class="micro-stat"><div class="micro-icon">✳</div><div><strong>AI-assisted, human-shaped</strong><span>Intentional, never cookie-cutter</span></div></div>
-          </div>
+      <div class="hero-art hero-scene hero-v6-scene" aria-label="Frosted glass portfolio hero with a laptop website mockup, soft abstract shapes, plant and cup">
+        <div class="scene-orb scene-orb-sage"></div>
+        <div class="scene-orb scene-orb-orange"></div>
+        <div class="scene-grid" aria-hidden="true"></div>
+        <div class="hero-blob hero-blob-peach"></div>
+        <div class="hero-blob hero-blob-sage"></div>
+        <div class="scene-plant" aria-hidden="true">
+          <span class="plant-stem stem-one"></span><span class="plant-stem stem-two"></span><span class="plant-stem stem-three"></span>
+          <i class="plant-leaf leaf-a"></i><i class="plant-leaf leaf-b"></i><i class="plant-leaf leaf-c"></i><i class="plant-leaf leaf-d"></i><i class="plant-leaf leaf-e"></i><i class="plant-leaf leaf-f"></i><i class="plant-leaf leaf-g"></i>
+          <div class="plant-vase"></div>
         </div>
-        <div class="hero-art hero-scene" aria-label="Minimal illustrated laptop displaying a website, with a plant and coffee cup">
-          <div class="scene-orb scene-orb-sage"></div>
-          <div class="scene-orb scene-orb-orange"></div>
-          <div class="scene-grid" aria-hidden="true"></div>
-          <div class="scene-plant" aria-hidden="true">
-            <span class="plant-stem stem-one"></span><span class="plant-stem stem-two"></span><span class="plant-stem stem-three"></span>
-            <i class="plant-leaf leaf-a"></i><i class="plant-leaf leaf-b"></i><i class="plant-leaf leaf-c"></i><i class="plant-leaf leaf-d"></i><i class="plant-leaf leaf-e"></i><i class="plant-leaf leaf-f"></i><i class="plant-leaf leaf-g"></i>
-            <div class="plant-vase"></div>
-          </div>
-          <div class="scene-device">
-            <div class="device-screen">
-              <div class="screen-toolbar">
-                <div class="screen-brand"><span class="screen-brand-mark">a.</span><span>studio / web craft</span></div>
-                <div class="screen-nav-lines"><i></i><i></i><i></i></div>
-                <span class="screen-nav-cta"></span>
+        <div class="stage-glass-main">
+          <span class="stage-label"><i></i> DIGITAL EXPERIENCES</span>
+          <h1>Made to feel <em>different.</em></h1>
+          <p>Thoughtful websites for ambitious small businesses.</p>
+          <a href="#work" class="stage-cta">Explore selected work <span>↗</span></a>
+        </div>
+        <div class="stage-glass-note">
+          <span class="note-index">01 / THE APPROACH</span>
+          <p>Simple ideas.<br>Considered details.</p>
+          <div class="note-bars"><i></i><i></i><i></i></div>
+        </div>
+        <div class="scene-device">
+          <div class="device-screen">
+            <div class="screen-toolbar">
+              <div class="screen-brand"><span class="screen-brand-mark">a.</span><span>studio / web craft</span></div>
+              <div class="screen-nav-lines"><i></i><i></i><i></i></div>
+              <span class="screen-nav-cta"></span>
+            </div>
+            <div class="screen-content">
+              <div class="screen-intro">
+                <span class="screen-eyebrow"><i></i> Independent digital studio</span>
+                <strong>Ideas into<br><em>interfaces.</em></strong>
+                <div class="screen-copy-lines"><i></i><i></i><i></i></div>
+                <span class="screen-button"></span>
               </div>
-              <div class="screen-content">
-                <div class="screen-intro">
-                  <span class="screen-eyebrow"><i></i> Independent digital studio</span>
-                  <strong>Ideas into<br><em>interfaces.</em></strong>
-                  <div class="screen-copy-lines"><i></i><i></i><i></i></div>
-                  <span class="screen-button"></span>
-                </div>
-                <div class="screen-art">
-                  <div class="screen-art-sage"></div><div class="screen-art-terracotta"></div>
-                  <div class="screen-art-photo"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=700&q=80" alt="Developer workstation with code on screen" loading="lazy"></div>
-                  <div class="screen-art-mini"><span></span><span></span><span></span><i></i><i></i></div>
-                </div>
-              </div>
-              <div class="screen-bottom-cards">
-                <div class="screen-project"><span class="project-chip chip-sage"></span><i></i><i></i></div>
-                <div class="screen-project"><span class="project-chip chip-orange"></span><i></i><i></i></div>
-                <div class="screen-project"><span class="project-chip chip-image"></span><i></i><i></i></div>
+              <div class="screen-art">
+                <div class="screen-art-sage"></div><div class="screen-art-terracotta"></div>
+                <div class="screen-art-photo"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=700&q=80" alt="Developer workstation with code on screen" loading="lazy"></div>
+                <div class="screen-art-mini"><span></span><span></span><span></span><i></i><i></i></div>
               </div>
             </div>
-            <div class="device-bezel"></div>
-            <div class="device-base"><span></span></div>
+            <div class="screen-bottom-cards">
+              <div class="screen-project"><span class="project-chip chip-sage"></span><i></i><i></i></div>
+              <div class="screen-project"><span class="project-chip chip-orange"></span><i></i><i></i></div>
+              <div class="screen-project"><span class="project-chip chip-image"></span><i></i><i></i></div>
+            </div>
           </div>
-          <div class="scene-code-card" aria-hidden="true">
-            <div class="code-card-top"><i></i><i></i><i></i><span>index.html</span></div>
-            <div class="code-lines"><b class="code-long"></b><b class="code-mid"></b><b class="code-short orange-line"></b><b class="code-long sage-line"></b><b class="code-mid"></b><b class="code-short"></b><b class="code-long orange-line"></b></div>
-          </div>
-          <div class="scene-cup" aria-hidden="true"><span></span></div>
-          <div class="scene-caption"><span class="caption-dot"></span><span>Thoughtful design, built for the web</span></div>
+          <div class="device-bezel"></div>
+          <div class="device-base"><span></span></div>
         </div>
+        <div class="scene-code-card" aria-hidden="true">
+          <div class="code-card-top"><i></i><i></i><i></i><span>index.html</span></div>
+          <div class="code-lines"><b class="code-long"></b><b class="code-mid"></b><b class="code-short orange-line"></b><b class="code-long sage-line"></b><b class="code-mid"></b><b class="code-short"></b><b class="code-long orange-line"></b></div>
+        </div>
+        <div class="scene-cup" aria-hidden="true"><span></span></div>
+        <div class="scene-caption"><span class="caption-dot"></span><span>Crafted with clarity · Built for the web</span></div>
       </div>
     </section>
 
