@@ -1,29 +1,27 @@
-# Vibe Coder Portfolio Starter
+# YOUR NAME® — AI Developer & Web Designer Portfolio
 
-A responsive, single-page portfolio starter inspired by the dark, futuristic, purple-accented reference video. It's plain HTML, CSS, and JavaScript—no build process or paid dependency required.
+A hand-built, responsive portfolio influenced by the supplied reference videos: near-black editorial layouts, oversized typography, a glossy purple mascot, restrained neon glow, lime accents, carefully spaced sections, and designed-in project previews. Built with plain HTML, CSS, and JavaScript—no framework or build step needed.
 
-## Run it locally
+## Run locally
 
-Open `index.html` in your browser. For a local development server, open this folder in VS Code and use the Live Server extension.
+Open \`index.html\` in a browser, or use VS Code's Live Server extension.
 
-## Personalize it before publishing
+## Personalize before going live
 
-1. In `index.html`, replace `YOURNAME`, `Your Name`, and the title/description with your own details.
-2. Replace `hello@yourname.dev` with your real public contact email.
-3. Replace the GitHub and LinkedIn URLs with your profiles.
-4. Replace the three sample project concepts (Aether AI, Form Studio, Pulse Analytics) with your actual work. They're clearly marked as concepts for now—not real client projects.
-5. Add screenshots and link each project card to its live demo or case study when available.
-6. Update the service descriptions to reflect what you genuinely offer.
+1. Search the folder for \`YOUR NAME\`, \`YOURNAME\`, \`yourname.dev\`, \`yourusername\`, and \`hello@yourname.dev\` and replace these placeholders.
+2. Update the GitHub, LinkedIn, and email links in \`index.html\`.
+3. Replace the three clearly labelled **CONCEPT STUDY** cards with actual projects. Each card is an original CSS mock-up—not a claim of completed client work. Add a live demo, real screenshot, and case study when available.
+4. Update the copy in About, Services, and Process to reflect the services you can confidently offer.
+5. Replace the “available for select projects” status if it does not fit your situation.
 
-## Publish with Vercel
+## Deploy on Vercel
 
-1. Create a GitHub repository and upload the files from this folder.
-2. Sign in to Vercel and choose **Add New → Project**.
-3. Import the repository. Choose **Other** / static site if prompted; no build command is needed.
-4. Deploy. Vercel will give you a public URL; you can connect a custom domain later.
+Import the GitHub repository into Vercel as a static site. No build command or output directory is required; \`index.html\` is in the project root.
 
-## Notes
+## Details
 
-- The contact button uses a `mailto:` link; it opens the visitor's email app rather than submitting a backend form.
-- Google Fonts is used for Space Grotesk and DM Mono, with system fallbacks.
-- The project cards are visual concepts built in CSS so the starter works without extra image assets.
+- Responsive desktop, tablet, and mobile layouts; accessible mobile navigation.
+- Reduced-motion support, scroll progress, reveal-on-scroll, active navigation, and subtle hero parallax.
+- Project visuals are composed in HTML/CSS so they are easy to replace and don't depend on a screenshot background.
+- Google Fonts (Space Grotesk and DM Mono) load online; system fallbacks are included.
+- Contact uses a \`mailto:\` link and therefore opens the visitor's email app. It is not a backend form.
